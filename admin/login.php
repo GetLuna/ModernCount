@@ -1,6 +1,10 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
+/**
+ * Copyright (C) 2013 ModernBB
+ * Based on code by Josh Frandley copyright (C) 2012-2013
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
+ */
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -36,7 +40,7 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Indication &middot; Login</title>
+<title>ModernCount &middot; Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <link href="../resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
@@ -76,7 +80,7 @@ body {
 <div class="container">
 <form class="form-signin" method="post">
 <fieldset>
-<h2 class="form-signin-heading">Indication</h2>
+<h2 class="form-signin-heading">ModernCount</h2>
 <?php 
 
 if (isset($_GET["login_error"])) {

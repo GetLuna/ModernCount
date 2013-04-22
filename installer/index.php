@@ -1,8 +1,12 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
-
-//Security check, check if config exists
+/**
+ * Copyright (C) 2013 ModernBB
+ * Based on code by Josh Frandley copyright (C) 2012-2013
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
+ */
+ 
+// Security check, check if config exists
 if (file_exists("../config.php")) {
     header("Location: ../admin");
     exit;
@@ -13,7 +17,7 @@ if (file_exists("../config.php")) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Indication &middot; Installer</title>
+<title>ModernCount &middot; Installer</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="../resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
@@ -33,7 +37,7 @@ body {
 <div class="navbar navbar-fixed-top">
 <div class="navbar-inner">
 <div class="container">
-<a class="brand" href="#">Indication</a>
+<a class="brand" href="#">ModernCount</a>
 </div>
 </div>
 </div>
@@ -108,7 +112,7 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
 <div class="control-group">
 <label class="control-label" for="pathtoscript">Path to Script</label>
 <div class="controls">
-<input type="text" id="pathtoscript" name="pathtoscript" value="<? echo $pathtoscript; ?>" placeholder="Type the path to Indication..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
+<input type="text" id="pathtoscript" name="pathtoscript" value="<? echo $pathtoscript; ?>" placeholder="Type the path to ModernCount..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
 </div>
 </div>
 <div class="form-actions">

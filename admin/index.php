@@ -1,6 +1,10 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
+/**
+ * Copyright (C) 2013 ModernBB
+ * Based on code by Josh Frandley copyright (C) 2012-2013
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
+ */
 
 $version = "4.1.1";
 $codename = "QuickQuail";
@@ -28,7 +32,7 @@ setcookie("indicationhascheckedforupdates", "checkedsuccessfully", time()+604800
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Indication</title>
+<title>ModernCount</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
 
@@ -61,7 +65,7 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </a>
-<a class="brand" href="#">Indication</a>
+<a class="brand" href="#">ModernCount</a>
 <div class="nav-collapse collapse">
 <ul class="nav">
 <li class="active"><a href="index.php">Home</a></li>
@@ -161,7 +165,7 @@ mysql_close($con);
 ?>
 </div>
 <hr>
-<p class="muted pull-right">Indication <? echo $version; ?> (<? echo $rev; ?>) "<? echo $codename; ?>"  &copy; <a href="http://github.com/joshf" target="_blank">Josh Fradley</a> <? echo date("Y"); ?>. Themed by <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>.</p>
+<p class="muted pull-right">ModernCount <? echo $version; ?> (<? echo $rev; ?>) "<? echo $codename; ?>"  &copy; <a href="http://github.com/joshf" target="_blank">Josh Fradley</a> <? echo date("Y"); ?>. Themed by <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>.</p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->	

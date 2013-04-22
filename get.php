@@ -1,6 +1,10 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
+/**
+ * Copyright (C) 2013 ModernBB
+ * Based on code by Josh Frandley copyright (C) 2012-2013
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
+ */
 
 ob_start();
 
@@ -15,7 +19,7 @@ require_once("config.php");
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Indication</title>
+<title>ModernCount</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
@@ -43,7 +47,7 @@ body {
 <div class="navbar navbar-fixed-top">
 <div class="navbar-inner">
 <div class="container">
-<a class="brand" href="#">Indication</a>
+<a class="brand" href="#">ModernCount</a>
 </div>
 </div>
 </div>

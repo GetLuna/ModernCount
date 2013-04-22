@@ -1,6 +1,10 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
+/**
+ * Copyright (C) 2013 ModernBB
+ * Based on code by Josh Frandley copyright (C) 2012-2013
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
+ */
 
 if (!file_exists("../../config.php")) {
     header("Location: ../../installer");
@@ -21,7 +25,7 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Indication &middot; Add</title>
+<title>ModernCount &middot; Add</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
 
@@ -53,7 +57,7 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </a>
-<a class="brand" href="#">Indication</a>
+<a class="brand" href="#">ModernCount</a>
 <div class="nav-collapse collapse">
 <ul class="nav">
 <li><a href="../index.php">Home</a></li>

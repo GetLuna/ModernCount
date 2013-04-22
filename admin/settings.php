@@ -1,6 +1,10 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
+/**
+ * Copyright (C) 2013 ModernBB
+ * Based on code by Josh Frandley copyright (C) 2012-2013
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
+ */
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -67,7 +71,7 @@ if (isset($_POST["save"])) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Indication &middot; Settings</title>
+<title>ModernCount &middot; Settings</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
 
@@ -99,7 +103,7 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </a>
-<a class="brand" href="#">Indication</a>
+<a class="brand" href="#">ModernCount</a>
 <div class="nav-collapse collapse">
 <ul class="nav">
 <li><a href="index.php">Home</a></li>
@@ -153,7 +157,7 @@ if (isset($_GET["updated"])) {
 <div class="control-group">
 <label class="control-label" for="pathtoscript">Path to Script</label>
 <div class="controls">
-<input type="text" id="pathtoscript" name="pathtoscript" value="<? echo $currentpathtoscript; ?>" placeholder="Type the path to Indication..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
+<input type="text" id="pathtoscript" name="pathtoscript" value="<? echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
 </div>
 </div>
 <h4>Ad Code</h4>
@@ -180,7 +184,7 @@ if ($currentcountuniqueonlystate == "Enabled" ) {
 </div>  
 </div>
 <h4>Theme</h4>
-<p>Themes are provided by BootSwatch, for previews of each theme see <a href="http://bootswatch.com" target="_blank">here</a>. The "Default" theme is included with the Indication, the others are hosted on a CDN.</p>
+<p>Themes are provided by BootSwatch, for previews of each theme see <a href="http://bootswatch.com" target="_blank">here</a>. The "Default" theme is included with the ModernCount, the others are hosted on a CDN.</p>
 <div class="control-group">
 <label class="control-label" for="theme">Select a theme</label>
 <div class="controls">

@@ -148,14 +148,14 @@ echo "</tbody></table>";
 
 $getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM Data");
 $resultnumberofdownloads = mysql_fetch_assoc($getnumberofdownloads);
-echo "<i class=\"icon-list-alt\"></i> <b>" . $resultnumberofdownloads["COUNT(id)"] . "</b> items<br>";
+echo "<i class=\"icon-download\"></i> <b>" . $resultnumberofdownloads["COUNT(id)"] . "</b> items and ";
 
 $gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM Data");
 $resulttotalnumberofdownloads = mysql_fetch_assoc($gettotalnumberofdownloads);
 if ($resulttotalnumberofdownloads["SUM(count)"] > "1") {
-    echo "<i class=\"icon-download\"></i> <b>" . $resulttotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
+    echo "<b>" . $resulttotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
 } else {
-    echo "<i class=\"icon-download\"></i> <b>0</b> total downloads";
+    echo "<b>0</b> total downloads";
 }
 
 mysql_close($con);

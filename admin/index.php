@@ -134,9 +134,9 @@ echo "</tbody></table>";
 
 ?>
 <div class="btn-group">
-<button id="edit" class="btn">Edit</button>
-<button id="delete" class="btn">Delete</button>
-<button id="trackinglink" class="btn">Show Tracking Link</button>
+<button id="edit" class="btn"><div class="icon-pencil"></div></button>
+<button id="delete" class="btn"><div class="icon-remove"></div></button>
+<button id="trackinglink" class="btn"><div class="icon-search"></div></button>
 </div>
 <br>
 <br>

@@ -135,27 +135,27 @@ if (isset($_GET["updated"])) {
 <form method="post">
 <fieldset>
 <h4>Admin Details</h4>
-<div class="control-group">
-<label class="control-label" for="adminuser">Admin User</label>
+<div>
+<label for="adminuser">Admin User</label>
 <div class="controls">
 <input type="text" id="adminuser" name="adminuser" value="<? echo $currentadminuser; ?>" placeholder="Enter a username..." required>
 </div>
 </div>
-<div class="control-group">
-<label class="control-label" for="adminpassword">Admin Password</label>
+<div>
+<label for="adminpassword">Admin Password</label>
 <div class="controls">
 <input type="password" id="adminpassword" name="adminpassword" value="<? echo $currentadminpassword; ?>" placeholder="Enter a password..." required>
 </div>
 </div>
 <h4>Other Settings</h4>
-<div class="control-group">
-<label class="control-label" for="website">Website</label>
+<div>
+<label for="website">Website</label>
 <div class="controls">
 <input type="text" id="website" name="website" value="<? echo $currentwebsite; ?>" placeholder="Enter your websites name..." required>
 </div>
 </div>
-<div class="control-group">
-<label class="control-label" for="pathtoscript">Path to Script</label>
+<div>
+<label for="pathtoscript">Path to Script</label>
 <div class="controls">
 <input type="text" id="pathtoscript" name="pathtoscript" value="<? echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
 </div>
@@ -163,14 +163,14 @@ if (isset($_GET["updated"])) {
 <h4>Ad Code</h4>
 <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
 <div class="alert alert-warning"><b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
-<div class="control-group">
+<div>
 <div class="controls">
 <textarea id="advertcode" name="advertcode" placeholder="Enter a ad code..."><? echo $currentadcode; ?></textarea>
 </div>
 </div>
 <h4>Count Unique Visitors Only</h4>
 <p>This settings allows you to make sure an individual users' clicks are only counted once.</p>
-<div class="control-group">
+<div>
 <div class="controls">
 <?php
 if ($currentcountuniqueonlystate == "Enabled" ) {
@@ -185,11 +185,11 @@ if ($currentcountuniqueonlystate == "Enabled" ) {
 </div>
 <h4>Theme</h4>
 <p>Themes are provided by BootSwatch, for previews of each theme see <a href="http://bootswatch.com" target="_blank">here</a>. The "Default" theme is included with the ModernCount, the others are hosted on a CDN.</p>
-<div class="control-group">
-<label class="control-label" for="theme">Select a theme</label>
+<div>
+<label for="theme">Select a theme</label>
 <div class="controls">
 <?php
-$themes = array("default", "amelia", "cerulean", "cosmo", "cyborg", "journal", "readable", "simplex", "slate", "spacelab", "spruce", "superhero", "united");
+$themes = array("default", "amelia", "cosmo", "cyborg", "journal", "readable", "simplex", "slate", "spacelab", "spruce", "superhero", "united");
 
 echo "<select id=\"theme\" name=\"theme\">";
 foreach ($themes as $value) {
@@ -203,8 +203,8 @@ echo "</select>";
 ?>
 </div>
 </div>
-<div class="control-group">
-<label class="control-label" for="countuniqueonlytime">Time to consider user unique</label>
+<div>
+<label for="countuniqueonlytime">Time to consider user unique</label>
 <div class="controls">
 <input type="number" id="countuniqueonlytime" name="countuniqueonlytime" value="<? echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." required>
 </div>
@@ -219,12 +219,6 @@ echo "</select>";
 <!-- Javascript start -->	
 <script src="../resources/jquery.js"></script>
 <script src="../resources/bootstrap/js/bootstrap.js"></script>
-<script src="../resources/validation/jqBootstrapValidation.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("input").not("[type=submit]").jqBootstrapValidation();
-});
-</script>
 <!-- Javascript end -->
 </body>
 </html>

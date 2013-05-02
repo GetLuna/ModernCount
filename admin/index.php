@@ -99,7 +99,7 @@ if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
     $remoteversion = file_get_contents("https://raw.github.com/ModernBB/ModernCount/master/version.txt");
     if (preg_match("/^[0-9.-]{1,}$/", $remoteversion)) {
         if ($version < $remoteversion) {
-            echo "<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>An update to ModernCount is available! Version $remoteversion has been released (you have $version). To see what changes are included see the <a href=\"https://github.com/ModernBB/ModernCount/compare/$version...$remoteversion\" target=\"_blank\">changelog</a>. Click <a href=\"https://github.com/jModernBB/ModernCount/wiki/Updating\" target=\"_blank\">here</a> for information on how to update.</p></div>";
+            echo "<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>An update to ModernCount is available! Version $remoteversion has been released (you have $version). To see what changes are included see the <a href=\"https://github.com/ModernBB/ModernCount/compare/$version...$remoteversion\" target=\"_blank\">changelog</a>. Click <a href=\"https://github.com/ModernBB/ModernCount/wiki/Updating\" target=\"_blank\">here</a> for information on how to update.</p></div>";
         }
     }
 }
@@ -131,7 +131,7 @@ echo "</tbody></table>";
 </div>
 <br>
 <br>
-<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert"></button>
+<div class="alert alert-info">
 <b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
 </div>
 <div class="well">

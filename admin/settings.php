@@ -134,7 +134,7 @@ if (isset($_GET["updated"])) {
 ?>
 <form method="post">
 <fieldset>
-<h4>Admin Details</h4>
+<h4>General</h4>
 <div>
 <label for="adminuser">Admin User</label>
 <div class="controls">
@@ -147,7 +147,6 @@ if (isset($_GET["updated"])) {
 <input type="password" id="adminpassword" name="adminpassword" value="<? echo $currentadminpassword; ?>" placeholder="Enter a password..." required>
 </div>
 </div>
-<h4>Other Settings</h4>
 <div>
 <label for="website">Website</label>
 <div class="controls">
@@ -181,33 +180,13 @@ if ($currentcountuniqueonlystate == "Enabled" ) {
     <label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystatedisable\" name=\"countuniqueonlystate\" value=\"Disabled\" checked=\"checked\"> Disabled</label>";   
 }   
 ?> 
-</div>  
-</div>
-<h4>Theme</h4>
-<p>Themes are provided by BootSwatch, for previews of each theme see <a href="http://bootswatch.com" target="_blank">here</a>. The "Default" theme is included with the ModernCount, the others are hosted on a CDN.</p>
-<div>
-<label for="theme">Select a theme</label>
-<div class="controls">
-<?php
-$themes = array("default", "amelia", "cosmo", "cyborg", "journal", "readable", "simplex", "slate", "spacelab", "spruce", "superhero", "united");
-
-echo "<select id=\"theme\" name=\"theme\">";
-foreach ($themes as $value) {
-    if ($value == $currenttheme) {
-        echo "<option value=\"$value\" selected=\"selected\">". ucfirst($value) . "</option>";
-    } else {
-        echo "<option value=\"$value\">". ucfirst($value) . "</option>";
-    }
-}
-echo "</select>";
-?>
-</div>
-</div>
 <div>
 <label for="countuniqueonlytime">Time to consider user unique</label>
 <div class="controls">
 <input type="number" id="countuniqueonlytime" name="countuniqueonlytime" value="<? echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." required>
 </div>
+</div>
+</div>  
 </div>
 <div class="form-actions">
 <button type="submit" name="save" class="btn btn-primary">Save Changes</button>

@@ -154,7 +154,7 @@ mysql_close($con);
 ?>
 </div>
 <hr>
-<p class="muted pull-right">ModernCount <? echo $version; ?> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <? echo date("Y"); ?>. Themed by <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>.</p>
+<p class="muted pull-right">ModernCount <? echo $version; ?> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <? echo date("Y"); ?></p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->	

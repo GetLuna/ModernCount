@@ -27,15 +27,7 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
 <meta charset="utf-8">
 <title>ModernCount &middot; Add</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php
-
-if (THEME == "default") {
-    echo "<link href=\"../resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
-} else {
-    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.0/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
-}
-
-?>
+<link href="../resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
 <style type="text/css">
 body {
     padding-top: 60px;

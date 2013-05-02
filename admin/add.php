@@ -57,13 +57,12 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </a>
-<a class="brand" href="#">ModernCount</a>
+<a class="brand" href="index.php">ModernCount</a>
 <div class="nav-collapse collapse">
 <ul class="nav">
 <li><a href="index.php">Home</a></li>
 <li class="divider-vertical"></li>
 <li class="active"><a href="add.php">Add</a></li>
-<li><a href="#">Edit</a></li>
 </ul>
 <ul class="nav pull-right">
 <li><a href="settings.php">Settings</a></li>

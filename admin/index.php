@@ -6,7 +6,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-$version = "1.0.0";
+$version = "1.5.0";
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -131,7 +131,7 @@ echo "</tbody></table>";
 </div>
 <br>
 <br>
-<div class="alert alert-info">   
+<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert"></button>
 <b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
 </div>
 <div class="well">

@@ -111,7 +111,7 @@ if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
     }
 }
 
-echo "<table id=\"downloads\" class=\"table table-striped table-bordered table-condensed\">
+echo "<table id=\"downloads\" class=\"table table-striped table-condensed\">
 <thead>
 <tr>
 <th>ID</th>

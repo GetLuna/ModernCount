@@ -62,7 +62,7 @@ body {
 <li><a href="add.php">Add</a></li>
 </ul>
 <li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><? echo $currentadminuser; ?> <b class="caret"></b></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <li><a href="settings.php">Settings</a></li>
     <li class="divider"></li>
@@ -145,7 +145,7 @@ mysql_close($con);
 </div>
 </div>
 <div class="form-actions">
-<input type="hidden" name="idtoedit" value="<? echo $idtoedit; ?>" />
+<input type="hidden" name="idtoedit" value="<?php echo $idtoedit; ?>" />
 <input type="hidden" id="password" name="password">
 <button type="submit" class="btn btn-primary">Update</button>
 </div>

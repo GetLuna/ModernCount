@@ -73,7 +73,7 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
 <div class="control-group">
 <label class="control-label" for="dbpassword">Database Password</label>
 <div class="controls">
-<input type="password" id="dbpassword" name="dbpassword" placeholder="Type a database password..." required>
+<input type="password" id="dbpassword" name="dbpassword" placeholder="Type a database password...">
 </div>
 </div>
 <div class="control-group">
@@ -112,7 +112,7 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
 <div class="control-group">
 <label class="control-label" for="pathtoscript">Path to Script</label>
 <div class="controls">
-<input type="text" id="pathtoscript" name="pathtoscript" value="<? echo $pathtoscript; ?>" placeholder="Type the path to ModernCount..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
+<input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount..." required>
 </div>
 </div>
 <div class="form-actions">

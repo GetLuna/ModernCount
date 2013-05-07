@@ -59,7 +59,7 @@ body {
 </ul>
 <ul class="nav pull-right">
 <li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><? echo $currentadminuser; ?> <b class="caret"></b></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <li><a href="settings.php">Settings</a></li>
     <li class="divider"></li>

@@ -65,7 +65,7 @@ body {
 </ul>
 <ul class="nav pull-right">
 <li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><? echo $currentadminuser; ?> <b class="caret"></b></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <li><a href="settings.php">Settings</a></li>
     <li class="divider"></li>
@@ -161,7 +161,7 @@ mysql_close($con);
 ?>
 </div>
 <hr>
-<p class="muted pull-right">ModernCount <? echo $version; ?> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <? echo date("Y"); ?></p>
+<p class="muted pull-right">ModernCount <?php echo $version; ?> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?></p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->	
@@ -231,7 +231,7 @@ $(document).ready(function() {
         if (!is_selected) {
             alert("No download selected!");
         } else {
-            prompt("Tracking link for selected download. Press Ctrl/Cmd C to copy to the clipboard:", "<? echo PATH_TO_SCRIPT; ?>/get.php?id="+ id +"");
+            prompt("Tracking link for selected download. Press Ctrl/Cmd C to copy to the clipboard:", "<?php echo PATH_TO_SCRIPT; ?>/get.php?id="+ id +"");
         } 
     });
     /* End */

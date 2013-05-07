@@ -70,8 +70,14 @@ body {
 <li class="active"><a href="#">Edit</a></li>
 </ul>
 <ul class="nav pull-right">
-<li><a href="../settings.php">Settings</a></li>
-<li><a href="../logout.php">Logout</a></li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><? echo $currentadminuser; ?> <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><a href="settings.php">Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="logout.php">Logout</a></li>
+  </ul>
+</li>
 </ul>
 </div>
 </div>

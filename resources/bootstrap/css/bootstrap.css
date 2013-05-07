@@ -152,7 +152,6 @@ textarea {
   * {
     color: #000 !important;
     background: transparent !important;
-    box-shadow: none !important;
   }
   a,
   a:visited {
@@ -228,7 +227,6 @@ a:focus {
   background-color: #fff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .img-circle {
@@ -1049,8 +1047,6 @@ input[type="color"],
 .uneditable-input {
   background-color: #ffffff;
   border: 1px solid #cccccc;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  transition: border linear 0.2s, box-shadow linear 0.2s;
 }
 
 textarea:focus,
@@ -1072,7 +1068,6 @@ input[type="color"]:focus,
   border-color: rgba(82, 168, 236, 0.8);
   outline: 0;
   outline: thin dotted \9; /* IE9 */
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 
 input[type="radio"],
@@ -1123,7 +1118,6 @@ input[type="checkbox"]:focus {
   cursor: not-allowed;
   background-color: #fcfcfc;
   border-color: #cccccc;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.025);
 }
 
 .uneditable-input {
@@ -1368,14 +1362,12 @@ input[type="checkbox"][readonly] {
 .control-group.warning select,
 .control-group.warning textarea {
   border-color: #dd5600;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .control-group.warning input:focus,
 .control-group.warning select:focus,
 .control-group.warning textarea:focus {
   border-color: #aa4200;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ff8d44;
 }
 
 .control-group.warning .input-prepend .add-on,
@@ -1403,14 +1395,12 @@ input[type="checkbox"][readonly] {
 .control-group.error select,
 .control-group.error textarea {
   border-color: #bd4247;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .control-group.error input:focus,
 .control-group.error select:focus,
 .control-group.error textarea:focus {
   border-color: #983538;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d88e90;
 }
 
 .control-group.error .input-prepend .add-on,
@@ -1438,14 +1428,12 @@ input[type="checkbox"][readonly] {
 .control-group.success select,
 .control-group.success textarea {
   border-color: #669533;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .control-group.success input:focus,
 .control-group.success select:focus,
 .control-group.success textarea:focus {
   border-color: #4c6f26;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #99ca63;
 }
 
 .control-group.success .input-prepend .add-on,
@@ -1473,14 +1461,12 @@ input[type="checkbox"][readonly] {
 .control-group.info select,
 .control-group.info textarea {
   border-color: #178acc;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .control-group.info input:focus,
 .control-group.info select:focus,
 .control-group.info textarea:focus {
   border-color: #126b9e;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #5db8ec;
 }
 
 .control-group.info .input-prepend .add-on,
@@ -1501,7 +1487,6 @@ input:focus:invalid:focus,
 textarea:focus:invalid:focus,
 select:focus:invalid:focus {
   border-color: #e9322d;
-  box-shadow: 0 0 6px #f8b9b7;
 }
 
 .form-actions {
@@ -1510,7 +1495,6 @@ select:focus:invalid:focus {
   margin-bottom: 20px;
   background-color: #f5f5f5;
   border-top: 1px solid #e5e5e5;
-  *zoom: 1;
 }
 
 .form-actions:before,
@@ -2719,7 +2703,6 @@ table th[class*="span"],
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   background-clip: padding-box;
 }
 
@@ -2875,7 +2858,6 @@ table th[class*="span"],
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .well blockquote {
@@ -2955,7 +2937,6 @@ button.close {
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   border-bottom-color: #b3b3b3;
-  border-radius: 4px;box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn:hover,
@@ -2990,7 +2971,6 @@ button.close {
 .btn:active {
   background-image: none;
   outline: 0;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn.disabled,
@@ -2998,7 +2978,6 @@ button.close {
   cursor: default;
   background-image: none;
   opacity: 0.65;
-  box-shadow: none;
 }
 
 .btn-large {
@@ -3217,7 +3196,6 @@ input[type="submit"].btn::-moz-focus-inner {
 .btn-link[disabled] {
   background-color: transparent;
   background-image: none;
-  box-shadow: none;
 }
 
 .btn-link {
@@ -3329,7 +3307,6 @@ input[type="submit"].btn::-moz-focus-inner {
 .btn-group > .btn + .dropdown-toggle {
   padding-right: 8px;
   padding-left: 8px;
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-group > .btn-mini + .dropdown-toggle {
@@ -3344,7 +3321,6 @@ input[type="submit"].btn::-moz-focus-inner {
 
 .btn-group.open .dropdown-toggle {
   background-image: none;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-group.open .btn.dropdown-toggle {
@@ -4134,7 +4110,6 @@ input[type="submit"].btn::-moz-focus-inner {
   background-repeat: repeat-x;
   border-color: #1a99e2 #1a99e2 #126b9e;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075);
 }
 
 .navbar .btn-navbar:hover,
@@ -4158,7 +4133,6 @@ input[type="submit"].btn::-moz-focus-inner {
   height: 2px;
   background-color: #f5f5f5;
   border-radius: 1px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .btn-navbar .icon-bar + .icon-bar {
@@ -4338,7 +4312,6 @@ input[type="submit"].btn::-moz-focus-inner {
   color: #ffffff;
   background-color: #ffffff;
   border-color: #033c73;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
   transition: none;
 }
 
@@ -4361,7 +4334,6 @@ input[type="submit"].btn::-moz-focus-inner {
   background-color: #ffffff;
   border: 0;
   outline: 0;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
 }
 
 .navbar-inverse .btn-navbar {
@@ -4418,7 +4390,6 @@ input[type="submit"].btn::-moz-focus-inner {
   margin-bottom: 0;
   margin-left: 0;
   border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .pagination ul > li {
@@ -4611,7 +4582,6 @@ input[type="submit"].btn::-moz-focus-inner {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   outline: none;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   background-clip: padding-box;
 }
 
@@ -4656,7 +4626,6 @@ input[type="submit"].btn::-moz-focus-inner {
   background-color: #f5f5f5;
   border-top: 1px solid #ddd;
   border-radius: 0 0 6px 6px;
-  box-shadow: inset 0 1px 0 #ffffff;
 }
 
 .modal-footer:before,
@@ -4781,7 +4750,6 @@ input[type="submit"].btn::-moz-focus-inner {
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   background-clip: padding-box;
 }
 
@@ -4935,14 +4903,12 @@ input[type="submit"].btn::-moz-focus-inner {
   line-height: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
   transition: all 0.2s ease-in-out;
 }
 
 a.thumbnail:hover,
 a.thumbnail:focus {
   border-color: #2fa4e7;
-  box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 }
 
 .thumbnail > img {
@@ -5144,7 +5110,6 @@ a.badge:focus {
   background-image: linear-gradient(to bottom, #f5f5f5, #f9f9f9);
   background-repeat: repeat-x;
   border-radius: 4px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .progress .bar {
@@ -5157,13 +5122,11 @@ a.badge:focus {
   background-color: #0e90d2;
   background-image: linear-gradient(to bottom, #149bdf, #0480be);
   background-repeat: repeat-x;
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   transition: width 0.6s ease;
 }
 
 .progress .bar + .bar {
-  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
 .progress-striped .bar {
@@ -5523,7 +5486,6 @@ div.subnav-fixed {
   background-color: #ffffff;
   background-image: linear-gradient(#ffffff, #ffffff 5%, #ffffff);
   background-repeat: no-repeat;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn:hover {

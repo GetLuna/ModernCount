@@ -13,6 +13,7 @@ if (!file_exists("../config.php")) {
 require_once("../config.php");
 
 $uniquekey = UNIQUE_KEY;
+$currentadminuser = ADMIN_USER;
 
 session_start();
 if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
@@ -103,8 +104,14 @@ body {
 <li><a href="add.php">Add</a></li>
 </ul>
 <ul class="nav pull-right">
-<li class="active"><a href="settings.php">Settings</a></li>
-<li><a href="logout.php">Logout</a></li>
+<li class="dropdown active">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><? echo $currentadminuser; ?> <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li class="active"><a href="settings.php">Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="logout.php">Logout</a></li>
+  </ul>
+</li>
 </ul>
 </div>
 </div>

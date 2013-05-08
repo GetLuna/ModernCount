@@ -132,7 +132,14 @@ if (isset($_GET["updated"])) {
 ?>
 <form method="post">
 <fieldset>
-<h4>General</h4>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+    <li><a href="#ad" data-toggle="tab">Ad code</a></li>
+    <li><a href="#unique" data-toggle="tab">Unique visitors</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="general">
 <div>
 <label for="adminuser">Admin User</label>
 <div class="controls">
@@ -157,16 +164,18 @@ if (isset($_GET["updated"])) {
 <input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." required>
 </div>
 </div>
-<h4>Ad Code</h4>
-<p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
-<div class="alert alert-warning"><b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
-<div>
-<div class="controls">
-<textarea style="height: 120px; width: 500px;" id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
-</div>
-</div>
-<h4>Count Unique Visitors Only</h4>
-<p>This settings allows you to make sure an individual users' clicks are only counted once.</p>
+    </div>
+    <div class="tab-pane" id="ad">
+      <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
+      <div class="alert alert-warning"><b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
+      <div>
+      <div class="controls">
+      <textarea style="height: 120px; width: 500px;" id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
+      </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="unique">
+      <p>This settings allows you to make sure an individual users' clicks are only counted once.</p>
 <div>
 <div class="controls">
 <?php
@@ -185,6 +194,9 @@ if ($currentcountuniqueonlystate == "Enabled" ) {
 </div>
 </div>
 </div>  
+</div>
+    </div>
+  </div>
 </div>
 <div class="form-actions">
 <button type="submit" name="save" class="btn btn-primary">Save Changes</button>

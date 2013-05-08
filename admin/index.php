@@ -77,7 +77,7 @@ body {
 <!-- Content start -->
 <div class="container">
 <div class="page-header">
-<h1>All Downloads</h1>
+<h1>All downloads</h1>
 </div>		
 <?php
 

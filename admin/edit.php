@@ -61,6 +61,7 @@ body {
 <li class="divider-vertical"></li>
 <li><a href="add.php">Add</a></li>
 </ul>
+<ul class="nav pull-right">
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
   <ul class="dropdown-menu">
@@ -69,6 +70,7 @@ body {
     <li><a href="logout.php">Logout</a></li>
   </ul>
 </li>
+</ul>
 </div>
 </div>
 </div>

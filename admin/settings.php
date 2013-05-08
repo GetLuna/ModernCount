@@ -154,7 +154,7 @@ if (isset($_GET["updated"])) {
 <div>
 <label for="pathtoscript">Path to Script</label>
 <div class="controls">
-<input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
+<input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." required>
 </div>
 </div>
 <h4>Ad Code</h4>
@@ -162,7 +162,7 @@ if (isset($_GET["updated"])) {
 <div class="alert alert-warning"><b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
 <div>
 <div class="controls">
-<textarea id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
+<textarea style="height: 120px; width: 500px;" id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
 </div>
 </div>
 <h4>Count Unique Visitors Only</h4>

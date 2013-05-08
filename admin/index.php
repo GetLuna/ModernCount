@@ -6,7 +6,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-$version = "1.6.9";
+$version = "2.0-beta";
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");

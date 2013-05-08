@@ -110,10 +110,10 @@ if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
 echo "<table id=\"downloads\" class=\"table table-striped table-bordered table-condensed\">
 <thead>
 <tr>
-<th>ID</th>
+<th style=\"width: 20px;\">ID</th>
 <th>Name</th>
 <th>URL</th>
-<th>Count</th>
+<th style=\"width: 100px;\">Count</th>
 </tr></thead><tbody>";
 
 while($row = mysql_fetch_assoc($getdownloads)) {

@@ -132,15 +132,13 @@ echo "</tbody></table>";
 
 ?>
 <div class="btn-group">
-<button id="edit" class="btn"><div class="icon-pencil"></div></button>
-<button id="delete" class="btn"><div class="icon-remove"></div></button>
-<button id="trackinglink" class="btn"><div class="icon-search"></div></button>
+<button class="btn-success">Select an option</button>
+<button id="edit" class="btn-success"><div class="icon-pencil"></div></button>
+<button id="delete" class="btn-success"><div class="icon-remove"></div></button>
+<button id="trackinglink" class="btn-success"><div class="icon-search"></div></button>
 </div>
 <br>
 <br>
-<div class="alert alert-info">
-<b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
-</div>
 <div class="well">
 <?php
 

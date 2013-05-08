@@ -39,7 +39,7 @@ body {
 <!-- Content start -->
 <div class="container">
 <div class="page-header">
-<h1>Installer</h1>
+<h1>Install ModernCount 2</h1>
 </div>		
 <?php
 
@@ -120,9 +120,9 @@ fclose($configfile);
 mysql_close($con);
 
 ?>
-<div class="alert alert-success"><h4 class="alert-heading">Install Complete</h4><p>ModernCount has been successfully installed. Please delete the "installer" folder from your server, as it poses a potential security risk!</p>
-<p><a href="../admin/login.php" class="btn btn-success">Go To Login</a></p>
-</div>
+<h2>4. Finish</h2>
+<p>ModernCount has been successfully installed. Please delete the "installer" folder from your server, as it poses a potential security risk!</p>
+<p><a href="../admin/login.php" class="btn btn-success">Login</a></p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->	

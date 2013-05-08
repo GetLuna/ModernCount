@@ -6,7 +6,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-$version = "1.5.0";
+$version = "1.6.9";
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -24,7 +24,7 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
 }
 
 //Set cookie so we dont constantly check for updates
-setcookie("indicationhascheckedforupdates", "checkedsuccessfully", time()+604800);
+setcookie("indicationhascheckedforupdates", "checkedsuccessfully", time()+259200);
 
 ?>
 <!DOCTYPE html>
@@ -41,10 +41,6 @@ body {
 }
 </style>
 <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
 </head>
 <body>
 <!-- Nav start -->
@@ -111,7 +107,7 @@ if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
     }
 }
 
-echo "<table id=\"downloads\" class=\"table table-striped table-condensed\">
+echo "<table id=\"downloads\" class=\"table table-striped table-bordered table-condensed\">
 <thead>
 <tr>
 <th>ID</th>
@@ -132,14 +128,14 @@ echo "</tbody></table>";
 
 ?>
 <div class="btn-group">
-<button class="btn-success">Select an option</button>
-<button id="edit" class="btn-success"><div class="icon-pencil"></div></button>
-<button id="delete" class="btn-success"><div class="icon-remove"></div></button>
-<button id="trackinglink" class="btn-success"><div class="icon-search"></div></button>
+<button class="btn btn-primary">Select an ID and option</button>
+<button id="edit" class="btn btn-success"><div class="icon-pencil"></div></button>
+<button id="delete" class="btn btn-success"><div class="icon-remove"></div></button>
+<button id="trackinglink" class="btn btn-success"><div class="icon-search"></div></button>
 </div>
 <br>
 <br>
-<div class="well">
+<div class="well well-small">
 <?php
 
 $getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM Data");

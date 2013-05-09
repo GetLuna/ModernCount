@@ -6,7 +6,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-$version = "2.0-beta";
+$version = "2.0.0";
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -91,6 +91,7 @@ body {
 	<li>"Changelog" is added under the profile link in the menu</li>
     <li>New help message</li>
     <li>It's now possible to install ModernCount on a database that's not protected with a password</li>
+    <li>The "Ad code" boxes are bigger</li>
 </ul>
 <h3>Version 1.6.0</h3>
 <ul>

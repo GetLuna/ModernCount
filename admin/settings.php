@@ -171,7 +171,7 @@ if (isset($_GET["updated"])) {
       <div class="alert alert-warning"><b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
       <div>
       <div class="controls">
-      <textarea style="height: 120px; width: 500px;" id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
+      <textarea style="height: 200px; width: 800px;" id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
       </div>
       </div>
     </div>

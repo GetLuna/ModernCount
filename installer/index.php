@@ -143,9 +143,6 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
         </div>
         </div>
     </div>
-    <div class="tab-pane" id="finish">
-      <p>Howdy, I'm in Section 4.</p>
-    </div>
   </div>
 </div>
 </fieldset>

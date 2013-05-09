@@ -61,10 +61,10 @@ body {
 </ul>
 <ul class="nav pull-right">
 <li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
+<a href="#" class="dropdown-toggle active" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <li><a href="settings.php">Settings</a></li>
-    <li><a href="changelog.php">Changelog</a></li>
+    <li class="active"><a href="changelog.php">Changelog</a></li>
     <li class="divider"></li>
     <li><a href="logout.php">Logout</a></li>
   </ul>
@@ -78,83 +78,35 @@ body {
 <!-- Content start -->
 <div class="container">
 <div class="page-header">
-<h1>All downloads</h1>
-</div>		
-<?php
-
-if (isset($_GET["nojs"])) {
-    die("<div class=\"alert alert-info\"><h4 class=\"alert-heading\">Information</h4><p>Please enable JavaScript to use ModernCount. For instructions on how to do this, see <a href=\"http://www.activatejavascript.org\" target=\"_blank\">here</a>. Once done click continue.</p><p><a class=\"btn btn-info\" href=\"index.php\">Continue</a></p></div></div></body></html>");
-}
-
-@$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-if (!$con) {
-    die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Error</h4><p>Could not connect to database (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
-}
-
-$does_db_exist = mysql_select_db(DB_NAME, $con);
-if (!$does_db_exist) {
-    die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Error</h4><p>Database does not exist (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
-}
-
-$getdownloads = mysql_query("SELECT * FROM Data");
-
-//Update checking
-if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
-    $remoteversion = file_get_contents("https://raw.github.com/ModernBB/ModernCount/master/version.txt");
-    if (preg_match("/^[0-9.-]{1,}$/", $remoteversion)) {
-        if ($version < $remoteversion) {
-            echo "<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>An update to ModernCount is available! Version $remoteversion has been released (you have $version). To see what changes are included see the <a href=\"https://github.com/ModernBB/ModernCount/compare/$version...$remoteversion\" target=\"_blank\">changelog</a>. Click <a href=\"https://github.com/ModernBB/ModernCount/wiki/Updating\" target=\"_blank\">here</a> for information on how to update.</p></div>";
-        }
-    }
-}
-
-echo "<table id=\"downloads\" class=\"table table-striped table-bordered table-condensed\">
-<thead>
-<tr>
-<th style=\"width: 20px;\">ID</th>
-<th>Name</th>
-<th>URL</th>
-<th style=\"width: 100px;\">Count</th>
-</tr></thead><tbody>";
-
-while($row = mysql_fetch_assoc($getdownloads)) {
-    echo "<tr>";
-    echo "<td><input name=\"id\" type=\"radio\" value=\"" . $row["id"] . "\"></td>";
-    echo "<td>" . $row["name"] . "</td>";
-    echo "<td>" . $row["url"] . "</td>";
-    echo "<td>" . $row["count"] . "</td>";
-    echo "</tr>";
-}
-echo "</tbody></table>";
-
-?>
-<div class="btn-group">
-<button class="btn btn-primary">Select an ID and option</button>
-<button id="edit" class="btn btn-success"><div class="icon-pencil"></div></button>
-<button id="delete" class="btn btn-success"><div class="icon-trash"></div></button>
-<button id="trackinglink" class="btn btn-success"><div class="icon-search"></div></button>
+<h1>Changelog</h1>
 </div>
-<br>
-<br>
-<div class="well well-small">
-<?php
-
-$getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM Data");
-$resultnumberofdownloads = mysql_fetch_assoc($getnumberofdownloads);
-echo "<i class=\"icon-download\"></i> <b>" . $resultnumberofdownloads["COUNT(id)"] . "</b> items and ";
-
-$gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM Data");
-$resulttotalnumberofdownloads = mysql_fetch_assoc($gettotalnumberofdownloads);
-if ($resulttotalnumberofdownloads["SUM(count)"] > "1") {
-    echo "<b>" . $resulttotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
-} else {
-    echo "<b>0</b> total downloads";
-}
-
-mysql_close($con);
-
-?>
-</div>
+<h3>Version 2.0.0</h3>
+<ul>
+	<li>New interface</li>
+	<li>New installation</li>
+	<li>New remove icon</li>
+	<li>New settings panel</li>
+	<li>Improved update checker</li>
+	<li>Improved table for displaying the data</li>
+	<li>"Changelog" is added under the profile link in the menu</li>
+    <li>New help message</li>
+    <li>It's now possible to install ModernCount on a database that's not protected with a password</li>
+</ul>
+<h3>Version 1.6.0</h3>
+<ul>
+	<li>New menu</li>
+	<li>Fix bug in update check</li>
+	<li>You can't disable the help message anymore</li>
+</ul>
+<h3>Version 1.5.0</h3>
+<ul>
+	<li>New interface</li>
+    <li>Fixes lots of validation bugs</li>
+</ul>
+<h3>Version 1.0.0</h3>
+<ul>
+	<li>Initial release</li>
+</ul>
 <hr>
 <p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo $version; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?></p>
 </div>

@@ -108,6 +108,7 @@ body {
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <li class="active"><a href="settings.php">Settings</a></li>
+    <li><a href="changelog.php">Changelog</a></li>
     <li class="divider"></li>
     <li><a href="logout.php">Logout</a></li>
   </ul>

@@ -92,6 +92,7 @@ body {
     <li>New help message</li>
     <li>It's now possible to install ModernCount on a database that's not protected with a password</li>
     <li>The "Ad code" boxes are bigger</li>
+    <li>You can now choose to see 5, 40 or 75 records on the admin index</li>
 </ul>
 <h3>Version 1.6.0</h3>
 <ul>

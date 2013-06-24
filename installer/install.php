@@ -46,10 +46,6 @@ body {
 </div>		
 <?php
 
-if (!isset($_POST["doinstall"])) {
-    die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Install Failed</h4><p>Error: Installer called directly.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
-}
-
 //Get new settings from POST
 $dbhost = $_POST["dbhost"];
 $dbuser = $_POST["dbuser"];

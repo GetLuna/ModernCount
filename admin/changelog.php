@@ -94,6 +94,8 @@ body {
     <li>Rewrite of get.php</li>
     <li>Improved details view for adding and editing downloads</li>
     <li>New standard settings</li>
+    <li>Ingor downloads by admins</li>
+    <li>Updated data validation</li>
     <li>4 minor improvements</li>
     <li>5 other bugfixes</li>
     <li>2 security improvements</li>

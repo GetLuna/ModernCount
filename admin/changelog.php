@@ -93,7 +93,8 @@ body {
     <li>Focus is now automatic set on login</li>
     <li>Rewrite of get.php</li>
     <li>Improved details view for adding and editing downloads</li>
-    <li>4 other bugfixes</li>
+    <li>5 other bugfixes</li>
+    <li>2 security improvements</li>
 </ul>
 <h3>Version 2.0.0</h3>
 <ul>

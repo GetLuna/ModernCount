@@ -28,8 +28,8 @@ $currentwebsite = WEBSITE;
 $currentpathtoscript = PATH_TO_SCRIPT;
 $currentcountuniqueonlystate = COUNT_UNIQUE_ONLY_STATE;
 $currentcountuniqueonlytime = COUNT_UNIQUE_ONLY_TIME;
+$currentignoreadminstate = IGNORE_ADMIN_STATE;
 $currentadcode = htmlspecialchars_decode(AD_CODE);
-$currenttheme = THEME; 
 
 if (isset($_POST["save"])) {
     //Get new settings from POST
@@ -42,6 +42,7 @@ if (isset($_POST["save"])) {
     $pathtoscript = $_POST["pathtoscript"];
     $countuniqueonlystate = $_POST["countuniqueonlystate"];
     $countuniqueonlytime = $_POST["countuniqueonlytime"];
+	$ignoreadminstate = $_POST["ignoreadminstate"]; 
     if (isset($_POST["advertcode"])) {
         if (get_magic_quotes_gpc()) {
             $adcode = stripslashes(htmlspecialchars($_POST["advertcode"]));
@@ -56,7 +57,7 @@ if (isset($_POST["save"])) {
         $adcode = $currentadcode;
     }
 
-    $settingsstring = "<?php\n\n//Database Settings\ndefine('DB_HOST', '" . DB_HOST . "');\ndefine('DB_USER', '" . DB_USER . "');\ndefine('DB_PASSWORD', '" . DB_PASSWORD . "');\ndefine('DB_NAME', '" . DB_NAME . "');\n\n//Admin Details\ndefine('ADMIN_USER', " . var_export($adminuser, true) . ");\ndefine('ADMIN_PASSWORD', " . var_export($adminpassword, true) . ");\n\n//Other Settings\ndefine('UNIQUE_KEY', " . var_export($uniquekey, true) . ");\ndefine('WEBSITE', " . var_export($website, true) . ");\ndefine('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");\ndefine('AD_CODE', " . var_export($adcode, true) . ");\ndefine('COUNT_UNIQUE_ONLY_STATE', " . var_export($countuniqueonlystate, true) . ");\ndefine('COUNT_UNIQUE_ONLY_TIME', " . var_export($countuniqueonlytime, true) . ");;\n\n?>";     //Write config
+    $settingsstring = "<?php\n\n//Database Settings\ndefine('DB_HOST', '" . DB_HOST . "');\ndefine('DB_USER', '" . DB_USER . "');\ndefine('DB_PASSWORD', '" . DB_PASSWORD . "');\ndefine('DB_NAME', '" . DB_NAME . "');\n\n//Admin Details\ndefine('ADMIN_USER', " . var_export($adminuser, true) . ");\ndefine('ADMIN_PASSWORD', " . var_export($adminpassword, true) . ");\n\n//Other Settings\ndefine('UNIQUE_KEY', " . var_export($uniquekey, true) . ");\ndefine('WEBSITE', " . var_export($website, true) . ");\ndefine('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");\ndefine('AD_CODE', " . var_export($adcode, true) . ");\ndefine('COUNT_UNIQUE_ONLY_STATE', " . var_export($countuniqueonlystate, true) . ");\ndefine('COUNT_UNIQUE_ONLY_TIME', " . var_export($countuniqueonlytime, true) . ");\ndefine('IGNORE_ADMIN_STATE', " . var_export($ignoreadminstate, true) . ");\n\n?>"; 
     $configfile = fopen("../config.php", "w");
     fwrite($configfile, $settingsstring);
     fclose($configfile);
@@ -139,6 +140,7 @@ if (isset($_GET["updated"])) {
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="general">
+	  <h4>General settings</h4> 
 	  <div>
 		<label for="adminuser">Admin User</label>
 		<div class="controls">
@@ -165,6 +167,7 @@ if (isset($_GET["updated"])) {
       </div>
     </div>
     <div class="tab-pane" id="unique">
+	  <h4>Ignore double downloads</h4> 
       <p>This settings allows you to make sure an individual user's clicks are only counted once.</p>
 	  <div>
 	    <div class="controls">
@@ -185,8 +188,24 @@ if (isset($_GET["updated"])) {
           </div>
         </div>  
       </div>
+	  <h4>Ignore Admin</h4>  
+      <p>This settings prevents downloads being counted when you are logged in to Indication.</p>  
+      <div class="control-group">  
+        <div class="controls">  
+          <?php  
+          if ($currentignoreadminstate == "Enabled" ) {  
+          	echo "<label class=\"radio\"><input type=\"radio\" id=\"ignoreadminstateenable\" name=\"ignoreadminstate\" value=\"Enabled\" checked=\"checked\"> Enabled</label>  
+          	<label class=\"radio\"><input type=\"radio\" id=\"ignoreadminstatedisable\" name=\"ignoreadminstate\" value=\"Disabled\"> Disabled</label>";      
+          } else {  
+          	echo "<label class=\"radio\"><input type=\"radio\" id=\"ignoreadminstateenable\" name=\"ignoreadminstate\" value=\"Enabled\"> Enabled</label>  
+          	<label class=\"radio\"><input type=\"radio\" id=\"ignoreadminstatedisable\" name=\"ignoreadminstate\" value=\"Disabled\" checked=\"checked\"> Disabled</label>";     
+          }     
+          ?>   
+        </div>    
+      </div>  
     </div>
     <div class="tab-pane" id="ad">
+	  <h4>Ad management</h4> 
       <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
       <div class="alert alert-warning"><b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
       <div>

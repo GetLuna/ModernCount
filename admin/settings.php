@@ -136,35 +136,57 @@ if (isset($_GET["updated"])) {
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
     <li class="active"><a href="#general" data-toggle="tab">General</a></li>
-    <li><a href="#ad" data-toggle="tab">Ad code</a></li>
     <li><a href="#unique" data-toggle="tab">Unique visitors</a></li>
+    <li><a href="#ad" data-toggle="tab">Ad code</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="general">
-<div>
-<label for="adminuser">Admin User</label>
-<div class="controls">
-<input type="text" id="adminuser" name="adminuser" value="<?php echo $currentadminuser; ?>" placeholder="Enter a username..." required>
-</div>
-</div>
-<div>
-<label for="adminpassword">Admin Password</label>
-<div class="controls">
-<input type="password" id="adminpassword" name="adminpassword" value="<?php echo $currentadminpassword; ?>" placeholder="Enter a password..." required>
-</div>
-</div>
-<div>
-<label for="website">Website</label>
-<div class="controls">
-<input type="text" id="website" name="website" value="<?php echo $currentwebsite; ?>" placeholder="Enter your websites name..." required>
-</div>
-</div>
-<div>
-<label for="pathtoscript">Path to Script</label>
-<div class="controls">
-<input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." required>
-</div>
-</div>
+	  <div>
+		<label for="adminuser">Admin User</label>
+		<div class="controls">
+		  <input type="text" id="adminuser" name="adminuser" value="<?php echo $currentadminuser; ?>" placeholder="Enter a username..." required>
+		</div>
+	  </div>
+	  <div>
+	    <label for="adminpassword">Admin Password</label>
+	    <div class="controls">
+	      <input type="password" id="adminpassword" name="adminpassword" value="<?php echo $currentadminpassword; ?>" placeholder="Enter a password..." required>
+	    </div>
+	  </div>
+	  <div>
+	    <label for="website">Website</label>
+	    <div class="controls">
+	      <input type="text" id="website" name="website" value="<?php echo $currentwebsite; ?>" placeholder="Enter your websites name..." required>
+	    </div>
+	  </div>
+	  <div>
+	    <label for="pathtoscript">Path to Script</label>
+	    <div class="controls">
+	      <input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." required>
+	    </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="unique">
+      <p>This settings allows you to make sure an individual users' clicks are only counted once.</p>
+	  <div>
+	    <div class="controls">
+		  <?php
+          if ($currentcountuniqueonlystate == "Enabled" ) {
+              echo "<label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystateenable\" name=\"countuniqueonlystate\" value=\"Enabled\" checked=\"checked\"> Enabled</label>
+                    <label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystatedisable\" name=\"countuniqueonlystate\" value=\"Disabled\"> Disabled</label>";    
+          } else {
+            echo "<label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystateenable\" name=\"countuniqueonlystate\" value=\"Enabled\"> Enabled</label>
+              <label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystatedisable\" name=\"countuniqueonlystate\" value=\"Disabled\" checked=\"checked\"> Disabled</label>";   
+          }   
+          ?> 
+          <div>
+            <label for="countuniqueonlytime">Time to consider user unique</label>
+            <div class="controls">
+              <input type="number" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." required>
+            </div>
+          </div>
+        </div>  
+      </div>
     </div>
     <div class="tab-pane" id="ad">
       <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
@@ -174,28 +196,6 @@ if (isset($_GET["updated"])) {
       <textarea style="height: 200px; width: 800px;" id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
       </div>
       </div>
-    </div>
-    <div class="tab-pane" id="unique">
-      <p>This settings allows you to make sure an individual users' clicks are only counted once.</p>
-<div>
-<div class="controls">
-<?php
-if ($currentcountuniqueonlystate == "Enabled" ) {
-    echo "<label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystateenable\" name=\"countuniqueonlystate\" value=\"Enabled\" checked=\"checked\"> Enabled</label>
-          <label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystatedisable\" name=\"countuniqueonlystate\" value=\"Disabled\"> Disabled</label>";    
-} else {
-  echo "<label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystateenable\" name=\"countuniqueonlystate\" value=\"Enabled\"> Enabled</label>
-    <label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystatedisable\" name=\"countuniqueonlystate\" value=\"Disabled\" checked=\"checked\"> Disabled</label>";   
-}   
-?> 
-<div>
-<label for="countuniqueonlytime">Time to consider user unique</label>
-<div class="controls">
-<input type="number" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." required>
-</div>
-</div>
-</div>  
-</div>
     </div>
   </div>
 </div>

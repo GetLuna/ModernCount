@@ -81,6 +81,18 @@ if ($getinforesult == 0) {
 
 mysql_query("UPDATE Data SET count = count+1 WHERE id = \"$id\"");
 
+//Cookies don't like dots  
+$idclean = str_replace(".", "_", $id);  
+  
+if (COUNT_UNIQUE_ONLY_STATE == "Enabled") {  
+    if (!isset($_COOKIE["shtrackerhasdownloaded_$idclean"])) {  
+        mysql_query("UPDATE Data SET count = count+1 WHERE id = \"$id\"");  
+        setcookie("shtrackerhasdownloaded_$idclean", "True", time()+3600*COUNT_UNIQUE_ONLY_TIME);  
+    }  
+} else {  
+    mysql_query("UPDATE Data SET count = count+1 WHERE id = \"$id\"");  
+}  
+
 //Check if download is password protected
 $checkifprotected = mysql_query("SELECT protect, password FROM Data WHERE id = \"$id\"");
 $checkifprotectedresult = mysql_fetch_assoc($checkifprotected);

@@ -5,8 +5,11 @@
  * Based on code by Josh Frandley copyright (C) 2012-2013
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
- 
- ?>
+
+if (!isset($_POST["doinstall"])) {  
+    header("Location: index.php");  
+} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

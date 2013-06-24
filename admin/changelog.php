@@ -91,6 +91,7 @@ body {
     <li>New "Javascript isn't enabled" warning</li>
     <li>Don't launch installer if config doesn't exist when running get.php</li>
     <li>Focus is now automatic set on login</li>
+    <li>Rewrite of get.php</li>
     <li>4 other bugfixes</li>
 </ul>
 <h3>Version 2.0.0</h3>

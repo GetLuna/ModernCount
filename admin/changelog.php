@@ -85,6 +85,8 @@ body {
 	<li>The Settings page won't display auto-correct menu's</li>
     <li>It's not longer possible to add a negative count</li>
     <li>URLs will no longer convert to lowercase</li>
+    <li>Cleaned up settings interface</li>
+    <li>Improved error messages</li>
 </ul>
 <h3>Version 2.0.0</h3>
 <ul>

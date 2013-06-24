@@ -132,6 +132,43 @@ echo "</tbody></table>";
 </div>
 <br>
 <br>
+<div id="deleteconfirmdialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dcdheader" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="dcdheader">Confirm Delete</h3>
+</div>
+<div class="modal-body">
+<p>Are you sure you want to delete the selected download?</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<button id="deleteconfirm" class="btn btn-primary">Delete</button>
+</div>
+</div>
+<div id="trackinglinkdialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="tldheader" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="tldheader">Tracking Link</h3>
+</div>
+<div class="modal-body">
+<p>The tracking link for the selected download has been copied to your clipboard.</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+</div>
+</div>
+<div id="noidselecteddialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="nisdheader" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="nisdheader">Error</h3>
+</div>
+<div class="modal-body">
+<p>No ID selected.</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+</div>
+</div>
 <div class="well well-small">
 <?php
 
@@ -185,46 +222,43 @@ $(document).ready(function() {
     /* End */
     /* Edit */
     $("#edit").click(function() {
-        if (!is_selected) {
-            alert("No download selected!");
-        } else {
+        if (is_selected) { 
             window.location = "edit.php?id="+ id +"";
         }
     });
     /* End */
-    /* Delete */
+    /* Show Delete Dialog */
     $("#delete").click(function() {
-        if (!is_selected) {
-            alert("No download selected!");
+        if (id_selected == true) {
+            $("#deleteconfirmdialog").modal("show");
         } else {
-            deleteconfirm=confirm("Delete this download?")
-            if (deleteconfirm==true) {
-                $.ajax({  
-                    type: "POST",  
-                    url: "actions/worker.php",  
-                    data: "action=delete&id="+ id +"",
-                    error: function() {  
-                        alert("Ajax query failed!");
-                    },
-                    success: function() {  
-                        alert("Download deleted!");
-                        window.location.reload();      
-                    }	
-                });
-            } else {
-                return false;
-            }
-        } 
+            $("#noidselecteddialog").modal("show");    
+        }
+    });
+    /* End */
+    /* Delete worker */
+    $("#deleteconfirm").click(function() {
+        $("#deleteconfirmdialog").modal("hide");
+        $.ajax({  
+            type: "POST",  
+            url: "actions/worker.php",  
+            data: "action=delete&id="+ id +"",
+            error: function() {  
+                alert("Ajax query failed!");
+            },
+            success: function() {  
+                window.location.reload();    
+            }	
+        });
     });
     /* End */
     /* Tracking Link */
-    $("#trackinglink").click(function() {
-        if (!is_selected) {
-            alert("No download selected!");
-        } else {
-            prompt("Tracking link for selected download. Press Ctrl/Cmd C to copy to the clipboard:", "<?php echo PATH_TO_SCRIPT; ?>/get.php?id="+ id +"");
-        } 
-    });
+	$("#trackinglink").click(function() {  
+        if (is_selected) {  
+            $("#downloadid").text(id);  
+            $("#trackinglinkdialog").modal("show");  
+         }   
+	}); 
     /* End */
 });
 </script>

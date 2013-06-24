@@ -96,6 +96,8 @@ body {
     <li>New standard settings</li>
     <li>Ingor downloads by admins</li>
     <li>Updated data validation</li>
+    <li>No errors when nothing is selected</li>
+    <li>Improved editions, deletion on index
     <li>4 minor improvements</li>
     <li>5 other bugfixes</li>
     <li>2 security improvements</li>

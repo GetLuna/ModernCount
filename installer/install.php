@@ -39,7 +39,7 @@ body {
 <!-- Content start -->
 <div class="container">
 <div class="page-header">
-<h1>Install ModernCount 2</h1>
+<h1>Install ModernCount 2.1</h1>
 </div>		
 <?php
 

@@ -167,7 +167,7 @@ if (isset($_GET["updated"])) {
       </div>
     </div>
     <div class="tab-pane" id="unique">
-      <p>This settings allows you to make sure an individual users' clicks are only counted once.</p>
+      <p>This settings allows you to make sure an individual user's clicks are only counted once.</p>
 	  <div>
 	    <div class="controls">
 		  <?php

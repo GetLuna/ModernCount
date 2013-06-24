@@ -89,7 +89,6 @@ body {
     <li>Improved error messages</li>
     <li>Improved installer, for a more secure installation</li>
     <li>New "Javascript isn't enabled" warning</li>
-    <li>Improved password addition</li>
 </ul>
 <h3>Version 2.0.0</h3>
 <ul>

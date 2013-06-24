@@ -144,7 +144,7 @@ mysql_close($con);
 
 ?>
 <div class="alert alert-info">
-<b>Info:</b> The download has been added successfully.
+<h4 class="alert-heading">Download Added</h4>
 </div>
 <p><b>Details:</b></p>
 <ul>
@@ -154,6 +154,8 @@ mysql_close($con);
 </ul>
 <p><b>Tracking Link:</b></p>
 <p><? echo PATH_TO_SCRIPT; ?>/get.php?id=<? echo $id; ?></p>
+<p><a class="btn btn-info" href="../../admin/index.php">Back To Home</a></p>  
+</div>  
 </div>
 <!-- Content end -->
 <!-- Javascript start -->

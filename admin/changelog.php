@@ -6,7 +6,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-$version = "2.0.0";
+$version = "2.1.0";
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -80,6 +80,10 @@ body {
 <div class="page-header">
 <h1>Changelog</h1>
 </div>
+<h3>Version 2.1.0</h3>
+<ul>
+	<li>The Settings page won't display auto-correct menu's</li>
+</ul>
 <h3>Version 2.0.0</h3>
 <ul>
 	<li>New interface</li>

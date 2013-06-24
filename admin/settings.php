@@ -131,7 +131,7 @@ if (isset($_GET["updated"])) {
 }
 
 ?>
-<form method="post">
+<form method="post" autocomplete="off">
 <fieldset>
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">

@@ -80,12 +80,8 @@ body {
 <div class="page-header">
 <h1>All downloads</h1>
 </div>		
+<noscript><div class="alert alert-info"><h4 class="alert-heading">Information</h4><p>Please enable JavaScript to use Indication. For instructions on how to do this, see <a href="http://www.activatejavascript.org" target="_blank">here</a>.</p></div></noscript> 
 <?php
-
-if (isset($_GET["nojs"])) {
-    die("<div class=\"alert alert-info\"><h4 class=\"alert-heading\">Information</h4><p>Please enable JavaScript to use ModernCount. For instructions on how to do this, see <a href=\"http://www.activatejavascript.org\" target=\"_blank\">here</a>. Once done click continue.</p><p><a class=\"btn btn-info\" href=\"index.php\">Continue</a></p></div></div></body></html>");
-}
-
 @$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 if (!$con) {
     die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Error</h4><p>Could not connect to database (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");

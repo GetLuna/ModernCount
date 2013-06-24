@@ -60,7 +60,7 @@ if (empty($_POST["adminpassword"])) {
 }
 $website = $_POST["website"];
 $pathtoscript = $_POST["pathtoscript"];
-$uniquekey = str_shuffle("abcdefghijklmnopqrstuvwxyz123456789");
+$uniquekey = md5(microtime().rand());
 
 $installstring = "<?php
 
@@ -121,8 +121,27 @@ mysql_close($con);
 
 ?>
 <h2>4. Finish</h2>
-<p>ModernCount has been successfully installed. Please delete the "installer" folder from your server, as it poses a potential security risk!</p>
-<p><a href="../admin/login.php" class="btn btn-success">Login</a></p>
+<p>ModernCount has been successfully installed. Please delete the "installer" folder from your server, as it poses a potential security risk! You can view your login data by clicking on this button.</p> 
+<div id="logindata" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Login data</h3>
+  </div>
+  <div class="modal-body">
+    <ul>  
+      <li>User: <? echo $adminuser; ?></li>  
+      <li>Password: <? echo $_POST["adminpassword"]; ?></li>  
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-success" data-dismiss="modal" aria-hidden="true">Close</a>
+  </div>
+</div>  
+<p>
+<div class="btn-group">
+<a href="#logindata" role="button" class="btn btn-danger" data-toggle="modal">View login</a>
+<a href="../admin/login.php" class="btn btn-success">Login</a></p>
+</div>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->	

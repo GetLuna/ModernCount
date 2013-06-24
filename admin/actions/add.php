@@ -20,6 +20,11 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
     exit; 
 }
 
+if (!isset($_POST["id"])) {  
+    header("Location: ../../admin");  
+}  
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -6,7 +6,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-$version = "2.0.0";
+$version = "1.6.0";
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -24,7 +24,7 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
 }
 
 //Set cookie so we dont constantly check for updates
-setcookie("indicationhascheckedforupdates", "checkedsuccessfully", time()+259200);
+setcookie("indicationhascheckedforupdates", "checkedsuccessfully", time()+0);
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +33,13 @@ setcookie("indicationhascheckedforupdates", "checkedsuccessfully", time()+259200
 <meta charset="utf-8">
 <title>ModernCount</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
+<?php
+if (THEME == "default") {
+    echo "<link href=\"../resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
+} else {
+    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.1/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
+}
+?>
 <link href="../resources/datatables/dataTables.bootstrap.css" type="text/css" rel="stylesheet">
 <style type="text/css">
 body {
@@ -41,6 +47,10 @@ body {
 }
 </style>
 <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
 <!-- Nav start -->
@@ -52,12 +62,13 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </a>
-<a class="brand" href="index.php">ModernCount</a>
+<a class="brand" href="#">ModernCount</a>
 <div class="nav-collapse collapse">
 <ul class="nav">
 <li class="active"><a href="index.php">Home</a></li>
 <li class="divider-vertical"></li>
 <li><a href="add.php">Add</a></li>
+<li><a href="edit.php">Edit</a></li>
 </ul>
 <ul class="nav pull-right">
 <li class="dropdown">
@@ -80,8 +91,9 @@ body {
 <div class="page-header">
 <h1>All downloads</h1>
 </div>		
-<noscript><div class="alert alert-info"><h4 class="alert-heading">Information</h4><p>Please enable JavaScript to use Indication. For instructions on how to do this, see <a href="http://www.activatejavascript.org" target="_blank">here</a>.</p></div></noscript> 
+<noscript><div class="alert alert-info"><h4 class="alert-heading">Information</h4><p>Please enable JavaScript to use Indication. For instructions on how to do this, see <a href="http://www.activatejavascript.org" target="_blank">here</a>.</p></div></noscript>
 <?php
+
 @$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 if (!$con) {
     die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Error</h4><p>Could not connect to database (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
@@ -99,7 +111,7 @@ if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
     $remoteversion = file_get_contents("https://raw.github.com/ModernBB/ModernCount/master/version.txt");
     if (preg_match("/^[0-9.-]{1,}$/", $remoteversion)) {
         if ($version < $remoteversion) {
-            echo "<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>An update to ModernCount is available! Version $remoteversion has been released (you have $version). To see what changes are included see the <a href=\"https://github.com/ModernBB/ModernCount/compare/$version...$remoteversion\" target=\"_blank\">changelog</a>. Click <a href=\"https://github.com/ModernBB/ModernCount/wiki/Updating\" target=\"_blank\">here</a> for information on how to update.</p></div>";
+            echo "<div class=\"alert\"><h4 class=\"alert-heading\">Update to ModernCount v$remoteversion</h4><a href=\"https://github.com/ModernBB/ModernCount/compare/$version...$remoteversion\" target=\"_blank\">ModernCount v$remoteversion</a> is available. <a href=\"https://studio384.be/moderncount.php/\" target=\"_blank\">Click here to download the latest version</a>.</div>";
         }
     }
 }
@@ -107,10 +119,10 @@ if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
 echo "<table id=\"downloads\" class=\"table table-striped table-bordered table-condensed\">
 <thead>
 <tr>
-<th style=\"width: 20px;\">ID</th>
+<th>ID</th>
 <th>Name</th>
 <th>URL</th>
-<th style=\"width: 100px;\">Count</th>
+<th>Count</th>
 </tr></thead><tbody>";
 
 while($row = mysql_fetch_assoc($getdownloads)) {
@@ -125,10 +137,9 @@ echo "</tbody></table>";
 
 ?>
 <div class="btn-group">
-<button class="btn btn-primary">Select an ID and option</button>
-<button id="edit" class="btn btn-success"><div class="icon-pencil"></div></button>
-<button id="delete" class="btn btn-success"><div class="icon-trash"></div></button>
-<button id="trackinglink" class="btn btn-success"><div class="icon-search"></div></button>
+<button id="edit" class="btn btn-success">Edit</button>
+<button id="delete" class="btn btn-success">Delete</button>
+<button id="trackinglink" class="btn btn-success">Copy Tracking Link</button>
 </div>
 <br>
 <br>
@@ -174,14 +185,14 @@ echo "</tbody></table>";
 
 $getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM Data");
 $resultnumberofdownloads = mysql_fetch_assoc($getnumberofdownloads);
-echo "<i class=\"icon-download\"></i> <b>" . $resultnumberofdownloads["COUNT(id)"] . "</b> items and ";
+echo "<i class=\"icon-download\"></i> <b>" . $resultnumberofdownloads["COUNT(id)"] . "</b> items";
 
 $gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM Data");
 $resulttotalnumberofdownloads = mysql_fetch_assoc($gettotalnumberofdownloads);
 if ($resulttotalnumberofdownloads["SUM(count)"] > "1") {
-    echo "<b>" . $resulttotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
+    echo " <b>" . $resulttotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
 } else {
-    echo "<b>0</b> total downloads";
+    echo " <b>0</b> total downloads";
 }
 
 mysql_close($con);
@@ -197,13 +208,17 @@ mysql_close($con);
 <script src="../resources/bootstrap/js/bootstrap.js"></script>
 <script src="../resources/datatables/jquery.dataTables.js"></script>
 <script src="../resources/datatables/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="../resources/zeroclipboard/ZeroClipboard.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     /* Table selection */
-    is_selected = false;
+    id_selected = false;
     $("#downloads input[name=id]").click(function() {
         id = $("#downloads input[name=id]:checked").val();
-        is_selected = true;
+        id_selected = true;
+        /* Set clipboard text */
+        clip.setText("<?php echo PATH_TO_SCRIPT; ?>/get.php?id=" + id + "");
+        /* End */
     });
     /* End */
     /* Datatables */
@@ -222,8 +237,10 @@ $(document).ready(function() {
     /* End */
     /* Edit */
     $("#edit").click(function() {
-        if (is_selected) { 
+        if (id_selected == true) {
             window.location = "edit.php?id="+ id +"";
+        } else {
+            $("#noidselecteddialog").modal("show");    
         }
     });
     /* End */
@@ -252,13 +269,17 @@ $(document).ready(function() {
         });
     });
     /* End */
-    /* Tracking Link */
-	$("#trackinglink").click(function() {  
-        if (is_selected) {  
-            $("#downloadid").text(id);  
-            $("#trackinglinkdialog").modal("show");  
-         }   
-	}); 
+    /* Zero Clipboard */
+    var clip = new ZeroClipboard($("#trackinglink"), {
+        moviePath: "../resources/zeroclipboard/ZeroClipboard.swf"
+    });
+    clip.on("complete", function() {
+        if (id_selected == true) {
+            $("#trackinglinkdialog").modal("show");
+        } else {
+            $("#noidselecteddialog").modal("show");    
+        }
+    });
     /* End */
 });
 </script>

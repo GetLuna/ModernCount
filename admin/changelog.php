@@ -6,8 +6,6 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-$version = "2.1.0";
-
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
 }
@@ -22,9 +20,6 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
     header("Location: login.php");
     exit; 
 }
-
-//Set cookie so we dont constantly check for updates
-setcookie("indicationhascheckedforupdates", "checkedsuccessfully", time()+259200);
 
 ?>
 <!DOCTYPE html>
@@ -55,13 +50,14 @@ body {
 <a class="brand" href="index.php">ModernCount</a>
 <div class="nav-collapse collapse">
 <ul class="nav">
-<li class="active"><a href="index.php">Home</a></li>
+<li><a href="index.php">Home</a></li>
 <li class="divider-vertical"></li>
 <li><a href="add.php">Add</a></li>
+<li><a href="edit.php">Edit</a></li>
 </ul>
 <ul class="nav pull-right">
-<li class="dropdown">
-<a href="#" class="dropdown-toggle active" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
+<li class="dropdown active">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <li><a href="settings.php">Settings</a></li>
     <li class="active"><a href="changelog.php">Changelog</a></li>
@@ -80,7 +76,7 @@ body {
 <div class="page-header">
 <h1>Changelog</h1>
 </div>
-<h3>Version 2.1.0</h3>
+<h3>Version 3.0.0</h3>
 <ul>
 	<li>The Settings page won't display auto-correct menu's</li>
     <li>It's not longer possible to add a negative count</li>
@@ -96,8 +92,9 @@ body {
     <li>New standard settings</li>
     <li>Ingor downloads by admins</li>
     <li>Updated data validation</li>
-    <li>No errors when nothing is selected</li>
-    <li>Improved editions, deletion on index
+    <li>Improved editions, deletion on index</li>
+    <li>Small interface improvements</li>
+    <li>New pagination</li>
     <li>4 minor improvements</li>
     <li>5 other bugfixes</li>
     <li>2 security improvements</li>
@@ -132,7 +129,7 @@ body {
 	<li>Initial release</li>
 </ul>
 <hr>
-<p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo $version; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?></p>
+<p class="muted pull-right">ModernCount &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?></p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->	

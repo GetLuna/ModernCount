@@ -28,7 +28,13 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
 <meta charset="utf-8">
 <title>ModernCount &middot; Add</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
+<?php
+if (THEME == "default") {
+    echo "<link href=\"../resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
+} else {
+    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.1/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
+}
+?>
 <style type="text/css">
 body {
     padding-top: 60px;
@@ -50,12 +56,13 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </a>
-<a class="brand" href="index.php">ModernCount</a>
+<a class="brand" href="#">ModernCount</a>
 <div class="nav-collapse collapse">
 <ul class="nav">
 <li><a href="index.php">Home</a></li>
 <li class="divider-vertical"></li>
 <li class="active"><a href="add.php">Add</a></li>
+<li><a href="edit.php">Edit</a></li>
 </ul>
 <ul class="nav pull-right">
 <li class="dropdown">
@@ -83,25 +90,25 @@ body {
 <div class="control-group">
 <label class="control-label" for="downloadname">Name</label>
 <div class="controls">
-<input type="text" id="downloadname" name="downloadname" placeholder="Type a name..." required>
+<input type="text" id="downloadname" name="downloadname" placeholder="Type a name" required>
 </div>
 </div>
 <div class="control-group">
 <label class="control-label" for="id">ID</label>
 <div class="controls">
-<input type="text" id="id" name="id" placeholder="Type an ID..." required>
+<input type="text" id="id" name="id" placeholder="Type an ID" required>
 </div>
 </div>
 <div class="control-group">
 <label class="control-label" for="url">URL</label>
 <div class="controls">
-<input type="text" id="url" name="url" placeholder="Type a URL..." required>
+<input type="text" id="url" name="url" placeholder="Type a URL" required>
 </div>
 </div>
 <div class="control-group">
 <label class="control-label" for="count">Count</label>
 <div class="controls">
-<input type="number" id="count" name="count" placeholder="Type an initial count..." min="0">
+<input type="number" id="count" name="count" placeholder="Type an initial count" min="0">
 </div>
 </div>
 <div class="control-group">
@@ -118,8 +125,16 @@ body {
 </label>
 </div>
 </div>
+<div id="passwordentry" style="display: none;">
+<div class="control-group">
+<label class="control-label" for="password">Password</label>
+<div class="controls">
+<input type="password" id="password" name="password" placeholder="Type a password">
+<span class="help-block">It is recommended that your password be at least 6 characters long</span>
+</div>
+</div>
+</div>
 <div class="form-actions">
-<input type="hidden" id="password" name="password">
 <button type="submit" class="btn btn-primary">Add</button>
 </div>
 </fieldset>
@@ -134,17 +149,11 @@ body {
 $(document).ready(function() {
     $("#passwordprotectstate").click(function() {
         if ($("#passwordprotectstate").prop("checked") == true) {
-            password = prompt("Enter a password","");
-            passwordconfirm = prompt("Confirm password","");
-            if (password != passwordconfirm) {
-                alert("Passwords do not match");
-                return false   
-            }
-            if (password != "" && password != null) {
-                $("#password").val(password);
-            } else {
-                $("#passwordprotectstate").prop("checked", false);
-            }
+            $("#password").prop("required", true);
+            $("#passwordentry").show("fast");
+        } else {
+            $("#passwordentry").hide("fast");
+            $("#password").prop("required", false);
         }
     });
     $("input").not("[type=submit]").jqBootstrapValidation();

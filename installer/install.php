@@ -6,9 +6,10 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-if (!isset($_POST["doinstall"])) {  
-    header("Location: index.php");  
-} 
+if (!isset($_POST["doinstall"])) {
+    header("Location: index.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +43,7 @@ body {
 <!-- Content start -->
 <div class="container">
 <div class="page-header">
-<h1>Install ModernCount 2.1</h1>
+<h1>Install ModernCount 3</h1>
 </div>		
 <?php
 
@@ -53,7 +54,7 @@ $dbpassword = $_POST["dbpassword"];
 $dbname = $_POST["dbname"];
 $adminuser = $_POST["adminuser"];
 if (empty($_POST["adminpassword"])) {
-    die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Install Failed</h4><p>Error: No admin password set.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
+    die("<h4 class=\"alert-heading\">Install Failed</h4><p>Error: No admin password set.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></body></html>");
 } else {
     $adminpassword = sha1($_POST["adminpassword"]);
 }
@@ -80,20 +81,21 @@ define('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");
 define('AD_CODE', 'Ad code here...');
 define('COUNT_UNIQUE_ONLY_STATE', 'Enabled');
 define('COUNT_UNIQUE_ONLY_TIME', '24');
-define('IGNORE_ADMIN_STATE', 'Disabled'); 
+define('IGNORE_ADMIN_STATE', 'Disabled');
+define('THEME', 'default');
 
 ?>";
 
 //Check if we can connect
 @$con = mysql_connect($dbhost, $dbuser, $dbpassword);
 if (!$con) {
-    die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Install Failed</h4><p>Error: Could not connect to database (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
+    die("<h4 class=\"alert-heading\">Install Failed</h4><p>Error: Could not connect to database (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></body></html>");
 }
 
 //Check if database exists
 $does_db_exist = mysql_select_db($dbname, $con);
 if (!$does_db_exist) {
-    die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Install Failed</h4><p>Error: Database does not exist (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
+    die("<h4 class=\"alert-heading\">Install Failed</h4><p>Error: Database does not exist (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></body></html>");
 }
 
 //Create Data table
@@ -101,10 +103,10 @@ $createtable = "CREATE TABLE Data (
 name VARCHAR(100) NOT NULL,
 id VARCHAR(25) NOT NULL,
 url VARCHAR(200) NOT NULL,
-count INT(10) NOT NULL default \"0',
-protect TINYINT(1) NOT NULL default \"0',
+count INT(10) NOT NULL default \"0\",
+protect TINYINT(1) NOT NULL default \"0\",
 password VARCHAR(200),
-showads TINYINT(1) NOT NULL default \"0',
+showads TINYINT(1) NOT NULL default \"0\",
 PRIMARY KEY (id)
 ) ENGINE = MYISAM;";
 
@@ -119,28 +121,23 @@ fclose($configfile);
 mysql_close($con);
 
 ?>
-<h2>4. Finish</h2>
-<p>ModernCount has been successfully installed. Please delete the "installer" folder from your server, as it poses a potential security risk! You can view your login data by clicking on this button.</p> 
-<div id="logindata" class="modal hide fade">
+<h4 class="alert-heading">Install Complete</h4><p>Indication has been successfully installed. Please delete the "installer" folder from your server, as it poses a potential security risk! To view your login data, click on the button.</p>
+<div id="data" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3>Login data</h3>
   </div>
   <div class="modal-body">
-    <ul>  
-      <li>User: <? echo $adminuser; ?></li>  
-      <li>Password: <? echo $_POST["adminpassword"]; ?></li>  
-    </ul>
+  <p><b>User:</b> <?php echo $adminuser; ?><br />
+  <b>Password:</b> <?php echo $_POST["adminpassword"]; ?></p>
+</ul>
   </div>
   <div class="modal-footer">
     <a class="btn btn-success" data-dismiss="modal" aria-hidden="true">Close</a>
   </div>
-</div>  
-<p>
-<div class="btn-group">
-<a href="#logindata" role="button" class="btn btn-danger" data-toggle="modal">View login</a>
-<a href="../admin/login.php" class="btn btn-success">Login</a></p>
 </div>
+
+<p><a href="#data" role="button" class="btn btn-danger" data-toggle="modal">View data</a> <a href="../admin/login.php" class="btn btn-success">Login</a></p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->	

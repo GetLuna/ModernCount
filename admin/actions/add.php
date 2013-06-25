@@ -13,6 +13,7 @@ if (!file_exists("../../config.php")) {
 require_once("../../config.php");
 
 $uniquekey = UNIQUE_KEY;
+$currentadminuser = ADMIN_USER;
 
 session_start();
 if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
@@ -20,26 +21,23 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
     exit; 
 }
 
-if (!isset($_POST["id"])) {  
-    header("Location: ../../admin");  
-}  
-
+if (!isset($_POST["id"])) {
+    header("Location: ../../admin");
+}
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>ModernCount &middot; Add</title>
+<title>ModernCounter &middot; Add</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
-
 if (THEME == "default") {
     echo "<link href=\"../../resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
 } else {
-    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.0/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
+    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.1/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
 }
-
 ?>
 <style type="text/css">
 body {
@@ -68,16 +66,16 @@ body {
 <li><a href="../index.php">Home</a></li>
 <li class="divider-vertical"></li>
 <li class="active"><a href="../add.php">Add</a></li>
-<li><a href="#">Edit</a></li>
+<li><a href="../edit.php">Edit</a></li>
 </ul>
 <ul class="nav pull-right">
 <li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><? echo $currentadminuser; ?> <b class="caret"></b></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
   <ul class="dropdown-menu">
-    <li><a href="settings.php">Settings</a></li>
-    <li><a href="changelog.php">Changelog</a></li>
+    <li><a href="../settings.php">Settings</a></li>
+    <li><a href="../changelog.php">Changelog</a></li>
     <li class="divider"></li>
-    <li><a href="logout.php">Logout</a></li>
+    <li><a href="../logout.php">Logout</a></li>
   </ul>
 </li>
 </ul>
@@ -98,6 +96,7 @@ body {
 if (!$con) {
     die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Error</h4><p>Could not connect to database (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
 }
+
 mysql_select_db(DB_NAME, $con);
 
 //Set variables
@@ -142,20 +141,16 @@ VALUES (\"$name\",\"$id\",\"$url\",\"$count\",\"$protect\",\"$password\",\"$show
 
 mysql_close($con);
 
-?>
-<div class="alert alert-info">
-<h4 class="alert-heading">Download Added</h4>
-</div>
-<p><b>Details:</b></p>
+?>-
+<h4 class="alert-heading">Download added</h4>
 <ul>
-<li>Name: <? echo $name; ?></li>
-<li>ID: <? echo $id; ?></li>
-<li>URL: <? echo $url; ?></li>
+<li>Name: <?php echo $name; ?></li>
+<li>ID: <?php echo $id; ?></li>
+<li>URL: <?php echo $url; ?></li>
 </ul>
 <p><b>Tracking Link:</b></p>
-<p><? echo PATH_TO_SCRIPT; ?>/get.php?id=<? echo $id; ?></p>
-<p><a class="btn btn-info" href="../../admin/index.php">Back To Home</a></p>  
-</div>  
+<p><?php echo PATH_TO_SCRIPT; ?>/get.php?id=<?php echo $id; ?></p>
+<p><a class="btn btn-info" href="../../admin/index.php">Back To Home</a></p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->

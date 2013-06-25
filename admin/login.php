@@ -56,6 +56,12 @@ body {
     margin: 0 auto 20px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+         border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+         box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
 .form-signin .form-signin-heading, .form-signin .checkbox {
     margin-bottom: 10px;
@@ -76,13 +82,11 @@ body {
 <fieldset>
 <h2 class="form-signin-heading">ModernCount</h2>
 <?php 
-
 if (isset($_GET["login_error"])) {
     echo "<div class=\"alert alert-error\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>Incorrect username or password.</div>";
 } elseif (isset($_GET["logged_out"])) {
     echo "<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>Successfully logged out.</div>";
 }
-
 ?>
 <div class="control-group">
 <label class="control-label" for="user">User</label>
@@ -111,11 +115,11 @@ if (isset($_GET["login_error"])) {
 <!-- Javascript start -->
 <script src="../resources/jquery.js"></script>
 <script src="../resources/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript">  
-$(document).ready(function() {  
-    $("#user").focus();  
-});  
-</script>  
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#user").focus();
+});
+</script>
 <!-- Javascript end -->
 </body>
 </html>

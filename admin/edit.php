@@ -21,10 +21,6 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
     exit; 
 }
 
-if (!isset($_GET["id"])) {
-    header("Location: ../admin");
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +28,13 @@ if (!isset($_GET["id"])) {
 <meta charset="utf-8">
 <title>ModernCount &middot; Edit</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
+<?php
+if (THEME == "default") {
+    echo "<link href=\"../resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
+} else {
+    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.1/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
+}
+?>
 <style type="text/css">
 body {
     padding-top: 60px;
@@ -54,12 +56,13 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </a>
-<a class="brand" href="index.php">ModernCount</a>
+<a class="brand" href="#">ModernCount</a>
 <div class="nav-collapse collapse">
 <ul class="nav">
 <li><a href="index.php">Home</a></li>
 <li class="divider-vertical"></li>
 <li><a href="add.php">Add</a></li>
+<li class="active"><a href="edit.php">Edit</a></li>
 </ul>
 <ul class="nav pull-right">
 <li class="dropdown">
@@ -92,10 +95,20 @@ if (!$con) {
     die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Error</h4><p>Could not connect to database (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
 }
 
-$does_db_exist = mysql_select_db(DB_NAME, $con);  
-if (!$does_db_exist) {  
-    die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Error</h4><p>Database does not exist (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");  
-}  
+$does_db_exist = mysql_select_db(DB_NAME, $con);
+if (!$does_db_exist) {
+    die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Error</h4><p>Database does not exist (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
+}
+
+if (!isset($_GET["id"])) {
+    echo "<form action=\"edit.php\" method=\"get\"><fieldset><div class=\"control-group\"><label class=\"control-label\" for=\"id\">Select a download to edit</label><div class=\"controls\"><select id=\"id\" name=\"id\">";
+    $getids = mysql_query("SELECT id, name FROM Data");
+    while($row = mysql_fetch_assoc($getids)) {    
+        echo "<option value=\"" . $row["id"] . "\">" . ucfirst($row["name"]) . "</option>";
+    }
+    echo "</select></div></div><div class=\"form-actions\"><button type=\"submit\" class=\"btn btn-primary\">Edit</button></div></fieldset></form></div></body></html>";
+    exit;
+}
 
 $idtoedit = mysql_real_escape_string($_GET["id"]);
 
@@ -116,10 +129,10 @@ $resultnameofdownload = mysql_fetch_assoc($getnameofdownload);
 
 $getidinfo = mysql_query("SELECT * FROM Data WHERE id = \"$idtoedit\"");
 while($row = mysql_fetch_assoc($getidinfo)) {
-    echo "<div class=\"control-group\"><label class=\"control-label\" for=\"downloadname\">Name</label><div class=\"controls\"><input type=\"text\" id=\"downloadname\" name=\"downloadname\" value=\"" . $row["name"] . "\" placeholder=\"Type a name...\" required></div></div>";
-    echo "<div class=\"control-group\"><label class=\"control-label\" for=\"id\">ID</label><div class=\"controls\"><input type=\"text\" id=\"id\" name=\"id\" value=\"" . $row["id"] . "\" placeholder=\"Type an ID...\" required></div></div>";
-    echo "<div class=\"control-group\"><label class=\"control-label\" for=\"url\">URL</label><div class=\"controls\"><input type=\"text\" id=\"url\" name=\"url\" value=\"" . $row["url"] . "\" placeholder=\"Type a URL...\" pattern=\"(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?\" data-validation-pattern-message=\"Please enter a valid URL\" required></div></div>";
-    echo "<div class=\"control-group\"><label class=\"control-label\" for=\"count\">Count</label><div class=\"controls\"><input type=\"number\" id=\"count\" name=\"count\" value=\"" . $row["count"] . "\" placeholder=\"Type a count...\"  min=\"0\" required></div></div>";
+    echo "<div class=\"control-group\"><label class=\"control-label\" for=\"downloadname\">Name</label><div class=\"controls\"><input type=\"text\" id=\"downloadname\" name=\"downloadname\" value=\"" . $row["name"] . "\" placeholder=\"Type a name\" required></div></div>";
+    echo "<div class=\"control-group\"><label class=\"control-label\" for=\"id\">ID</label><div class=\"controls\"><input type=\"text\" id=\"id\" name=\"id\" value=\"" . $row["id"] . "\" placeholder=\"Type an ID\" required></div></div>";
+    echo "<div class=\"control-group\"><label class=\"control-label\" for=\"url\">URL</label><div class=\"controls\"><input type=\"text\" id=\"url\" name=\"url\" value=\"" . $row["url"] . "\" placeholder=\"Type a URL\" required></div></div>";
+    echo "<div class=\"control-group\"><label class=\"control-label\" for=\"count\">Count</label><div class=\"controls\"><input type=\"number\" id=\"count\" name=\"count\" value=\"" . $row["count"] . "\" placeholder=\"Type a count\" min=\"0\" required></div></div>";
 }
 
 echo "<div class=\"control-group\"><div class=\"controls\"><label class=\"checkbox\">";
@@ -150,9 +163,16 @@ mysql_close($con);
 </label>
 </div>
 </div>
+<div id="passwordentry" style="display: none;">
+<div class="control-group">
+<label class="control-label" for="password">Password</label>
+<div class="controls">
+<input type="password" id="password" name="password" placeholder="Type a password">
+</div>
+</div>
+</div>
 <div class="form-actions">
 <input type="hidden" name="idtoedit" value="<?php echo $idtoedit; ?>" />
-<input type="hidden" id="password" name="password">
 <button type="submit" class="btn btn-primary">Update</button>
 </div>
 </fieldset>
@@ -167,17 +187,11 @@ mysql_close($con);
 $(document).ready(function() {
     $("#passwordprotectstate").click(function() {
         if ($("#passwordprotectstate").prop("checked") == true) {
-            password = prompt("Enter a password","");
-            passwordconfirm = prompt("Confirm password","");
-            if (password != passwordconfirm) {
-                alert("Passwords do not match");
-                return false   
-            }
-            if (password != "" && password != null) {
-                $("#password").val(password);
-            } else {
-                $("#passwordprotectstate").prop("checked", false);
-            }
+            $("#password").prop("required", true);
+            $("#passwordentry").show("fast");
+        } else {
+            $("#passwordentry").hide("fast");
+            $("#password").prop("required", false);
         }
     });
     $("input").not("[type=submit]").jqBootstrapValidation(); 

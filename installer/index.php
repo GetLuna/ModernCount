@@ -5,8 +5,8 @@
  * Based on code by Josh Frandley copyright (C) 2012-2013
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
- 
-// Security check, check if config exists
+
+//Security check, check if config exists
 if (file_exists("../config.php")) {
     header("Location: ../admin");
     exit;
@@ -45,105 +45,77 @@ body {
 <!-- Content start -->
 <div class="container">
 <div class="page-header">
-<h1>Install ModernCount 2</h1>
+<h1>Install ModernCount 3</h1>
 </div>
 <?php
-
 //Get path to script
 $currenturl = $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
 $pathtoscriptwithslash = "http://" . substr($currenturl, 0, strpos($currenturl, "installer"));
 $pathtoscript = rtrim($pathtoscriptwithslash, "/");
-
 ?>	
 <form action="install.php" method="post">
 <fieldset>
-<div class="tabbable"> <!-- Only required for left/right tabs -->
-  <div class="tab-content">
-    <div class="tab-pane active" id="database">
-    	<h2>1. Database settings</h2>
-		<div class="control-group">
-        <label class="control-label" for="dbhost">Database Host</label>
-        <div class="controls">
-        <input type="text" id="dbhost" name="dbhost" value="localhost" placeholder="Type a database host..." required>
-        </div>
-        </div>
-        <div class="control-group">
-        <label class="control-label" for="dbuser">Database User</label>
-        <div class="controls">
-        <input type="text" id="dbuser" name="dbuser" placeholder="Type a database user..." required>
-        </div>
-        </div>
-        <div class="control-group">
-        <label class="control-label" for="dbpassword">Database Password</label>
-        <div class="controls">
-        <input type="password" id="dbpassword" name="dbpassword" placeholder="Type a database password...">
-        </div>
-        </div>
-        <div class="control-group">
-        <label class="control-label" for="dbname">Database Name</label>
-        <div class="controls">
-        <input type="text" id="dbname" name="dbname" placeholder="Type a database name..." required>
-        </div>
-        </div>
-        <div class="form-actions">
-        <div class="btn-group">
-        <input type="hidden" name="doinstall">
-        <a href="#admin" data-toggle="tab" class="btn btn-primary">Next</a>
-        </div>
-        </div>
-    </div>
-    <div class="tab-pane" id="admin">
-    	<h2>2. Admin details</h2>
-		<div class="control-group">
-        <label class="control-label" for="adminuser">Admin User</label>
-        <div class="controls">
-        <input type="text" id="adminuser" name="adminuser" placeholder="Type a username..." required>
-        </div>
-        </div>
-        <div class="control-group">
-        <label class="control-label" for="adminpassword">Password</label>
-        <div class="controls">
-        <input type="password" id="adminpassword" name="adminpassword" placeholder="Type a password..." required>
-        </div>
-        </div>
-        <div class="control-group">
-        <label class="control-label" for="adminpasswordconfirm">Confirm Password</label>
-        <div class="controls">
-        <input type="password" id="adminpasswordconfirm" name="adminpasswordconfirm" placeholder="Type your password again..." data-validation-match-match="adminpassword" required>
-        <span class="help-block">It is recommended that your password be at least 6 characters long</span>
-        </div>
-        </div>
-        <div class="form-actions">
-        <div class="btn-group">
-        <input type="hidden" name="doinstall">
-        <a href="#database" data-toggle="tab" class="btn btn-danger">Back</a>
-        <a href="#website" data-toggle="tab" class="btn btn-primary">Next</a>
-        </div>
-        </div>
-    </div>
-    <div class="tab-pane" id="website">
-    	<h2>3. Website</h2>
-		<div class="control-group">
-        <label class="control-label" for="website">Website Name</label>
-        <div class="controls">
-        <input type="text" id="website" name="website" required placeholder="Type your websites name...">
-        </div>
-        </div>
-        <div class="control-group">
-        <label class="control-label" for="pathtoscript">Path to Script</label>
-        <div class="controls">
-        <input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount..." required>
-        </div>
-        </div>
-        <div class="form-actions">
-        <div class="btn-group">
-        <input type="hidden" name="doinstall">
-        <a href="#admin" data-toggle="tab" class="btn btn-danger">Back</a>
-        <input type="submit" class="btn btn-success" value="Install">
-        </div>
-        </div>
-    </div>
-  </div>
+<h4>Database Settings</h4>
+<div class="control-group">
+<label class="control-label" for="dbhost">Database Host</label>
+<div class="controls">
+<input type="text" id="dbhost" name="dbhost" value="localhost" placeholder="Type a database host" required>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="dbuser">Database User</label>
+<div class="controls">
+<input type="text" id="dbuser" name="dbuser" placeholder="Type a database user" required>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="dbpassword">Database Password</label>
+<div class="controls">
+<input type="password" id="dbpassword" name="dbpassword" placeholder="Type a database password">
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="dbname">Database Name</label>
+<div class="controls">
+<input type="text" id="dbname" name="dbname" placeholder="Type a database name" required>
+</div>
+</div>
+<h4>Admin Details</h4>
+<div class="control-group">
+<label class="control-label" for="adminuser">Admin User</label>
+<div class="controls">
+<input type="text" id="adminuser" name="adminuser" placeholder="Type a username" required>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="adminpassword">Password</label>
+<div class="controls">
+<input type="password" id="adminpassword" name="adminpassword" placeholder="Type a password" required>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="adminpasswordconfirm">Confirm Password</label>
+<div class="controls">
+<input type="password" id="adminpasswordconfirm" name="adminpasswordconfirm" placeholder="Type your password again" data-validation-match-match="adminpassword" required>
+<span class="help-block">It is recommended that your password be at least 6 characters long</span>
+</div>
+</div>
+<h4>Other Settings</h4>
+<div class="control-group">
+<label class="control-label" for="website">Website Name</label>
+<div class="controls">
+<input type="text" id="website" name="website" required placeholder="Type your websites name">
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="pathtoscript">Path to Script</label>
+<div class="controls">
+<input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount" required>
+</div>
+</div>
+<div class="form-actions">
+<input type="hidden" name="doinstall">
+<input type="submit" class="btn btn-primary" value="Install">
 </div>
 </fieldset>
 </form>

@@ -78,7 +78,7 @@ define('ADMIN_PASSWORD', " . var_export($adminpassword, true) . ");
 define('UNIQUE_KEY', " . var_export($uniquekey, true) . ");
 define('WEBSITE', " . var_export($website, true) . ");
 define('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");
-define('AD_CODE', 'Ad code here...');
+define('AD_CODE', 'Ad code here');
 define('COUNT_UNIQUE_ONLY_STATE', 'Enabled');
 define('COUNT_UNIQUE_ONLY_TIME', '24');
 define('IGNORE_ADMIN_STATE', 'Disabled');
@@ -115,24 +115,9 @@ $create_data = "CREATE TABLE mc_data (
 	PRIMARY KEY (id)
 ) ENGINE = MYISAM;";
 
-$create_user = "CREATE TABLE mc_users (
-	user VARCHAR(200) NOT NULL PRIMARY KEY,
-	password VARCHAR(40) NOT NULL,
-	is_admin TINYINT(1) NOT NULL
-) ENGINE = MYISAM;";
-
 //Run query
 mysql_query($rename_data);
 mysql_query($create_data);
-mysql_query($create_user);
-
-//Set variables
-$user = mysql_real_escape_string($_POST["adminuser"]);
-$password = mysql_real_escape_string($_POST["adminpassword"]);
-$password = md5($password);
-
-mysql_query("INSERT INTO mc_users (user, password, is_admin)
-VALUES (\"$user\",\"$password\",\"1\")");
 
 //Write Config
 $configfile = fopen("../config.php", "w");
@@ -142,7 +127,7 @@ fclose($configfile);
 mysql_close($con);
 
 ?>
-<h4 class="alert-heading">Install Complete</h4>
+<h4 class="alert-heading">Install complete</h4>
 <p>ModernCount has been successfully installed. Please delete the "installer" folder from your server, as it poses a potential security risk! To view your login data, click on the button.</p>
 <div id="data" class="modal hide fade">
   <div class="modal-header">

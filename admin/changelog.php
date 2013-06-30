@@ -85,6 +85,7 @@ body {
 <ul>
 	<li>Fix issue that cause the default theme to be displayed in changelog even if it's not the theme in settings</li>
     <li>Remove unneeded scripts on some pages</li>
+    <li>Fix spelling issue on index</li>
     <li>Small design changes</li>
 </ul>
 <h3>Version 3.0.0</h3>

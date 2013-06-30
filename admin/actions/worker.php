@@ -33,7 +33,7 @@ $id = mysql_real_escape_string($_POST["id"]);
 $action = $_POST["action"];
 
 if ($action == "delete") {
-	mysql_query("DELETE FROM Data WHERE id = \"$id\"");
+	mysql_query("DELETE FROM mc_data WHERE id = \"$id\"");
 }
 
 mysql_close($con);

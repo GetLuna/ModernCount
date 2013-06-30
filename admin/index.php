@@ -104,7 +104,7 @@ if (!$does_db_exist) {
     die("<div class=\"alert alert-error\"><h4 class=\"alert-heading\">Error</h4><p>Database does not exist (" . mysql_error() . "). Check your database settings are correct.</p><p><a class=\"btn btn-danger\" href=\"javascript:history.go(-1)\">Go Back</a></p></div></div></body></html>");
 }
 
-$getdownloads = mysql_query("SELECT * FROM Data");
+$getdownloads = mysql_query("SELECT * FROM mc_data");
 
 //Update checking
 if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
@@ -183,11 +183,11 @@ echo "</tbody></table>";
 <div class="well well-small">
 <?php
 
-$getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM Data");
+$getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM mc_data");
 $resultnumberofdownloads = mysql_fetch_assoc($getnumberofdownloads);
-echo "<i class=\"icon-download\"></i> <b>" . $resultnumberofdownloads["COUNT(id)"] . "</b> items";
+echo "<i class=\"icon-download\"></i> <b>" . $resultnumberofdownloads["COUNT(id)"] . "</b> items and ";
 
-$gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM Data");
+$gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM mc_data");
 $resulttotalnumberofdownloads = mysql_fetch_assoc($gettotalnumberofdownloads);
 if ($resulttotalnumberofdownloads["SUM(count)"] > "1") {
     echo " <b>" . $resulttotalnumberofdownloads["SUM(count)"] . "</b> total downloads";

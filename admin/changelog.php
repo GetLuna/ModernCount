@@ -81,6 +81,13 @@ body {
 <div class="page-header">
 <h1>Changelog</h1>
 </div>
+<h3>Version 3.1.0</h3>
+<ul>
+	<li>Enhanced database</li>
+    <li>IDs are now displayed in the index</li>
+    <li>You can now search on IDs</li>
+    <li>Improved display of record table</li>
+</ul>
 <h3>Version 3.0.1</h3>
 <ul>
 	<li>Fix issue that cause the default theme to be displayed in changelog even if it's not the theme in settings</li>

@@ -6,7 +6,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-$version = "3.0.1";
+$version = "3.1.0";
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -118,10 +118,11 @@ if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
 echo "<table id=\"downloads\" class=\"table table-striped table-bordered table-condensed\">
 <thead>
 <tr>
-<th>ID</th>
+<th style=\"width:20px;\"></th>
 <th>Name</th>
 <th>URL</th>
-<th>Count</th>
+<th>ID</th>
+<th style=\"width:75px;\">Count</th>
 </tr></thead><tbody>";
 
 while($row = mysql_fetch_assoc($getdownloads)) {
@@ -129,6 +130,7 @@ while($row = mysql_fetch_assoc($getdownloads)) {
     echo "<td><input name=\"id\" type=\"radio\" value=\"" . $row["id"] . "\"></td>";
     echo "<td>" . $row["name"] . "</td>";
     echo "<td>" . $row["url"] . "</td>";
+    echo "<td>" . $row["id"] . "</td>";
     echo "<td>" . $row["count"] . "</td>";
     echo "</tr>";
 }

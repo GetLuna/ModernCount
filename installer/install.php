@@ -83,8 +83,6 @@ define('COUNT_UNIQUE_ONLY_STATE', 'Enabled');
 define('COUNT_UNIQUE_ONLY_TIME', '24');
 define('IGNORE_ADMIN_STATE', 'Disabled');
 define('THEME', 'default');
-define('VERSION', '3.1.0' );
-define('DB_REVISION', '2');
 
 ?>";
 

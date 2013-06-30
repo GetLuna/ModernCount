@@ -1,11 +1,11 @@
 ModernCount Readme
 ================
 
-ModernCount (previously SHTracker) is a PHP download counter. You can use it to track the number of times a link has been clicked or the number of times a file has been downloaded. ModernCount can also be used to hide affiliate links. ModernCount is integrated in MocernBB.org, I release the script now for everyone to download. Enjoy it.
+ModernCount is a PHP download counter. You can use it to track the number of times a link has been clicked or the number of times a file has been downloaded. ModernCount can also be used to hide affiliate links. ModernCount is integrated in MocernBB.org, I release the script now for everyone to download. Enjoy it.
 
 The script uses SQL databases. It comes with an admin panel where you can view how many times a download has been accessed. You can also easily add, edit or remove downloads using the panel. ModernCount can also display the current count for a download on any web page.
 
-#### Current Version: 3.0.0
+#### Current Version: 3.0.1
 
 ##Features
 

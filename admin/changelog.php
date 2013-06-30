@@ -81,6 +81,12 @@ body {
 <div class="page-header">
 <h1>Changelog</h1>
 </div>
+<h3>Version 3.0.1</h3>
+<ul>
+	<li>Fix issue that cause the default theme to be displayed in changelog even if it's not the theme in settings</li>
+    <li>Remove unneeded scripts on some pages</li>
+    <li>Small design changes</li>
+</ul>
 <h3>Version 3.0.0</h3>
 <ul>
 	<li>The Settings page won't display auto-correct menu's</li>

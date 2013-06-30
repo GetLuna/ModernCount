@@ -28,8 +28,13 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
 <meta charset="utf-8">
 <title>ModernCount</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
-<link href="../resources/datatables/dataTables.bootstrap.css" type="text/css" rel="stylesheet">
+<?php
+if (THEME == "default") {
+    echo "<link href=\"../resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
+} else {
+    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.1/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
+}
+?>
 <style type="text/css">
 body {
     padding-top: 60px;
@@ -136,75 +141,6 @@ body {
 <script src="../resources/jquery.js"></script>
 <script src="../resources/bootstrap/js/bootstrap.js"></script>
 <script src="../resources/datatables/jquery.dataTables.js"></script>
-<script src="../resources/datatables/dataTables.bootstrap.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    /* Table selection */
-    is_selected = false;
-    $("#downloads input[name=id]").click(function() {
-        id = $("#downloads input[name=id]:checked").val();
-        is_selected = true;
-    });
-    /* End */
-    /* Datatables */
-    $("#downloads").dataTable({
-        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-        "sPaginationType": "bootstrap",
-        "aoColumnDefs": [{ 
-            "bSortable": false, 
-            "aTargets": [0] 
-        }] 
-    });
-    $.extend($.fn.dataTableExt.oStdClasses, {
-        "sSortable": "header",
-        "sWrapper": "dataTables_wrapper form-inline"
-    });
-    /* End */
-    /* Edit */
-    $("#edit").click(function() {
-        if (!is_selected) {
-            alert("No download selected!");
-        } else {
-            window.location = "edit.php?id="+ id +"";
-        }
-    });
-    /* End */
-    /* Delete */
-    $("#delete").click(function() {
-        if (!is_selected) {
-            alert("No download selected!");
-        } else {
-            deleteconfirm=confirm("Delete this download?")
-            if (deleteconfirm==true) {
-                $.ajax({  
-                    type: "POST",  
-                    url: "actions/worker.php",  
-                    data: "action=delete&id="+ id +"",
-                    error: function() {  
-                        alert("Ajax query failed!");
-                    },
-                    success: function() {  
-                        alert("Download deleted!");
-                        window.location.reload();      
-                    }	
-                });
-            } else {
-                return false;
-            }
-        } 
-    });
-    /* End */
-    /* Tracking Link */
-    $("#trackinglink").click(function() {
-        if (!is_selected) {
-            alert("No download selected!");
-        } else {
-            prompt("Tracking link for selected download. Press Ctrl/Cmd C to copy to the clipboard:", "<?php echo PATH_TO_SCRIPT; ?>/get.php?id="+ id +"");
-        } 
-    });
-    /* End */
-});
-</script>
 <!-- Javascript end -->
 </body>
 </html>

@@ -56,12 +56,7 @@ body {
     margin: 0 auto 20px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-         border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-         box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
 .form-signin .form-signin-heading, .form-signin .checkbox {
     margin-bottom: 10px;
@@ -71,6 +66,9 @@ body {
     height: auto;
     margin-bottom: 5px;
     padding: 7px 9px;
+}
+.btn {
+	margin-top: -30px;
 }
 </style>
 <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">

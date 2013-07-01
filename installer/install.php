@@ -15,38 +15,38 @@ require_once("includes/common.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>ModernCount &middot; Installer</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
-<style type="text/css">
-body {
-    padding-top: 60px;
-}
-</style>
-<link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-</head>
-<body>
-<!-- Nav start -->
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner">
-<div class="container">
-<a class="brand" href="#">ModernCount</a>
-</div>
-</div>
-</div>
-<!-- Nav end -->
-<!-- Content start -->
-<div class="container">
-<div class="page-header">
-<h1>Install ModernCount 3</h1>
-</div>		
+	<head>
+        <meta charset="utf-8">
+        <title>ModernCount &middot; Installer</title>
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
+        <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        </style>
+        <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+	</head>
+	<body>
+		<!-- Nav start -->
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                	<a class="brand" href="#">ModernCount</a>
+                </div>
+            </div>
+        </div>
+        <!-- Nav end -->
+        <!-- Content start -->
+        <div class="container">
+            <div class="page-header">
+                <h1>Install ModernCount <?php echo VERSION; ?></h1>
+            </div>	
 <?php
 
 //Get new settings from POST
@@ -123,33 +123,32 @@ fclose($configfile);
 mysql_close($con);
 
 ?>
-<h4 class="alert-heading">Install complete</h4>
-<p>ModernCount has been successfully installed. Please delete the "installer" folder from your server, as it poses a potential security risk! To view your login data, click on the button.</p>
-<div id="data" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Login data</h3>
-  </div>
-  <div class="modal-body">
-  <p><b>User:</b> <?php echo $adminuser; ?><br />
-  <b>Password:</b> <?php echo $_POST["adminpassword"]; ?></p>
-</ul>
-  </div>
-  <div class="modal-footer">
-    <a class="btn btn-success" data-dismiss="modal" aria-hidden="true">Close</a>
-  </div>
-</div>
-
-<p><a href="#data" role="button" class="btn btn-danger" data-toggle="modal">View data</a> <a href="../admin/login.php" class="btn btn-success">Login</a></p>
-</div>
+            <h4 class="alert-heading">Install complete</h4>
+            <p>ModernCount has been successfully installed. Please delete the "installer" folder from your server, as it poses a potential security risk! To view your login data, click on the button.</p>
+            <div id="data" class="modal hide fade">
+            	<div class="modal-header">
+            		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            		<h3>Login data</h3>
+            	</div>
+				<div class="modal-body">
+					<p><b>User:</b> <?php echo $adminuser; ?><br />
+					<b>Password:</b> <?php echo $_POST["adminpassword"]; ?></p>
+				</div>
+                <div class="modal-footer">
+                    <a class="btn btn-success" data-dismiss="modal" aria-hidden="true">Close</a>
+                </div>
+            </div>
+    
+            <p><a href="#data" role="button" class="btn btn-danger" data-toggle="modal">View data</a> <a href="../admin/login.php" class="btn btn-success">Login</a></p>
+        </div>
 
         <footer>
             <p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
         </footer>
-<!-- Content end -->
-<!-- Javascript start -->	
-<script src="../resources/jquery.js"></script>
-<script src="../resources/bootstrap/js/bootstrap.js"></script>
-<!-- Javascript end -->
-</body>
+        <!-- Content end -->
+        <!-- Javascript start -->	
+        <script src="../resources/jquery.js"></script>
+        <script src="../resources/bootstrap/js/bootstrap.js"></script>
+        <!-- Javascript end -->
+    </body>
 </html>

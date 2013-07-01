@@ -99,10 +99,7 @@ if (!$does_db_exist) {
 }
 
 // Update all the needed stuff
-$rename_data ="ALTER TABLE Data
-	RENAME TO mc_data;";
-
-$create_data = "CREATE TABLE mc_data (
+$create_data = "CREATE TABLE Data (
 	name VARCHAR(100) NOT NULL,
 	id VARCHAR(25) NOT NULL,
 	url VARCHAR(200) NOT NULL,
@@ -114,7 +111,6 @@ $create_data = "CREATE TABLE mc_data (
 ) ENGINE = MYISAM;";
 
 //Run query
-mysql_query($rename_data);
 mysql_query($create_data);
 
 //Write Config

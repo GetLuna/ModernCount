@@ -140,7 +140,7 @@ echo "</tbody></table>";
 <div class="btn-group">
 <button id="edit" class="btn btn-success">Edit</button>
 <button id="delete" class="btn btn-success">Delete</button>
-<button id="trackinglink" class="btn btn-success">Copy Tracking Link</button>
+<button id="trackinglink" class="btn btn-success">Show tracking link</button>
 </div>
 <br>
 <br>
@@ -154,16 +154,17 @@ echo "</tbody></table>";
 </div>
 <div class="modal-footer">
 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-<button id="deleteconfirm" class="btn btn-primary">Delete</button>
+<button id="deleteconfirm" class="btn btn-danger">Delete</button>
 </div>
 </div>
 <div id="trackinglinkdialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="tldheader" aria-hidden="true">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-<h3 id="tldheader">Tracking Link</h3>
+<h3 id="tldheader">Tracking link</h3>
 </div>
 <div class="modal-body">
-<p>The tracking link for the selected download has been copied to your clipboard.</p>
+<p>Tracking link for the selected download:</p>  
+<p><b><?php echo PATH_TO_SCRIPT; ?>/get.php?id=<span id="downloadid"></span></b></p>  
 </div>
 <div class="modal-footer">
 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -209,7 +210,6 @@ mysql_close($con);
 <script src="../resources/bootstrap/js/bootstrap.js"></script>
 <script src="../resources/datatables/jquery.dataTables.js"></script>
 <script src="../resources/datatables/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="../resources/zeroclipboard/ZeroClipboard.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     /* Table selection */
@@ -217,9 +217,6 @@ $(document).ready(function() {
     $("#downloads input[name=id]").click(function() {
         id = $("#downloads input[name=id]:checked").val();
         id_selected = true;
-        /* Set clipboard text */
-        clip.setText("<?php echo PATH_TO_SCRIPT; ?>/get.php?id=" + id + "");
-        /* End */
     });
     /* End */
     /* Datatables */
@@ -270,16 +267,13 @@ $(document).ready(function() {
         });
     });
     /* End */
-    /* Zero Clipboard */
-    var clip = new ZeroClipboard($("#trackinglink"), {
-        moviePath: "../resources/zeroclipboard/ZeroClipboard.swf"
-    });
-    clip.on("complete", function() {
-        if (id_selected == true) {
-            $("#trackinglinkdialog").modal("show");
+    /* Tracking Link */
+    $("#trackinglink").click(function() {
+        if (!id_selected) {
+            $("#noidselecteddialog").modal("show");
         } else {
-            $("#noidselecteddialog").modal("show");    
-        }
+            prompt("Tracking link for selected download. Press copy to the clipboard:", "<?php echo PATH_TO_SCRIPT; ?>/get.php?id="+ id +"");
+        } 
     });
     /* End */
 });

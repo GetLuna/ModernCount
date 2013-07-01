@@ -18,44 +18,44 @@ require_once("admin/includes/common.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>ModernCount</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php
-if (THEME == "default") {
-    echo "<link href=\"resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
-} else {
-    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.1/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
-}
-?>
-<style type="text/css">
-body {
-    padding-top: 60px;
-}
-</style>
-<link href="resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-</head>
-<body>
-<!-- Nav start -->
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner">
-<div class="container">
-<a class="brand" href="#">Indication</a>
-</div>
-</div>
-</div>
-<!-- Nav end -->
-<!-- Content start -->
-<div class="container">
-<div class="page-header">
-<h1><?php echo WEBSITE; ?></h1>
-</div>		
+	<head>
+		<meta charset="utf-8">
+        <title>ModernCount</title>
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php
+        if (THEME == "default") {
+            echo "<link href=\"resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
+        } else {
+            echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.1/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
+        }
+        ?>
+        <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        </style>
+        <link href="resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+	</head>
+	<body>
+        <!-- Nav start -->
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                	<a class="brand" href="#">Indication</a>
+                </div>
+            </div>
+        </div>
+        <!-- Nav end -->
+        <!-- Content start -->
+        <div class="container">
+            <div class="page-header">
+                <h1><?php echo WEBSITE; ?></h1>
+			</div>		
 <?php
 
 //Connect to database
@@ -164,15 +164,15 @@ ob_end_flush();
 mysql_close($con);
 
 ?>
-</div>
+        </div>
 
         <footer>
             <p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
         </footer>
-<!-- Content end -->
-<!-- Javascript start -->	
-<script src="resources/jquery.js"></script>
-<script src="resources/bootstrap/js/bootstrap.js"></script>
-<!-- Javascript end -->
-</body>
+        <!-- Content end -->
+        <!-- Javascript start -->	
+        <script src="resources/jquery.js"></script>
+        <script src="resources/bootstrap/js/bootstrap.js"></script>
+        <!-- Javascript end -->
+    </body>
 </html>

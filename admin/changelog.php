@@ -87,6 +87,8 @@ body {
     <li>IDs are now displayed in the index</li>
     <li>You can now search on IDs</li>
     <li>Improved display of record table</li>
+    <li>Fix broken tracking link copy</li>
+    <li>Improved display of succeed message when adding and editing</li>
 </ul>
 <h3>Version 3.0.1</h3>
 <ul>

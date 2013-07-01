@@ -147,7 +147,7 @@ echo "</tbody></table>";
 <div id="deleteconfirmdialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dcdheader" aria-hidden="true">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-<h3 id="dcdheader">Confirm Delete</h3>
+<h3 id="dcdheader">Confirm delete</h3>
 </div>
 <div class="modal-body">
 <p>Are you sure you want to delete the selected download?</p>
@@ -155,19 +155,6 @@ echo "</tbody></table>";
 <div class="modal-footer">
 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 <button id="deleteconfirm" class="btn btn-danger">Delete</button>
-</div>
-</div>
-<div id="trackinglinkdialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="tldheader" aria-hidden="true">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-<h3 id="tldheader">Tracking link</h3>
-</div>
-<div class="modal-body">
-<p>Tracking link for the selected download:</p>  
-<p><b><?php echo PATH_TO_SCRIPT; ?>/get.php?id=<span id="downloadid"></span></b></p>  
-</div>
-<div class="modal-footer">
-<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 </div>
 </div>
 <div id="noidselecteddialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="nisdheader" aria-hidden="true">

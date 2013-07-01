@@ -147,7 +147,7 @@ mysql_close($con);
 <b>ID:</b> <?php echo $id; ?><br />
 <b>URL:</b> <?php echo $url; ?><br />
 <b>Tracking Link:</b> <?php echo PATH_TO_SCRIPT; ?>/get.php?id=<?php echo $id; ?><br />
-<p><a class="btn btn-info" href="../../admin/index.php">Back</a></p>
+<p><a class="btn btn-success" href="../../admin/index.php">Back</a></p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->

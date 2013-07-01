@@ -142,14 +142,11 @@ mysql_close($con);
 
 ?> 
 <h4 class="alert-heading">Download edited</h4>
-<ul>
-<li>Name: <?php echo $newname; ?></li>
-<li>ID: <?php echo $newid; ?></li>
-<li>URL: <?php echo $newurl; ?></li>
-</ul>
-<p><b>Tracking Link:</b></p>
-<p><?php echo PATH_TO_SCRIPT; ?>/get.php?id=<?php echo $newid; ?></p>
-<p><a class="btn btn-info" href="../../admin/index.php">Back To Home</a></p>
+<b>Name:</b> <?php echo $newname; ?><br />
+<b>ID:</b> <?php echo $newid; ?><br />
+<b>URL:</b> <?php echo $newurl; ?><br />
+<b>Tracking Link:</b> <?php echo PATH_TO_SCRIPT; ?>/get.php?id=<?php echo $newid; ?><br />
+<p><a class="btn btn-success" href="../../admin/index.php">Back</a></p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->	

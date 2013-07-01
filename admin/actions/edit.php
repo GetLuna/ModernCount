@@ -28,67 +28,67 @@ if (!isset($_POST["id"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>ModernCount &middot; Edit</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php
-if (THEME == "default") {
-    echo "<link href=\"../../resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
-} else {
-    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.1/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
-}
-?>
-<style type="text/css">
-body {
-    padding-top: 60px;
-}
-</style>
-<link href="../../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-</head>
-<body>
-<!-- Nav start -->
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner">
-<div class="container">
-<a class="btw btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</a>
-<a class="brand" href="#">ModernCount</a>
-<div class="nav-collapse collapse">
-<ul class="nav">
-<li><a href="../index.php">Home</a></li>
-<li class="divider-vertical"></li>
-<li><a href="../add.php">Add</a></li>
-<li class="active"><a href="../edit.php">Edit</a></li>
-</ul>
-<ul class="nav pull-right">
-<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
-  <ul class="dropdown-menu">
-    <li><a href="../settings.php">Settings</a></li>
-    <li><a href="../changelog.php">Changelog</a></li>
-    <li class="divider"></li>
-    <li><a href="../logout.php">Logout</a></li>
-  </ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<!-- Nav end -->
-<!-- Content start -->
-<div class="container">
-<div class="page-header">
-<h1>Edit</h1>
-</div>		
+	<head>
+		<meta charset="utf-8">
+		<title>ModernCount &middot; Edit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php
+        if (THEME == "default") {
+            echo "<link href=\"../../resources/bootstrap/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
+        } else {
+            echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.1/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
+        }
+        ?>
+        <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        </style>
+        <link href="../../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+	</head>
+	<body>
+		<!-- Nav start -->
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btw btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+       				</a>
+					<a class="brand" href="#">ModernCount</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li><a href="../index.php">Home</a></li>
+							<li class="divider-vertical"></li>
+							<li><a href="../add.php">Add</a></li>
+							<li class="active"><a href="../edit.php">Edit</a></li>
+						</ul>
+						<ul class="nav pull-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="../settings.php">Settings</a></li>
+									<li><a href="../changelog.php">Changelog</a></li>
+									<li class="divider"></li>
+									<li><a href="../logout.php">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+        <!-- Nav end -->
+		<!-- Content start -->
+		<div class="container">
+			<div class="page-header">
+				<h1>Edit</h1>
+			</div>
 <?php
 
 //Connect to database
@@ -142,21 +142,23 @@ mysql_query("UPDATE Data SET name = \"$newname\", id = \"$newid\", url = \"$newu
 mysql_close($con);
 
 ?> 
-<h4 class="alert-heading">Download edited</h4>
-<b>Name:</b> <?php echo $newname; ?><br />
-<b>ID:</b> <?php echo $newid; ?><br />
-<b>URL:</b> <?php echo $newurl; ?><br />
-<b>Tracking Link:</b> <?php echo PATH_TO_SCRIPT; ?>/get.php?id=<?php echo $newid; ?><br />
-<p><a class="btn btn-success" href="../../admin/index.php">Back</a></p>
-</div>
+			<h3 class="alert-heading">Download edited</h3>
+			<p>
+         	   <b>Name:</b> <?php echo $newname; ?><br />
+                <b>ID:</b> <?php echo $newid; ?><br />
+                <b>URL:</b> <?php echo $newurl; ?><br />
+                <b>Tracking Link:</b> <?php echo PATH_TO_SCRIPT; ?>/get.php?id=<?php echo $newid; ?>
+            </p>
+            <p><a class="btn btn-success" href="../../admin/index.php">Back</a></p>
+		</div>
             
-			<footer>
-				<p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
-			</footer>
-<!-- Content end -->
-<!-- Javascript start -->	
-<script src="../../resources/jquery.js"></script>
-<script src="../../resources/bootstrap/js/bootstrap.js"></script>
-<!-- Javascript end -->
-</body>
+		<footer>
+			<p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
+		</footer>
+        <!-- Content end -->
+        <!-- Javascript start -->	
+        <script src="../../resources/jquery.js"></script>
+        <script src="../../resources/bootstrap/js/bootstrap.js"></script>
+        <!-- Javascript end -->
+    </body>
 </html>

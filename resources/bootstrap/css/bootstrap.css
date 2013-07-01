@@ -65,6 +65,15 @@ html {
   font-size: 100%;
 }
 
+footer {
+	padding-top: 20px;
+	border-top: solid 1px #eeeeee;
+}
+
+footer p {
+	margin-bottom: 20px;
+}
+
 a:focus {
   outline: thin dotted #333;
   outline-offset: -2px;

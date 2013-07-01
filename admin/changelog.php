@@ -11,6 +11,7 @@ if (!file_exists("../config.php")) {
 }
 
 require_once("../config.php");
+require_once("includes/common.php");
 
 $uniquekey = UNIQUE_KEY;
 $currentadminuser = ADMIN_USER;
@@ -152,8 +153,9 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
                 <li>Initial release</li>
             </ul>
             
-			<hr>
-			<p class="muted pull-right">ModernCount &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?></p>
+			<footer>
+				<p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
+			</footer>
         </div>
         <!-- Content end -->
         <!-- Javascript start -->	

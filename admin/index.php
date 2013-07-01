@@ -6,13 +6,12 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-$version = "3.1.0";
-
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
 }
 
 require_once("../config.php");
+require_once("includes/common.php");
 
 $uniquekey = UNIQUE_KEY;
 $currentadminuser = ADMIN_USER;
@@ -191,8 +190,9 @@ mysql_close($con);
 ?>
 			</div>
             
-			<hr>
-			<p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo $version; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?></p>
+			<footer>
+				<p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
+			</footer>
 		</div>
         <!-- Content end -->
         <!-- Javascript start -->	

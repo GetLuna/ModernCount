@@ -141,16 +141,13 @@ VALUES (\"$name\",\"$id\",\"$url\",\"$count\",\"$protect\",\"$password\",\"$show
 
 mysql_close($con);
 
-?>-
-<h4 class="alert-heading">Download added</h4>
-<ul>
-<li>Name: <?php echo $name; ?></li>
-<li>ID: <?php echo $id; ?></li>
-<li>URL: <?php echo $url; ?></li>
-</ul>
-<p><b>Tracking Link:</b></p>
-<p><?php echo PATH_TO_SCRIPT; ?>/get.php?id=<?php echo $id; ?></p>
-<p><a class="btn btn-info" href="../../admin/index.php">Back To Home</a></p>
+?>
+<h3 class="alert-heading">Download added</h3>
+<b>Name:</b> <?php echo $name; ?><br />
+<b>ID:</b> <?php echo $id; ?><br />
+<b>URL:</b> <?php echo $url; ?><br />
+<b>Tracking Link:</b> <?php echo PATH_TO_SCRIPT; ?>/get.php?id=<?php echo $id; ?><br />
+<p><a class="btn btn-info" href="../../admin/index.php">Back</a></p>
 </div>
 <!-- Content end -->
 <!-- Javascript start -->

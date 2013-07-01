@@ -11,6 +11,7 @@ if (!file_exists("config.php")) {
 }
 
 require_once("config.php");
+require_once("includes/common.php");
 
 //Connect to database
 @$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);

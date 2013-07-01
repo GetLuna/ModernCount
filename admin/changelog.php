@@ -152,7 +152,7 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
             <ul>
                 <li>Initial release</li>
             </ul>
-            
+
 			<footer>
 				<p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
 			</footer>

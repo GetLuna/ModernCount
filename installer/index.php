@@ -12,6 +12,8 @@ if (file_exists("../config.php")) {
     exit;
 }
 
+require_once("includes/common.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +47,7 @@ body {
 <!-- Content start -->
 <div class="container">
 <div class="page-header">
-<h1>Install ModernCount 3</h1>
+<h1>Install ModernCount <?php echo VERSION; ?></h1>
 </div>
 <?php
 //Get path to script
@@ -120,6 +122,10 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
 </fieldset>
 </form>
 </div>
+
+        <footer>
+            <p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
+        </footer>
 <!-- Content end -->
 <!-- Javascript start -->	
 <script src="../resources/jquery.js"></script>

@@ -11,6 +11,7 @@ if (!file_exists("../../config.php")) {
 }
 
 require_once("../../config.php");
+require_once("includes/common.php");
 
 $uniquekey = UNIQUE_KEY;
 $currentadminuser = ADMIN_USER;
@@ -149,6 +150,10 @@ mysql_close($con);
 <b>Tracking Link:</b> <?php echo PATH_TO_SCRIPT; ?>/get.php?id=<?php echo $id; ?><br />
 <p><a class="btn btn-success" href="../../admin/index.php">Back</a></p>
 </div>
+            
+			<footer>
+				<p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
+			</footer>
 <!-- Content end -->
 <!-- Javascript start -->
 <script src="../../resources/jquery.js"></script>

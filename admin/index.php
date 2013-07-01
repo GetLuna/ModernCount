@@ -108,7 +108,7 @@ $getdownloads = mysql_query("SELECT * FROM Data");
 if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
     $remoteversion = file_get_contents("https://raw.github.com/ModernBB/ModernCount/master/version.txt");
     if (preg_match("/^[0-9.-]{1,}$/", $remoteversion)) {
-        if ($version < $remoteversion) {
+        if (VERSION < $remoteversion) {
             echo "<div class=\"alert\"><h4 class=\"alert-heading\">Update to ModernCount v$remoteversion</h4><a href=\"https://github.com/ModernBB/ModernCount/compare/$version...$remoteversion\" target=\"_blank\">ModernCount v$remoteversion</a> is available. <a href=\"https://studio384.be/moderncount.php/\" target=\"_blank\">Click here to download the latest version</a>.</div>";
         }
     }

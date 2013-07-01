@@ -10,6 +10,8 @@ if (!isset($_POST["doinstall"])) {
     header("Location: index.php");
 }
 
+require_once("includes/common.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,6 +142,10 @@ mysql_close($con);
 
 <p><a href="#data" role="button" class="btn btn-danger" data-toggle="modal">View data</a> <a href="../admin/login.php" class="btn btn-success">Login</a></p>
 </div>
+
+        <footer>
+            <p class="muted pull-right">ModernCount <a href="changelog.php"><?php echo VERSION; ?></a> &copy; <a href="http://github.com/ModernBB" target="_blank">Studio 384</a> <?php echo date("Y"); ?>
+        </footer>
 <!-- Content end -->
 <!-- Javascript start -->	
 <script src="../resources/jquery.js"></script>

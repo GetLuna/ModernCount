@@ -91,7 +91,7 @@ if (!isset($_SESSION["is_logged_in_" . $uniquekey . ""])) {
                 <li>Fix broken tracking link copy</li>
                 <li>Improved display of succeed message when adding and editing</li>
                 <li>Improved code readability</li>
-                <li>Fixes 20 HTML issues</li>
+                <li>Fixes 34 HTML issues</li>
             </ul>
             <h3>Version 3.0.1</h3>
             <ul>

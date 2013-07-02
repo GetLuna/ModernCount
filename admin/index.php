@@ -63,19 +63,19 @@ setcookie("indicationhascheckedforupdates", "checkedsuccessfully", time()+0);
 					<a class="brand" href="#">ModernCount</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav">
-							<li class="active"><a href="index.php">Home</a></li>
+							<li class="active"><a href="index.php"><?php echo $lang_common['Home'] ?></a></li>
 							<li class="divider-vertical"></li>
-							<li><a href="add.php">Add</a></li>
-							<li><a href="edit.php">Edit</a></li>
+							<li><a href="add.php"><?php echo $lang_common['Add'] ?></a></li>
+							<li><a href="edit.php"><?php echo $lang_common['Edit'] ?></a></li>
 						</ul>
 						<ul class="nav pull-right">
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $currentadminuser; ?> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="settings.php">Settings</a></li>
-									<li><a href="changelog.php">Changelog</a></li>
+									<li><a href="settings.php"><?php echo $lang_common['Settings'] ?></a></li>
+									<li><a href="changelog.php"><?php echo $lang_common['Changelog'] ?></a></li>
 									<li class="divider"></li>
-									<li><a href="logout.php">Logout</a></li>
+									<li><a href="logout.php"><?php echo $lang_common['Logout'] ?></a></li>
 								</ul>
 							</li>
 						</ul>

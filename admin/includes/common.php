@@ -6,6 +6,6 @@ $version = VERSION;
 
 
 // Load the common.php language file
-require '../lang/English/common.php';
+require 'lang/English/common.php';
 
 ?>

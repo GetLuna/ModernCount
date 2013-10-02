@@ -29,9 +29,9 @@ if (isset($_POST["install"])) {
     }
 	$website = $_POST["website"];
 	$pathtoscript = $_POST["pathtoscript"];
-    $version = "4.4";
+    $version = "3.5.0";
     
-    $installstring = "<?php\n\n//Database Settings\ndefine('DB_HOST', " . var_export($dbhost, true) . ");\ndefine('DB_USER', " . var_export($dbuser, true) . ");\ndefine('DB_PASSWORD', " . var_export($dbpassword, true) . ");\ndefine('DB_NAME', " . var_export($dbname, true) . ");\n\n//Admin Details\ndefine('ADMIN_USER', " . var_export($adminuser, true) . ");\ndefine('ADMIN_PASSWORD', " . var_export($adminpassword, true) . ");\ndefine('SALT', " . var_export($salt, true) . ");\n\n//Other Settings\ndefine('WEBSITE', " . var_export($website, true) . ");\ndefine('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");\ndefine('AD_CODE', 'Ad code here...');\ndefine('COUNT_UNIQUE_ONLY_STATE', 'Enabled');\ndefine('COUNT_UNIQUE_ONLY_TIME', '24');\ndefine('IGNORE_ADMIN_STATE', 'Disabled');\ndefine('THEME', 'default');\ndefine('VERSION', " . var_export($version, true) . ");\n\n?>";
+    $installstring = "<?php\n\n//Database Settings\ndefine('DB_HOST', " . var_export($dbhost, true) . ");\ndefine('DB_USER', " . var_export($dbuser, true) . ");\ndefine('DB_PASSWORD', " . var_export($dbpassword, true) . ");\ndefine('DB_NAME', " . var_export($dbname, true) . ");\n\n//Admin Details\ndefine('ADMIN_USER', " . var_export($adminuser, true) . ");\ndefine('ADMIN_PASSWORD', " . var_export($adminpassword, true) . ");\ndefine('SALT', " . var_export($salt, true) . ");\n\n//Other Settings\ndefine('WEBSITE', " . var_export($website, true) . ");\ndefine('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");\ndefine('AD_CODE', 'Ad code here...');\ndefine('COUNT_UNIQUE_ONLY_STATE', 'Enabled');\ndefine('COUNT_UNIQUE_ONLY_TIME', '24');\ndefine('IGNORE_ADMIN_STATE', 'Disabled');\ndefine('THEME', 'default');\ndefine('VERSION', " . var_export($version, true) . ");\ndefine('INSTALLED', '1');\n\n?>";
 	
     //Check if we can connect
     $con = mysql_connect($dbhost, $dbuser, $dbpassword);
@@ -134,7 +134,7 @@ if (!isset($_POST["install"])) {
 <div class="control-group">
 <label class="control-label" for="dbpassword">Database Password</label>
 <div class="controls">
-<input type="password" id="dbpassword" name="dbpassword" placeholder="Type your database password..." required>
+<input type="password" id="dbpassword" name="dbpassword" placeholder="Type your database password...">
 </div>
 </div>
 <div class="control-group">
@@ -173,7 +173,7 @@ if (!isset($_POST["install"])) {
 <div class="control-group">
 <label class="control-label" for="pathtoscript">Path to Script</label>
 <div class="controls">
-<input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to Indication..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
+<input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to Indication..." required>
 </div>
 </div>
 <div class="form-actions">

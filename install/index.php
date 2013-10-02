@@ -6,9 +6,9 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-//Check if Indication has been installed
+//Check if ModernCount has been installed
 if (file_exists("../config.php")) {
-    die("Information: Indication has already been installed! To reinstall the app please delete your config file and run this installer again.");
+    die("Information: ModernCount has already been installed! To reinstall the app please delete your config file and run this installer again.");
 }
 
 if (isset($_POST["install"])) {
@@ -76,128 +76,114 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Indication &middot; Installer</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-<link href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
-<style type="text/css">
-body {
-    padding-top: 60px;
-}
-@media (max-width: 980px) {
-    body {
-        padding-top: 0;
-    }
-}
-</style>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-</head>
-<body>
-<!-- Nav start -->
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner">
-<div class="container">
-<a class="brand" href="#">Indication</a>
-</div>
-</div>
-</div>
-<!-- Nav end -->
-<!-- Content start -->
-<div class="container">
-<div class="page-header">
-<h1>Installer</h1>
-</div>
-<?php
-if (!isset($_POST["install"])) {
-?>	
-<form method="post" autocomplete="off">
-<fieldset>
-<h4>Database Settings</h4>
-<div class="control-group">
-<label class="control-label" for="dbhost">Database Host</label>
-<div class="controls">
-<input type="text" id="dbhost" name="dbhost" value="localhost" placeholder="Type your database host..." required>
-</div>
-</div>
-<div class="control-group">
-<label class="control-label" for="dbuser">Database User</label>
-<div class="controls">
-<input type="text" id="dbuser" name="dbuser" placeholder="Type your database user..." required>
-</div>
-</div>
-<div class="control-group">
-<label class="control-label" for="dbpassword">Database Password</label>
-<div class="controls">
-<input type="password" id="dbpassword" name="dbpassword" placeholder="Type your database password...">
-</div>
-</div>
-<div class="control-group">
-<label class="control-label" for="dbname">Database Name</label>
-<div class="controls">
-<input type="text" id="dbname" name="dbname" placeholder="Type your database name..." required>
-</div>
-</div>
-<h4>Admin Details</h4>
-<div class="control-group">
-<label class="control-label" for="adminuser">Admin User</label>
-<div class="controls">
-<input type="text" id="adminuser" name="adminuser" placeholder="Type a username..." required>
-</div>
-</div>
-<div class="control-group">
-<label class="control-label" for="adminpassword">Password</label>
-<div class="controls">
-<input type="password" id="adminpassword" name="adminpassword" placeholder="Type a password..." required>
-</div>
-</div>
-<div class="control-group">
-<label class="control-label" for="adminpasswordconfirm">Confirm Password</label>
-<div class="controls">
-<input type="password" id="adminpasswordconfirm" name="adminpasswordconfirm" placeholder="Type your password again..." data-validation-match-match="adminpassword" required>
-<span class="help-block">It is recommended that your password be at least 6 characters long</span>
-</div>
-</div>
-<h4>Other Settings</h4>
-<div class="control-group">
-<label class="control-label" for="website">Website Name</label>
-<div class="controls">
-<input type="text" id="website" name="website" required placeholder="Type your websites name...">
-</div>
-</div>
-<div class="control-group">
-<label class="control-label" for="pathtoscript">Path to Script</label>
-<div class="controls">
-<input type="text" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to Indication..." required>
-</div>
-</div>
-<div class="form-actions">
-<input type="hidden" name="doinstall">
-<input type="submit" class="btn btn-primary" value="Install">
-</div>
-</fieldset>
-</form>
-<?php
-} else {
-    echo "<div class=\"alert alert-success\"><h4 class=\"alert-heading\">Install Complete</h4><p>Indication has been successfully installed. Please delete the \"installer\" folder from your server, as it poses a potential security risk!</p><p>Your login details are shown below, please make a note of them.</p><ul><li>User: $adminuser</li><li>Password: <i>Password you set during install</i></li></ul><p><a href=\"../login.php\" class=\"btn btn-success\">Go To Login</a></p></div>";
-}
-?>
-</div>
-<!-- Content end -->
-<!-- Javascript start -->
-<script src="../resources/jquery.min.js"></script>
-<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="../resources/validation/jqBootstrapValidation.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("input").not("[type=submit]").jqBootstrapValidation();
-});
-</script>
-<!-- Javascript end -->
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>ModernCount &middot; Installation</title>
+		<meta name="robots" content="noindex, nofollow">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<link href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
+		<style type="text/css">
+		body {
+			padding-top: 60px;
+		}
+		@media (max-width: 980px) {
+			body {
+				padding-top: 0;
+			}
+		}
+		</style>
+	</head>
+	<body>
+		<!-- Nav start -->
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">ModernCount installer</a>
+			</div>
+		</nav>
+		<!-- Nav end -->
+		<!-- Content start -->
+		<div class="container">
+			<?php
+				if (!isset($_POST["install"])) {
+			?>	
+			<form method="post" autocomplete="off">
+				<div class="alert alert-info">
+					<h4>Welcome to the ModernCount 4.0 beta installation</h4>
+					<p>Welcome and thanks for using ModernCount. To install ModernCount, please fill in all required data in this form, then, click "Install".</p>
+				</div>
+				<fieldset>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Database Settings</h3>
+								</div>
+								<div class="panel-body">
+									<div class="control-group">
+										<label class="control-label" for="dbhost">Database Host</label>
+										<input type="text" class="form-control" class="form-control" id="dbhost" name="dbhost" value="localhost" placeholder="Type your database host" required>
+										<label class="control-label" for="dbuser">Database User</label>
+										<input type="text" class="form-control" id="dbuser" name="dbuser" placeholder="Type your database user" required>
+										<label class="control-label" for="dbpassword">Database Password</label>
+										<input type="password" class="form-control" id="dbpassword" name="dbpassword" placeholder="Type your database password">
+										<label class="control-label" for="dbname">Database Name</label>
+										<input type="text" class="form-control" id="dbname" name="dbname" placeholder="Type your database name" required>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Admin Details</h3>
+								</div>
+								<div class="panel-body">
+									<label class="control-label" for="adminuser">Admin User</label>
+									<input type="text" class="form-control" id="adminuser" name="adminuser" placeholder="Type a username" required>
+									<label class="control-label" for="adminpassword">Password</label>
+									<input type="password" class="form-control" id="adminpassword" name="adminpassword" placeholder="Type a password" required>
+									<label class="control-label" for="adminpasswordconfirm">Confirm Password</label>
+									<input type="password" class="form-control" id="adminpasswordconfirm" name="adminpasswordconfirm" placeholder="Type your password again" data-validation-match-match="adminpassword" required>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Admin Details</h3>
+								</div>
+								<div class="panel-body">
+									<label class="control-label" for="website">Website Name</label>
+									<input type="text" class="form-control" id="website" name="website" required placeholder="Type your websites name">
+									<label class="control-label" for="pathtoscript">Path to Script</label>
+									<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount" required>
+								</div>
+							</div>
+						</div>
+					</div>
+					<input type="hidden" name="doinstall">
+					<div class="alert alert-info">
+						<input type="submit" class="btn btn-primary" value="Install">
+					</div>
+				</fieldset>
+			</form>
+		<?php
+		} else {
+			echo "<div class=\"alert alert-success\"><h4 class=\"alert-heading\">Install Complete</h4><p>ModernCount has been successfully installed. Please delete the \"installer\" folder from your server, as it poses a potential security risk!</p><p>Your login details are shown below, please make a note of them.</p><ul><li>User: $adminuser</li><li>Password: <i>Password you set during install</i></li></ul><p><a href=\"../login.php\" class=\"btn btn-success\">Go To Login</a></p></div>";
+		}
+		?>
+		</div>
+		<!-- Content end -->
+		<!-- Javascript start -->
+		<script src="../resources/jquery.min.js"></script>
+		<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../resources/validation/jqBootstrapValidation.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$("input").not("[type=submit]").jqBootstrapValidation();
+		});
+		</script>
+		<!-- Javascript end -->
+	</body>
 </html>

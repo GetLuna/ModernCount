@@ -94,25 +94,8 @@ if (isset($_POST["save"])) {
         <meta charset="utf-8">
         <title>Indication &middot; Settings</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php
-if ($resultgetusersettings["theme"] == "default") {
-    echo "<link href=\"../resources/bootstrap/css/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
-} else {
-    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.2/" . $resultgetusersettings["theme"] . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
-}
-?>
-        <link href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
-        <link href="../resources/bootstrap-notify/css/bootstrap-notify.min.css" type="text/css" rel="stylesheet">
-        <style type="text/css">
-			body {
-				padding-top: 60px;
-			}
-			@media (max-width: 980px) {
-				body {
-					padding-top: 0;
-				}
-			}
-        </style>
+        <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="../resources/bootstrap/css/moderncount.css" type="text/css" rel="stylesheet">
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -121,7 +104,7 @@ if ($resultgetusersettings["theme"] == "default") {
     <body>
         <!-- Nav start -->
         <div class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
+            <div class="navbar-inner">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="sr-only">Toggle navigation</span>

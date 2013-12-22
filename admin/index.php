@@ -2,7 +2,7 @@
 
 //Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
-$version = "4.5dev";
+$version = "4.0-dev";
 
 if (!file_exists("../config.php")) {
 	header('Location: ../installer');
@@ -45,31 +45,10 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
         <meta charset="utf-8">
         <title>Indication</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php
-if ($resultgetusersettings["theme"] == "default") {
-    echo "<link href=\"../resources/bootstrap/css/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
-} else {
-    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.2/" . $resultgetusersettings["theme"] . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
-}
-?>
-        <link href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
+        <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="../resources/bootstrap/css/moderncount.css" type="text/css" rel="stylesheet">
         <link href="../resources/datatables/jquery.dataTables-bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="../resources/bootstrap-notify/css/bootstrap-notify.min.css" type="text/css" rel="stylesheet">
-        <style type="text/css">
-        body {
-            padding-top: 60px;
-        }
-        @media (max-width: 980px) {
-            body {
-                padding-top: 0;
-            }
-        }
-		@media all and (min-width: 1200px) {
-			.row {
-				margin-left: -15px;
-			}
-		}
-        </style>
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -78,7 +57,7 @@ if ($resultgetusersettings["theme"] == "default") {
     <body>
         <!-- Nav start -->
         <div class="navbar navbar-default navbar-fixed-top">
-        	<div class="container">
+        	<div class="navbar-inner">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -182,8 +161,7 @@ mysql_close($con);
 
 ?>
             </div>
-            <hr>
-            <p class="muted pull-right">Indication <?php echo $version; ?> &copy; <a href="http://github.com/joshf" target="_blank">Josh Fradley</a> <?php echo date("Y"); ?>. Themed by <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>.</p>
+            <p class="muted pull-right">ModernCount <?php echo $version; ?> &copy; <a href="http://modernbb.be" target="_blank">ModernBB</a> Projects <?php echo date("Y"); ?> - Designed with <a href="http://github.com/twbs/bootstrap/" target="_blank">Bootstrap</a></p>
         </div>
         <!-- Content end -->
         <!-- Javascript start -->

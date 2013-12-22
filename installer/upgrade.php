@@ -22,52 +22,40 @@ if (!$does_db_exist) {
 }
 
 //Define Version
-$version = "4.5dev";
+$version = "4.1-beta.1a";
 
 if ($version == VERSION) {
-    die("Information: The latest version of Indication is already installed and an upgrade is not required.");
+    die("Information: The latest version of ModernCount is already installed and an upgrade is not required.");
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Indication &middot; Upgrade</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-<link href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
-<style type="text/css">
-body {
-    padding-top: 60px;
-}
-@media (max-width: 980px) {
-    body {
-        padding-top: 0;
-    }
-}
-</style>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-</head>
-<body>
-<!-- Nav start -->
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner">
-<div class="container">
-<a class="brand" href="#">Indication</a>
-</div>
-</div>
-</div>
-<!-- Nav end -->
-<!-- Content start -->
-<div class="container">
-<div class="page-header">
-<h1>Upgrade</h1>
-</div>
+    <head>
+        <meta charset="utf-8">
+        <title>ModernCount &middot; Upgrade</title>
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="../resources/bootstrap/css/moderncount.css" type="text/css" rel="stylesheet">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Nav start -->
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">ModernCount</a>
+                </div>
+            </div>
+        </div>
+        <!-- Nav end -->
+        <!-- Content start -->
+        <div class="container">
+            <h2>Upgrade</h2>
 <?php
 
 $dbhost = DB_HOST;
@@ -129,15 +117,15 @@ fclose($configfile);
 mysql_close($con);
 
 ?>
-<div class="alert alert-success">
-<h4 class="alert-heading">Upgrade Complete</h4>
-<p>Indication has been successfully upgraded to version <?php echo $version; ?>.<p><a href="../admin/login.php" class="btn btn-success">Go To Login</a></p>
-</div>
-</div>
-<!-- Content end -->
-<!-- Javascript start -->
-<script src="../resources/jquery.min.js"></script>
-<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-<!-- Javascript end -->
-</body>
+            <div class="alert alert-success">
+                <h4 class="alert-heading">Upgrade Complete</h4>
+                <p>ModernCount has been successfully upgraded to version <?php echo $version; ?>.<p><a href="../admin/login.php" class="btn btn-success">Go To Login</a></p>
+            </div>
+        </div>
+        <!-- Content end -->
+        <!-- Javascript start -->
+        <script src="../resources/jquery.min.js"></script>
+        <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Javascript end -->
+    </body>
 </html>

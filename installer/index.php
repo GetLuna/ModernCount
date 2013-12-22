@@ -2,9 +2,9 @@
 
 //Indication, Copyright Josh Fradley (http://github.com/joshf/Indication
 
-//Check if Indication has been installed
+//Check if ModernCount has been installed
 if (file_exists("../config.php")) {
-    die("Information: Indication has already been installed! To reinstall the app please delete your config file and run this installer again.");
+    die("Information: ModernCount has already been installed! To reinstall the app please delete your config file and run this installer again.");
 }
 
 if (isset($_POST["install"])) {
@@ -91,7 +91,7 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Indication &middot; Installer</title>
+        <title>ModernCount &middot; Installer</title>
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -106,7 +106,7 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Indication</a>
+                    <a class="navbar-brand" href="#">ModernCount</a>
                 </div>
             </div>
         </div>
@@ -182,7 +182,7 @@ if (!isset($_POST["install"])) {
                     <div class="control-group">
                         <label class="control-label" for="pathtoscript">Path to Script</label>
                         <div class="controls">
-                            <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to Indication..." data-validation-pattern-message="Please enter a valid URL" required>
+                            <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount..." data-validation-pattern-message="Please enter a valid URL" required>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -193,7 +193,7 @@ if (!isset($_POST["install"])) {
             </form>
 <?php
 } else {
-    echo "<div class=\"alert alert-success\"><h3 class=\"alert-heading\">Install Complete</h3><p>Indication has been successfully installed. Please delete the \"installer\" folder from your server, as it poses a potential security risk!</p><p>Your login details are shown below, please make a note of them.</p><ul><li>User: $user</li><li>Password: <i>Password you set during install</i></li></ul><p><a href=\"../admin/login.php\" class=\"btn btn-success\">Go To Login</a></p></div>";
+    echo "<div class=\"alert alert-success\"><h3 class=\"alert-heading\">Install Complete</h3><p>ModernCount has been successfully installed. Please delete the \"installer\" folder from your server, as it poses a potential security risk!</p><p>Your login details are shown below, please make a note of them.</p><ul><li>User: $user</li><li>Password: <i>Password you set during install</i></li></ul><p><a href=\"../admin/login.php\" class=\"btn btn-success\">Go To Login</a></p></div>";
 }
 ?>
         </div>

@@ -40,7 +40,7 @@ if (mysql_num_rows($getinfo) == 0) {
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Indication</title>
+        <title>ModernCount</title>
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -55,7 +55,7 @@ if (mysql_num_rows($getinfo) == 0) {
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Indication</a>
+                    <a class="navbar-brand" href="#">ModernCount</a>
                 </div>
             </div>
         </div>

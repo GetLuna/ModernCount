@@ -36,7 +36,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Indication &middot; Add</title>
+        <title>ModernCount &middot; Add</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="../resources/bootstrap/css/moderncount.css" type="text/css" rel="stylesheet">
@@ -56,7 +56,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Indication</a>
+                    <a class="navbar-brand" href="#">ModernCount</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">

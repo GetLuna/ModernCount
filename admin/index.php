@@ -43,7 +43,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Indication</title>
+        <title>ModernCount</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="../resources/bootstrap/css/moderncount.css" type="text/css" rel="stylesheet">
@@ -65,7 +65,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Indication</a>
+                    <a class="navbar-brand" href="#">ModernCount</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -88,14 +88,12 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
         <!-- Nav end -->
         <!-- Content start -->
         <div class="container">
-            <div class="page-header">
-                <h1>All Downloads</h1>
-            </div>
+			<h2>All downloads</h2>
             <div class="notifications top-right"></div>		
             <noscript>
             	<div class="alert alert-info">
                     <h4 class="alert-heading">Information</h4>
-                    <p>Please enable JavaScript to use Indication. For instructions on how to do this, see <a href="http://www.activatejavascript.org" target="_blank">here</a>.</p>
+                    <p>Please enable JavaScript to use ModernCount. For instructions on how to do this, see <a href="http://www.activatejavascript.org" target="_blank">here</a>.</p>
                 </div>
             </noscript>
 <?php
@@ -105,7 +103,7 @@ if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
     $remoteversion = file_get_contents("https://raw.github.com/joshf/Indication/master/version.txt");
     if (preg_match("/^[0-9.-]{1,}$/", $remoteversion)) {
         if ($version < $remoteversion) {
-            echo "<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>Indication <a href=\"https://github.com/joshf/Indication/releases/$remoteversion\" target=\"_blank\">$remoteversion</a> is available. <a href=\"https://github.com/joshf/Indication#updating\" target=\"_blank\">Click here to update</a>.</p></div>";
+            echo "<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>ModernCount <a href=\"https://github.com/joshf/Indication/releases/$remoteversion\" target=\"_blank\">$remoteversion</a> is available. <a href=\"https://github.com/joshf/Indication#updating\" target=\"_blank\">Click here to update</a>.</p></div>";
         }
     }
 }

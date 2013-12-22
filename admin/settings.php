@@ -92,7 +92,7 @@ if (isset($_POST["save"])) {
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Indication &middot; Settings</title>
+        <title>ModernCount &middot; Settings</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="../resources/bootstrap/css/moderncount.css" type="text/css" rel="stylesheet">
@@ -112,7 +112,7 @@ if (isset($_POST["save"])) {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Indication</a>
+                    <a class="navbar-brand" href="#">ModernCount</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -170,7 +170,7 @@ if (isset($_POST["save"])) {
                     <div class="control-group">
                         <label class="control-label" for="pathtoscript">Path to Script</label>
                         <div class="controls">
-                            <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to Indication..." data-validation-pattern-message="Please enter a valid URL" required>
+                            <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." data-validation-pattern-message="Please enter a valid URL" required>
                         </div>
                     </div>
                     <h4>Ad Code</h4>
@@ -203,7 +203,7 @@ echo "<label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystateenab
                         </div>
                     </div>
                     <h4>Ignore Admin</h4>
-                    <p>This settings prevents downloads being counted when you are logged in to Indication.</p>
+                    <p>This settings prevents downloads being counted when you are logged in to ModernCount.</p>
                     <div class="control-group">
                         <div class="controls">
 <?php

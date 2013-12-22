@@ -1,13 +1,10 @@
 <?php
 
-/**
- * Copyright (C) 2013 ModernBB
- * Based on code by Josh Frandley copyright (C) 2012-2013
- * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
- */
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
 if (!file_exists("../config.php")) {
-	die("Error: Config file not found! Please reinstall Indication.");
+	header('Location: ../installer');
+	exit;
 }
 
 require_once("../config.php");
@@ -26,73 +23,81 @@ if (!$con) {
 
 mysql_select_db(DB_NAME, $con);
 
+$getusersettings = mysql_query("SELECT `user`, `theme` FROM `Users` WHERE `id` = \"" . $_SESSION["indication_user"] . "\"");
+if (mysql_num_rows($getusersettings) == 0) {
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+$resultgetusersettings = mysql_fetch_assoc($getusersettings);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Indication &middot; Edit</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="utf-8">
+        <title>Indication &middot; Edit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
-if (THEME == "default") {
+if ($resultgetusersettings["theme"] == "default") {
     echo "<link href=\"../resources/bootstrap/css/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
 } else {
-    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.2/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
+    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.2/" . $resultgetusersettings["theme"] . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
 }
 ?>
-<link href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
-<style type="text/css">
-body {
-    padding-top: 60px;
-}
-@media (max-width: 980px) {
-    body {
-        padding-top: 0;
-    }
-}
-</style>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-</head>
-<body>
-<!-- Nav start -->
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner">
-<div class="container">
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</a>
-<a class="brand" href="index.php">Indication</a>
-<div class="nav-collapse collapse">
-<ul class="nav">
-<li class="divider-vertical"></li>
-<li><a href="add.php"><i class="icon-plus-sign"></i> Add</a></li>
-<li class="active"><a href="edit.php"><i class="icon-edit"></i> Edit</a></li>
-</ul>
-<ul class="nav pull-right">
-<li class="divider-vertical"></li>
-<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> <?php echo ADMIN_USER; ?> <b class="caret"></b></a>
-<ul class="dropdown-menu">
-<li><a href="settings.php"><i class="icon-cog"></i> Settings</a></li>
-<li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<!-- Nav end -->
-<!-- Content start -->   
-<div class="container">
-<div class="page-header">
-<h1>Edit</h1>
-</div>
+        <link href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
+		<style type="text/css">
+			body {
+				padding-top: 60px;
+			}
+			@media (max-width: 980px) {
+				body {
+					padding-top: 0;
+				}
+			}
+        </style>
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+	</head>
+    <body>
+        <!-- Nav start -->
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Indication</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="add.php">Add</a></li>
+                        <li class="active"><a href="edit.php">Edit</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $resultgetusersettings["user"]; ?> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="settings.php">Settings</a></li>
+                                <li><a href="logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Nav end -->
+        <!-- Content start -->
+        <div class="container">
+            <div class="page-header">
+                <h1>Edit</h1>
+            </div>
 <?php
 
 //Error display
@@ -108,7 +113,7 @@ if (isset($_GET["error"])) {
 if (!isset($_GET["id"])) {
 	$getids = mysql_query("SELECT `id`, `name` FROM `Data`");
     if (mysql_num_rows($getids) != 0) {
-        echo "<form action=\"edit.php\" method=\"get\"><fieldset><div class=\"control-group\"><label class=\"control-label\" for=\"id\">Select a download to edit</label><div class=\"controls\"><select id=\"id\" name=\"id\">";
+        echo "<form action=\"edit.php\" method=\"get\"><fieldset><div class=\"control-group\"><label class=\"control-label\" for=\"id\">Select a download to edit</label><div class=\"controls\"><select id=\"id\" class=\"form-control\" name=\"id\">";
         while($row = mysql_fetch_assoc($getids)) {
             echo "<option value=\"" . $row["id"] . "\">" . ucfirst($row["name"]) . "</option>";
         }
@@ -137,10 +142,10 @@ if (mysql_num_rows($doesidexist) == 0) {
 $getidinfo = mysql_query("SELECT * FROM `Data` WHERE `id` = \"$idtoedit\"");
 $getidinforesult = mysql_fetch_assoc($getidinfo);
     
-echo "<div class=\"control-group\"><label class=\"control-label\" for=\"name\">Name</label><div class=\"controls\"><input type=\"text\" id=\"name\" name=\"name\" value=\"" . $getidinforesult["name"] . "\" placeholder=\"Type a name...\" pattern=\"([0-9A-Za-z-\\.@:%_\+~#=\s]+)\" required></div></div>";
-echo "<div class=\"control-group\"><label class=\"control-label\" for=\"id\">ID</label><div class=\"controls\"><input type=\"text\" id=\"id\" name=\"id\" value=\"" . $getidinforesult["id"] . "\" placeholder=\"Type an ID...\" pattern=\"([0-9A-Za-z-\\.@:%_\+~#=]+)\" required></div></div>";
-echo "<div class=\"control-group\"><label class=\"control-label\" for=\"url\">URL</label><div class=\"controls\"><input type=\"text\" id=\"url\" name=\"url\" value=\"" . $getidinforesult["url"] . "\" placeholder=\"Type a URL...\" pattern=\"(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.?~-]*)*\/?\" required></div></div>";
-echo "<div class=\"control-group\"><label class=\"control-label\" for=\"count\">Count</label><div class=\"controls\"><input type=\"number\" id=\"count\" name=\"count\" value=\"" . $getidinforesult["count"] . "\" placeholder=\"Type a count...\" min=\"0\" required></div></div>";
+echo "<div class=\"control-group\"><label class=\"control-label\" for=\"name\">Name</label><div class=\"controls\"><input type=\"text\" class=\"form-control\" id=\"name\" name=\"name\" value=\"" . $getidinforesult["name"] . "\" placeholder=\"Type a name...\" pattern=\"([0-9A-Za-z-\\.@:%_\+~#=\s]+)\" required></div></div>";
+echo "<div class=\"control-group\"><label class=\"control-label\" for=\"id\">ID</label><div class=\"controls\"><input type=\"text\" class=\"form-control\" id=\"id\" name=\"id\" value=\"" . $getidinforesult["id"] . "\" placeholder=\"Type an ID...\" pattern=\"([0-9A-Za-z-\\.@:%_\+~#=]+)\" required></div></div>";
+echo "<div class=\"control-group\"><label class=\"control-label\" for=\"url\">URL</label><div class=\"controls\"><input type=\"text\" class=\"form-control\" id=\"url\" name=\"url\" value=\"" . $getidinforesult["url"] . "\" placeholder=\"Type a URL...\" pattern=\"(http|ftp|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?\" required></div></div>";
+echo "<div class=\"control-group\"><label class=\"control-label\" for=\"count\">Count</label><div class=\"controls\"><input type=\"number\" class=\"form-control\" id=\"count\" name=\"count\" value=\"" . $getidinforesult["count"] . "\" placeholder=\"Type a count...\" min=\"0\" required></div></div>";
 
 echo "<div class=\"control-group\"><div class=\"controls\"><label class=\"checkbox\">";
     
@@ -167,47 +172,47 @@ if ($checkifprotectedresult["protect"] == "1") {
 mysql_close($con);
 
 ?>
-</label>
-</div>
-</div>
-<div id="passwordentry" style="display: none;">
-<div class="control-group">
-<label class="control-label" for="password">Password</label>
-<div class="controls">
-<input type="password" id="password" name="password" placeholder="Type a password...">
-</div>
-</div>
-</div>
-<div class="form-actions">
-<input type="hidden" name="idtoedit" value="<?php echo $idtoedit; ?>" />
-<button type="submit" class="btn btn-primary">Update</button>
-</div>
-</fieldset>
-</form>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="passwordentry" style="display: none;">
+                        <div class="control-group">
+                            <label class="control-label" for="password">Password</label>
+                            <div class="controls">
+                                <input type="password" id="password" name="password" placeholder="Type a password...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="hidden" name="idtoedit" value="<?php echo $idtoedit; ?>" />
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </fieldset>
+            </form>
 <?php
 }
-    }
+	}
 ?>
-</div>
-<!-- Content end -->
-<!-- Javascript start -->
-<script src="../resources/jquery.min.js"></script>
-<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="../resources/validation/jqBootstrapValidation.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#passwordprotectstate").click(function() {
-        if ($("#passwordprotectstate").prop("checked") == true) {
-            $("#password").prop("required", true);
-            $("#passwordentry").show("fast");
-        } else {
-            $("#passwordentry").hide("fast");
-            $("#password").prop("required", false);
-        }
-    });
-    $("input").not("[type=submit]").jqBootstrapValidation(); 
-});
-</script>
-<!-- Javascript end -->
-</body>
+        </div>
+        <!-- Content end -->
+        <!-- Javascript start -->
+        <script src="../resources/jquery.min.js"></script>
+        <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../resources/validation/jqBootstrapValidation.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $("#passwordprotectstate").click(function() {
+                if ($("#passwordprotectstate").prop("checked") == true) {
+                    $("#password").prop("required", true);
+                    $("#passwordentry").show("fast");
+                } else {
+                    $("#passwordentry").hide("fast");
+                    $("#password").prop("required", false);
+                }
+            });
+            $("input").not("[type=submit]").jqBootstrapValidation(); 
+        });
+        </script>
+        <!-- Javascript end -->
+    </body>
 </html>

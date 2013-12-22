@@ -1,13 +1,10 @@
 <?php
 
-/**
- * Copyright (C) 2013 ModernBB
- * Based on code by Josh Frandley copyright (C) 2012-2013
- * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
- */
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
-if (!file_exists("config.php")) {
-	die("Error: Config file not found! Please reinstall Indication.");
+if (!file_exists("../config.php")) {
+	header('Location: ../installer');
+	exit;
 }
 
 require_once("config.php");

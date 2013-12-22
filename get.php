@@ -1,15 +1,12 @@
 <?php
 
-/**
- * Copyright (C) 2013 ModernBB
- * Based on code by Josh Frandley copyright (C) 2012-2013
- * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
- */
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
 ob_start();
 
-if (!file_exists("config.php")) {
-	die("Error: Config file not found! Please reinstall Indication.");
+if (!file_exists("../config.php")) {
+	header('Location: ../installer');
+	exit;
 }
 
 require_once("config.php");
@@ -46,13 +43,7 @@ if (mysql_num_rows($getinfo) == 0) {
 <title>Indication</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php
-if (THEME == "default") {
-    echo "<link href=\"resources/bootstrap/css/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
-} else {
-    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.2/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
-}
-?>
+<link href="resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">  
 <link href="resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
 <style type="text/css">
 body {

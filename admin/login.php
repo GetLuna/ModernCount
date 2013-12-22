@@ -1,39 +1,57 @@
 <?php
 
-/**
- * Copyright (C) 2013 ModernBB
- * Based on code by Josh Frandley copyright (C) 2012-2013
- * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
- */
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
 if (!file_exists("../config.php")) {
-    die("Error: Config file not found! Please reinstall Indication.");
+	header('Location: ../installer');
+	exit;
 }
 
 require_once("../config.php");
 
-$username = ADMIN_USER;
-$password = ADMIN_PASSWORD;
-$salt = SALT;
-
 session_start();
 
+//Connect to database
+@$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
+if (!$con) {
+    die("Error: Could not connect to database (" . mysql_error() . "). Check your database settings are correct.");
+}
+
+mysql_select_db(DB_NAME, $con);
+    
 //If cookie is set, skip login
 if (isset($_COOKIE["indication_user_rememberme"])) {
-    $_SESSION["indication_user"] = $username;
+    $id = $_COOKIE["indication_user_rememberme"];
+    $getid = mysql_query("SELECT `id` FROM `Users` WHERE `id` = \"$id\"");
+    if (mysql_num_rows($getid) == 0) {
+        header("Location: logout.php");
+        exit;
+    }
+    $userinforesult = mysql_fetch_assoc($getid); 
+    $_SESSION["indication_user"] = $userinforesult["id"];
 }
 
 if (isset($_POST["password"]) && isset($_POST["username"])) {
-    $hashedpassword = hash("sha256", $salt . hash("sha256", $_POST["password"]));
-    if ($hashedpassword == $password && $_POST["username"] == $username) {
-        $_SESSION["indication_user"] = $username;
-            if (isset($_POST["rememberme"])) {
-                setcookie("indication_user_rememberme", $username, time()+1209600);
-            }
+    $username = mysql_real_escape_string($_POST["username"]);
+    $password = $_POST["password"];
+    $userinfo = mysql_query("SELECT `id`, `user`, `password`, `salt` FROM `Users` WHERE `user` = \"$username\"");
+    $userinforesult = mysql_fetch_assoc($userinfo);
+    if (mysql_num_rows($userinfo) == 0) {
+        header("Location: login.php?login_error=true");
+        exit;
+    }
+    $salt = $userinforesult["salt"];
+    $hashedpassword = hash("sha256", $salt . hash("sha256", $password));
+    if ($hashedpassword == $userinforesult["password"]) {
+        $_SESSION["indication_user"] = $userinforesult["id"];
+        if (isset($_POST["rememberme"])) {
+            setcookie("indication_user_rememberme", $userinforesult["id"], time()+1209600);
+        }
     } else {
         header("Location: login.php?login_error=true");
+        exit;
     }
-} 
+}
 
 if (!isset($_SESSION["indication_user"])) {
 ?>
@@ -95,13 +113,13 @@ if (isset($_GET["login_error"])) {
 <div class="control-group">
 <label class="control-label" for="username">Username</label>
 <div class="controls">
-<input type="text" id="username" name="username" class="input-block-level" placeholder="Username...">
+<input type="text" class="form-control" id="username" name="username" class="input-block-level" placeholder="Username...">
 </div>
 </div>
 <div class="control-group">
 <label class="control-label" for="password">Password</label>
 <div class="controls">
-<input type="password" id="password" name="password" class="input-block-level" placeholder="Password...">
+<input type="password" class="form-control" id="password" name="password" class="input-block-level" placeholder="Password...">
 </div>
 </div>
 <div class="control-group">
@@ -111,7 +129,7 @@ if (isset($_GET["login_error"])) {
 </label>
 </div>
 </div>
-<button type="submit" class="btn pull-right">Login</button>
+<button type="submit" class="btn btn-success pull-right">Login</button>
 </fieldset>
 </form>
 </div>

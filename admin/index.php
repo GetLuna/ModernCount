@@ -1,15 +1,12 @@
 <?php
 
-/**
- * Copyright (C) 2013 ModernBB
- * Based on code by Josh Frandley copyright (C) 2012-2013
- * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
- */
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
-$version = "4.4";
+$version = "4.5dev";
 
 if (!file_exists("../config.php")) {
-	die("Error: Config file not found! Please reinstall Indication.");
+	header('Location: ../installer');
+	exit;
 }
 
 require_once("../config.php");
@@ -33,77 +30,95 @@ if (!$con) {
     }
 }
 
+$getusersettings = mysql_query("SELECT `user`, `theme` FROM `Users` WHERE `id` = \"" . $_SESSION["indication_user"] . "\"");
+if (mysql_num_rows($getusersettings) == 0) {
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+$resultgetusersettings = mysql_fetch_assoc($getusersettings);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Indication</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="utf-8">
+        <title>Indication</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
-if (THEME == "default") {
+if ($resultgetusersettings["theme"] == "default") {
     echo "<link href=\"../resources/bootstrap/css/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";  
 } else {
-    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.2/" . THEME . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
+    echo "<link href=\"//netdna.bootstrapcdn.com/bootswatch/2.3.2/" . $resultgetusersettings["theme"] . "/bootstrap.min.css\" type=\"text/css\" rel=\"stylesheet\">\n";
 }
 ?>
-<link href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
-<link href="../resources/datatables/jquery.dataTables-bootstrap.min.css" type="text/css" rel="stylesheet">
-<link href="../resources/bootstrap-notify/css/bootstrap-notify.min.css" type="text/css" rel="stylesheet">
-<style type="text/css">
-body {
-    padding-top: 60px;
-}
-@media (max-width: 980px) {
-    body {
-        padding-top: 0;
-    }
-}
-</style>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-</head>
-<body>
-<!-- Nav start -->
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner">
-<div class="container">
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</a>
-<a class="brand" href="index.php">Indication</a>
-<div class="nav-collapse collapse">
-<ul class="nav">
-<li class="divider-vertical"></li>
-<li><a href="add.php"><i class="icon-plus-sign"></i> Add</a></li>
-<li><a href="edit.php"><i class="icon-edit"></i> Edit</a></li>
-</ul>
-<ul class="nav pull-right">
-<li class="divider-vertical"></li>
-<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> <?php echo ADMIN_USER; ?> <b class="caret"></b></a>
-<ul class="dropdown-menu">
-<li><a href="settings.php"><i class="icon-cog"></i> Settings</a></li>
-<li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<!-- Nav end -->
-<!-- Content start -->
-<div class="container">
-<div class="page-header">
-<h1>All Downloads</h1>
-</div>
-<div class="notifications top-right"></div>		
-<noscript><div class="alert alert-info"><h4 class="alert-heading">Information</h4><p>Please enable JavaScript to use Indication. For instructions on how to do this, see <a href="http://www.activatejavascript.org" target="_blank">here</a>.</p></div></noscript>
+        <link href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet">
+        <link href="../resources/datatables/jquery.dataTables-bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="../resources/bootstrap-notify/css/bootstrap-notify.min.css" type="text/css" rel="stylesheet">
+        <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        @media (max-width: 980px) {
+            body {
+                padding-top: 0;
+            }
+        }
+		@media all and (min-width: 1200px) {
+			.row {
+				margin-left: -15px;
+			}
+		}
+        </style>
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Nav start -->
+        <div class="navbar navbar-default navbar-fixed-top">
+        	<div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Indication</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="active"><a href="index.php">Home</a></li>
+                        <li><a href="add.php">Add</a></li>
+                        <li><a href="edit.php">Edit</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $resultgetusersettings["user"]; ?> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="settings.php">Settings</a></li>
+                                <li><a href="logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Nav end -->
+        <!-- Content start -->
+        <div class="container">
+            <div class="page-header">
+                <h1>All Downloads</h1>
+            </div>
+            <div class="notifications top-right"></div>		
+            <noscript>
+            	<div class="alert alert-info">
+                    <h4 class="alert-heading">Information</h4>
+                    <p>Please enable JavaScript to use Indication. For instructions on how to do this, see <a href="http://www.activatejavascript.org" target="_blank">here</a>.</p>
+                </div>
+            </noscript>
 <?php
 
 //Update checking
@@ -138,152 +153,131 @@ while($row = mysql_fetch_assoc($getdownloads)) {
 echo "</tbody></table>";
 
 ?>
-<div class="btn-group">
-<button id="edit" class="btn">Edit</button>
-<button id="delete" class="btn">Delete</button>
-<button id="trackinglink" class="btn">Copy Tracking Link</button>
-</div>
-<br>
-<br>
-<div class="alert alert-info">   
-<b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
-</div>
-<div class="well">
+            <div class="btn-group">
+                <button id="edit" class="btn btn-default">Edit</button>
+                <button id="delete" class="btn btn-default">Delete</button>
+                <button id="trackinglink" class="btn btn-default">Copy Tracking Link</button>
+            </div>
+            <br>
+            <br>
+            <div class="alert alert-info">   
+                <b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
+            </div>
+            <div class="well">
 <?php
 
 $getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM `Data`");
 $resultgetnumberofdownloads = mysql_fetch_assoc($getnumberofdownloads);
-echo "<i class=\"icon-list-alt\"></i> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items<br>";
+echo "<span class=\"glyphicon glyphicon-list-alt\"></span> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items<br>";
 
 $gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM `Data`");
 $resultgettotalnumberofdownloads = mysql_fetch_assoc($gettotalnumberofdownloads);
 if (is_null($resultgettotalnumberofdownloads["SUM(count)"])) {
-    echo "<i class=\"icon-download\"></i> <b>0</b> total downloads";
+    echo "<span class=\"glyphicon glyphicon-download\"></span> <b>0</b> total downloads";
 } else {
-    echo "<i class=\"icon-download\"></i> <b>" . $resultgettotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
+    echo "<span class=\"glyphicon glyphicon-download\"></span> <b>" . $resultgettotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
 }
 
 mysql_close($con);
 
 ?>
-</div>
-<hr>
-<p class="muted pull-right">Indication <?php echo $version; ?> &copy; <a href="http://github.com/joshf" target="_blank">Josh Fradley</a> <?php echo date("Y"); ?>. Themed by <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>.</p>
-</div>
-<!-- Content end -->
-<!-- Javascript start -->
-<script src="../resources/jquery.min.js"></script>
-<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="../resources/datatables/jquery.dataTables.min.js"></script>
-<script src="../resources/datatables/jquery.dataTables-bootstrap.min.js"></script>
-<script src="../resources/bootstrap-notify/js/bootstrap-notify.min.js"></script>
-<script src="../resources/bootbox/bootbox.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    /* Table selection */
-    id_selected = false;
-    $("#downloads input[name=id]").click(function() {
-        id = $("#downloads input[name=id]:checked").val();
-        id_selected = true;
-    });
-    /* End */
-    /* Datatables */
-    $("#downloads").dataTable({
-        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-        "sPaginationType": "bootstrap",
-        "aoColumnDefs": [{
-            "bSortable": false,
-            "aTargets": [0]
-        }]
-    });
-    $.extend($.fn.dataTableExt.oStdClasses, {
-        "sSortable": "header",
-        "sWrapper": "dataTables_wrapper form-inline"
-    });
-    /* End */  
-    /* Edit */
-    $("#edit").click(function() {
-        if (id_selected == true) {
-            window.location = "edit.php?id="+ id +"";
-        } else {
-            $(".top-right").notify({
-                type: "info",
-                transition: "fade",
-                icon: "info-sign",
-                message: {
-                    text: "No ID selected!"
-                }
-            }).show();
-        }
-    });
-    /* End */
-    /* Delete */
-    $("#delete").click(function() {
-        if (id_selected == true) {
-            bootbox.confirm("Are you sure you want to delete the selected download?", "No", "Yes", function(result) {
-                if (result == true) {
-                    $.ajax({
-                        type: "POST",
-                        url: "actions/worker.php",
-                        data: "action=delete&id="+ id +"",
-                        error: function() {
-                            $(".top-right").notify({
-                                type: "error",
-                                transition: "fade",
-                                icon: "warning-sign",
-                                message: {
-                                    text: "Ajax query failed!"
-                                }
-                            }).show();
-                        },
-                        success: function() {
-                            $(".top-right").notify({
-                                type: "success",
-                                transition: "fade",
-                                icon: "ok",
-                                message: {
-                                    text: "Download deleted!"
-                                },
-                                onClosed: function() {
-                                    window.location.reload();
-                                }
-                            }).show();
-                        }
-                    });
-                }
-            });
-        } else {
-            $(".top-right").notify({
-                type: "info",
-                transition: "fade",
-                icon: "info-sign",
-                message: {
-                    text: "No ID selected!"
-                }
-            }).show();
-        }
-    });
-    /* End */
-    /* Show tracking Link */
-    $("#trackinglink").click(function() {
-        if (id_selected == true) {
-            bootbox.prompt("Tracking Link", "Cancel", "Ok", null, "<?php echo PATH_TO_SCRIPT; ?>/get.php?id="+ id +"");
-            /* Select form automatically (For Firefox) */
-            $(".input-block-level").select();
-        } else {
-            $(".top-right").notify({
-                type: "info",
-                transition: "fade",
-                icon: "info-sign",
-                message: {
-                    text: "No ID selected!"
-                }
-            }).show();
-        }
-    });
-    /* End */
-});
-</script>
-<!-- Javascript end -->
-</body>
+            </div>
+            <hr>
+            <p class="muted pull-right">Indication <?php echo $version; ?> &copy; <a href="http://github.com/joshf" target="_blank">Josh Fradley</a> <?php echo date("Y"); ?>. Themed by <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>.</p>
+        </div>
+        <!-- Content end -->
+        <!-- Javascript start -->
+        <script src="../resources/jquery.min.js"></script>
+        <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../resources/datatables/jquery.dataTables.min.js"></script>
+        <script src="../resources/datatables/jquery.dataTables-bootstrap.min.js"></script>
+        <script src="../resources/bootstrap-notify/js/bootstrap-notify.min.js"></script>
+        <script src="../resources/bootbox/bootbox.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			/* Set Up Notifications */
+			var show_notification = function(type, icon, text, reload) {
+				$(".top-right").notify({
+					type: type,
+					transition: "fade",
+					icon: icon,
+					message: {
+						text: text
+					},
+					onClosed: function() {
+						if (reload == true) {
+							window.location.reload();
+						}
+					}
+				}).show();
+			};
+			/* End */
+			/* Table selection */
+			id_selected = false;
+			$("#downloads input[name=id]").click(function() {
+				id = $("#downloads input[name=id]:checked").val();
+				id_selected = true;
+			});
+			/* End */
+			/* Datatables */
+			$("#downloads").dataTable({
+				"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+				"sPaginationType": "bootstrap",
+				"aoColumnDefs": [{
+					"bSortable": false,
+					"aTargets": [0]
+				}]
+			});
+			$.extend($.fn.dataTableExt.oStdClasses, {
+				"sSortable": "header",
+				"sWrapper": "dataTables_wrapper form-inline"
+			});
+			/* End */  
+			/* Edit */
+			$("#edit").click(function() {
+				if (id_selected == true) {
+					window.location = "edit.php?id="+ id +"";
+				} else {
+					show_notification("info", "info-sign", "No ID selected!");
+				}
+			});
+			/* End */
+			/* Delete */
+			$("#delete").click(function() {
+				if (id_selected == true) {
+					bootbox.confirm("Are you sure you want to delete the selected download?", "No", "Yes", function(result) {
+						if (result == true) {
+							$.ajax({
+								type: "POST",
+								url: "actions/worker.php",
+								data: "action=delete&id="+ id +"",
+								error: function() {
+									show_notification("error", "warning-sign", "Ajax query failed!");
+								},
+								success: function() {
+									show_notification("success", "ok", "Download deleted!", true);
+								}
+							});
+						}
+					});
+				} else {
+					show_notification("info", "info-sign", "No ID selected!");
+				}
+			});
+			/* End */
+			/* Show tracking Link */
+			$("#trackinglink").click(function() {
+				if (id_selected == true) {
+					bootbox.prompt("Tracking Link", "Cancel", "Ok", null, "<?php echo PATH_TO_SCRIPT; ?>/get.php?id="+ id +"");
+					/* Select form automatically (For Firefox) */
+					$(".input-block-level").select();
+				} else {
+					show_notification("info", "info-sign", "No ID selected!");
+				}
+			});
+			/* End */
+		});
+        </script>
+		<!-- Javascript end -->
+    </body>
 </html>

@@ -187,7 +187,7 @@ if ($resultgetusersettings["theme"] == "default") {
                     <div class="control-group">
                         <label class="control-label" for="pathtoscript">Path to Script</label>
                         <div class="controls">
-                            <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to Indication..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
+                            <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to Indication..." data-validation-pattern-message="Please enter a valid URL" required>
                         </div>
                     </div>
                     <h4>Ad Code</h4>

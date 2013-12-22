@@ -20,16 +20,6 @@ Features
 * Ignore counts when admin is logged in
 * Beautiful notifications system via Bootstrap Notify
 
-Donations
----------
-
-If you like ModernCount and appreciate my hard work a [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYWJXFX6M4ADW) (no matter how small) would be appreciated. I code in my spare time and make no money formally from my scripts.
-
-Screenshots
------------
-
-Screenshots of ModernCount can be found [here](http://imgur.com/a/7aQPl).
-
 Releases
 --------
 
@@ -98,7 +88,7 @@ Updating
 4. Open up http://yoursite.com/ModernCount/installer/upgrade.php in your browser and the upgrade process will start
 9. You should now have the latest version of ModernCount
 
-N.B: The upgrade will only upgrade from the previous version of ModernCount (e.g 4.3 to 4.4), it cannot be used to upgrade from a historic version.
+N.B: The upgradee will only upgrade from ModernCount 4.0 or higher.
 
 Removal
 -------

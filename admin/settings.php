@@ -135,56 +135,62 @@ if (isset($_POST["save"])) {
         <!-- Nav end -->
         <!-- Content start -->
         <div class="container">
-            <div class="page-header">
-                <h1>Settings</h1>
-            </div>
+            <h2>Settings</h2>
             <div class="notifications top-right"></div>
-            <form method="post" autocomplete="off">
-                <fieldset>
-                    <h4>User Details</h4>
-                    <div class="control-group">
-                        <label class="control-label" for="user">User</label>
-                        <div class="controls">
-                            <input type="text" class="form-control" id="user" name="user" value="<?php echo $resultgetusersettings["user"]; ?>" placeholder="Enter a username..." required>
-                        </div>
-                    </div>
-                        <div class="control-group">
-                        <label class="control-label" for="email">Email</label>
-                        <div class="controls">
-                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $resultgetusersettings["email"]; ?>" placeholder="Type an email..." required>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="password">Password</label>
-                        <div class="controls">
-                            <input type="password" class="form-control" id="password" name="password" value="<?php echo $resultgetusersettings["password"]; ?>" placeholder="Enter a password..." required>
-                        </div>
-                    </div>
-                    <h4>Site Settings</h4>
-                    <div class="control-group">
-                        <label class="control-label" for="website">Website</label>
-                        <div class="controls">
-                            <input type="text" class="form-control" id="website" name="website" value="<?php echo $currentwebsite; ?>" placeholder="Enter your websites name..." required>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="pathtoscript">Path to Script</label>
-                        <div class="controls">
-                            <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." data-validation-pattern-message="Please enter a valid URL" required>
-                        </div>
-                    </div>
-                    <h4>Ad Code</h4>
-                    <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
-                    <div class="alert alert-warning"><b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <textarea id="advertcode" class="form-control" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
-                        </div>
-                    </div>
-                    <h4>Count Unique Visitors Only</h4>
-                    <p>This settings allows you to make sure an individual user's clicks are only counted once.</p>
-                    <div class="control-group">
-                        <div class="controls">
+            <div class="panel panel-default">
+            	<div class="panel-heading">
+                	<h3 class="panel-title">
+                    	Change settings
+					</h3>
+				</div>
+                <div class="panel-body">
+                    <form method="post" autocomplete="off">
+                        <fieldset>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+                                <li><a href="#unique" data-toggle="tab">Unique visitors</a></li>
+                                <li><a href="#ad" data-toggle="tab">Ad code</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="general">
+                                    <h3>Admin details</h3>
+                                    <div class="control-group">
+                                        <label class="control-label" for="user">User</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" id="user" name="user" value="<?php echo $resultgetusersettings["user"]; ?>" placeholder="Enter a username..." required>
+                                        </div>
+                                    </div>
+                                        <div class="control-group">
+                                        <label class="control-label" for="email">Email</label>
+                                        <div class="controls">
+                                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $resultgetusersettings["email"]; ?>" placeholder="Type an email..." required>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="password">Password</label>
+                                        <div class="controls">
+                                            <input type="password" class="form-control" id="password" name="password" value="<?php echo $resultgetusersettings["password"]; ?>" placeholder="Enter a password..." required>
+                                        </div>
+                                    </div>
+                                    <h3>Website settings</h3>
+                                    <div class="control-group">
+                                        <label class="control-label" for="website">Website</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" id="website" name="website" value="<?php echo $currentwebsite; ?>" placeholder="Enter your websites name..." required>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="pathtoscript">Path to Script</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." data-validation-pattern-message="Please enter a valid URL" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="ad">
+                                    <h3>Count unique visitors only</h3>
+                                    <p>This settings allows you to make sure an individual user's clicks are only counted once.</p>
+                                    <div class="control-group">
+                                        <div class="controls">
 <?php
 if ($currentcountuniqueonlystate == "Enabled" ) {
 echo "<label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystateenable\" name=\"countuniqueonlystate\" value=\"Enabled\" checked=\"checked\"> Enabled</label>
@@ -194,18 +200,18 @@ echo "<label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystateenab
 <label class=\"radio\"><input type=\"radio\" id=\"countuniqueonlystatedisable\" name=\"countuniqueonlystate\" value=\"Disabled\" checked=\"checked\"> Disabled</label>";   
 }   
 ?> 
-                        </div>  
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="countuniqueonlytime">Time to consider a user unique</label>
-                        <div class="controls">
-                            <input type="number" class="form-control" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." min="0" required>
-                        </div>
-                    </div>
-                    <h4>Ignore Admin</h4>
-                    <p>This settings prevents downloads being counted when you are logged in to ModernCount.</p>
-                    <div class="control-group">
-                        <div class="controls">
+                                        </div>  
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="countuniqueonlytime">Time to consider a user unique</label>
+                                        <div class="controls">
+                                            <input type="number" class="form-control" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." min="0" required>
+                                        </div>
+                                    </div>
+                                    <h3>Ignore admin</h3>
+                                    <p>This settings prevents downloads being counted when you are logged in to ModernCount.</p>
+                                    <div class="control-group">
+                                        <div class="controls">
 <?php
 if ($currentignoreadminstate == "Enabled" ) {
 echo "<label class=\"radio\"><input type=\"radio\" id=\"ignoreadminstateenable\" name=\"ignoreadminstate\" value=\"Enabled\" checked=\"checked\"> Enabled</label>
@@ -215,32 +221,27 @@ echo "<label class=\"radio\"><input type=\"radio\" id=\"ignoreadminstateenable\"
 <label class=\"radio\"><input type=\"radio\" id=\"ignoreadminstatedisable\" name=\"ignoreadminstate\" value=\"Disabled\" checked=\"checked\"> Disabled</label>";   
 }   
 ?> 
-                        </div>  
-                    </div>
-                    <h4>Theme</h4>
-                    <div class="control-group">
-                        <label class="control-label" for="theme">Select a theme</label>
-                        <div class="controls">
-<?php
-$themes = array("default", "amelia", "cerulean", "cosmo", "cyborg", "flatly", "journal", "readable", "simplex", "slate", "spacelab", "spruce", "superhero", "united");
-
-echo "<select class=\"form-control\" id=\"theme\" name=\"theme\">";
-foreach ($themes as $value) {
-if ($value == $resultgetusersettings["theme"]) {
-    echo "<option value=\"$value\" selected=\"selected\">". ucfirst($value) . "</option>";
-} else {
-    echo "<option value=\"$value\">". ucfirst($value) . "</option>";
-}
-}
-echo "</select>";
-?>
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" name="save" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </fieldset>
-            </form>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="tab-pane" id="unique">
+                                    <h3>Ad code</h3>
+                                    <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
+                                    <div class="alert alert-warning"><b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <textarea id="advertcode" class="form-control" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" name="save" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
         <!-- Content end -->
         <!-- Javascript start -->

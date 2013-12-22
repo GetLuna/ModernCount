@@ -101,6 +101,14 @@ p {
 	border-bottom-color: #fff;
 }
 
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	color: #555 !important;
+}
+
+.nav-tabs > li > a, .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+	color: #2a6496 !important;
+}
+
 @media (max-width:768px){
 	.dropdown-menu > li > a, .dropdown-menu > li > a:focus {
 		color: #fff;

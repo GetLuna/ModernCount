@@ -22,7 +22,7 @@ if (!$does_db_exist) {
 }
 
 //Define Version
-$version = "4.1-beta.1a";
+$version = "4.0-beta";
 
 if ($version == VERSION) {
     die("Information: The latest version of ModernCount is already installed and an upgrade is not required.");
@@ -71,7 +71,6 @@ $adcode = AD_CODE;
 $countuniqueonlystate = COUNT_UNIQUE_ONLY_STATE;
 $countuniqueonlytime = COUNT_UNIQUE_ONLY_TIME;
 $ignoreadminstate = IGNORE_ADMIN_STATE;
-$theme = THEME;
 
 $updatestring = "<?php
 
@@ -99,15 +98,14 @@ $createuserstable = "CREATE TABLE `Users` (
 `password` varchar(200) NOT NULL,
 `salt` varchar(3) NOT NULL,
 `email` varchar(100) NOT NULL,
-`theme` varchar(20) NOT NULL,
 PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;";
 
 mysql_query($createuserstable);
 
 //Add admin user
-mysql_query("INSERT INTO Users (user, password, salt, email, theme)
-VALUES (\"$user\",\"$password\",\"$salt\",\"$user@" . $_SERVER["SERVER_NAME"] . "\",\"$theme\")");
+mysql_query("INSERT INTO Users (user, password, salt, email)
+VALUES (\"$user\",\"$password\",\"$salt\",\"$user@" . $_SERVER["SERVER_NAME"] . "\")");
 
 //Write Config
 $configfile = fopen("../config.php", "w");

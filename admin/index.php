@@ -108,9 +108,18 @@ if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
     }
 }
 
+?>
+			<div class="panel panel-default">
+            	<div class="panel-heading">
+                	<h3 class="panel-title">
+                    	Downloads
+                    </h3>
+                </div>
+                <div class="panel-body">
+<?php
 $getdownloads = mysql_query("SELECT * FROM `Data`");
 
-echo "<table id=\"downloads\" class=\"table table-striped table-bordered table-condensed\">
+echo "<table id=\"downloads\" class=\"table\">
 <thead>
 <tr>
 <th></th>
@@ -130,6 +139,8 @@ while($row = mysql_fetch_assoc($getdownloads)) {
 echo "</tbody></table>";
 
 ?>
+				</div>
+			</div>
             <div class="btn-group">
                 <button id="edit" class="btn btn-default">Edit</button>
                 <button id="delete" class="btn btn-default">Delete</button>

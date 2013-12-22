@@ -79,9 +79,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
         <!-- Nav end -->
         <!-- Content start -->
         <div class="container">
-            <div class="page-header">
-                <h1>Edit</h1>
-            </div>
+            <h2>Edit</h2>
 <?php
 
 //Error display
@@ -97,11 +95,11 @@ if (isset($_GET["error"])) {
 if (!isset($_GET["id"])) {
 	$getids = mysql_query("SELECT `id`, `name` FROM `Data`");
     if (mysql_num_rows($getids) != 0) {
-        echo "<form action=\"edit.php\" method=\"get\"><fieldset><div class=\"control-group\"><label class=\"control-label\" for=\"id\">Select a download to edit</label><div class=\"controls\"><select id=\"id\" class=\"form-control\" name=\"id\">";
+        echo "<div class=\"panel panel-default\"><div class=\"panel-heading\"><h3 class=\"panel-title\">Select a download to edit</h3></div><div class=\"panel-body\"><form action=\"edit.php\" method=\"get\"><fieldset><div class=\"input-group\"><select id=\"id\" class=\"form-control\" name=\"id\">";
         while($row = mysql_fetch_assoc($getids)) {
             echo "<option value=\"" . $row["id"] . "\">" . ucfirst($row["name"]) . "</option>";
         }
-        echo "</select></div></div><div class=\"form-actions\"><button type=\"submit\" class=\"btn btn-primary\">Edit</button></div></fieldset></form>";
+        echo "</select><span class=\"input-group-btn\"><button type=\"submit\" class=\"btn btn-primary\">Edit</button></span></fieldset></form></div></div>";
     } else {
         echo "<div class=\"alert alert-info\"><h4 class=\"alert-heading\">Information</h4><p>No downloads available to edit.</p><p><a class=\"btn btn-info\" href=\"javascript:history.go(-1)\">Go Back</a></p></div>";
     }
@@ -119,8 +117,16 @@ if (mysql_num_rows($doesidexist) == 0) {
 } else {
 
 ?>
-<form action="actions/edit.php" method="post" autocomplete="off">
-<fieldset>
+
+			<div class="panel panel-default">
+            	<div class="panel-heading">
+                	<h3 class="panel-title">
+                    	Change settings
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form action="actions/edit.php" method="post" autocomplete="off">
+                        <fieldset>
 <?php
 
 $getidinfo = mysql_query("SELECT * FROM `Data` WHERE `id` = \"$idtoedit\"");
@@ -156,23 +162,25 @@ if ($checkifprotectedresult["protect"] == "1") {
 mysql_close($con);
 
 ?>
-                            </label>
-                        </div>
-                    </div>
-                    <div id="passwordentry" style="display: none;">
-                        <div class="control-group">
-                            <label class="control-label" for="password">Password</label>
-                            <div class="controls">
-                                <input type="password" id="password" name="password" placeholder="Type a password...">
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <input type="hidden" name="idtoedit" value="<?php echo $idtoedit; ?>" />
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </fieldset>
-            </form>
+                            <div id="passwordentry" style="display: none;">
+                                <div class="control-group">
+                                    <label class="control-label" for="password">Password</label>
+                                    <div class="controls">
+                                        <input type="password" id="password" name="password" placeholder="Type a password...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <input type="hidden" name="idtoedit" value="<?php echo $idtoedit; ?>" />
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
 <?php
 }
 	}

@@ -79,9 +79,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
         <!-- Nav end -->
         <!-- Content start -->
         <div class="container">
-            <div class="page-header">
-                <h1>Add</h1>
-            </div>
+            <h2>Add</h2>
 <?php
 
 //Error display
@@ -97,60 +95,69 @@ if (isset($_GET["error"])) {
 }
 
 ?>
-            <form action="actions/add.php" method="post" autocomplete="off">
-                <fieldset>
-                    <div class="control-group">
-                        <label class="control-label" for="name">Name</label>
-                        <div class="controls">
-                            <input type="text" id="name" class="form-control" name="name" placeholder="Type a name..." pattern="([0-9A-Za-z-\\.@:%_\+~#=\s]+)" required>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="id">ID</label>
-                        <div class="controls">
-                            <input type="text" id="id" class="form-control" name="id" placeholder="Type an ID..." pattern="([0-9A-Za-z-\\.@:%_\+~#=]+)" required>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="url">URL</label>
-                        <div class="controls">
-                            <input type="text" id="url" class="form-control" name="url" placeholder="Type a URL..." pattern="(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?" required>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="count">Count</label>
-                        <div class="controls">
-                            <input type="number" id="count" class="form-control" name="count" placeholder="Type an initial count..." min="0">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <label class="checkbox">
-                                <input type="checkbox" id="showadsstate" name="showadsstate"> Show ads
-                            </label>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <label class="checkbox">
-                                <input type="checkbox" id="passwordprotectstate" name="passwordprotectstate"> Enable password protection
-                            </label>
-                        </div>
-                    </div>
-                    <div id="passwordentry" style="display: none;">
-                        <div class="control-group">
-                            <label class="control-label" for="password">Password</label>
-                            <div class="controls">
-                                <input type="password" id="password" name="password" placeholder="Type a password...">
-                                <span class="help-block">It is recommended that your password be at least 6 characters long</span>
+			<div class="panel panel-default">
+            	<div class="panel-heading">
+                	<h3 class="panel-title">
+                    	Downloads
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form action="actions/add.php" method="post" autocomplete="off">
+                        <fieldset>
+                            <div class="control-group">
+                                <label class="control-label" for="name">Name</label>
+                                <div class="controls">
+                                    <input type="text" id="name" class="form-control" name="name" placeholder="Type a name..." pattern="([0-9A-Za-z-\\.@:%_\+~#=\s]+)" required>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                </fieldset>
-            </form>
+                            <div class="control-group">
+                                <label class="control-label" for="id">ID</label>
+                                <div class="controls">
+                                    <input type="text" id="id" class="form-control" name="id" placeholder="Type an ID..." pattern="([0-9A-Za-z-\\.@:%_\+~#=]+)" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="url">URL</label>
+                                <div class="controls">
+                                    <input type="text" id="url" class="form-control" name="url" placeholder="Type a URL..." pattern="(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="count">Count</label>
+                                <div class="controls">
+                                    <input type="number" id="count" class="form-control" name="count" placeholder="Type an initial count..." min="0">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="showadsstate" name="showadsstate"> Show ads
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="passwordprotectstate" name="passwordprotectstate"> Enable password protection
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="passwordentry" style="display: none;">
+                                <div class="control-group">
+                                    <label class="control-label" for="password">Password</label>
+                                    <div class="controls">
+                                        <input type="password" id="password" name="password" placeholder="Type a password...">
+                                        <span class="help-block">It is recommended that your password be at least 6 characters long</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </fieldset>
+                    </form>
+				</div>
+			</div>
         </div>
         <!-- Content end -->
         <!-- Javascript start -->

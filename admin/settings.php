@@ -107,11 +107,6 @@ a.close.pull-right {
     padding-left: 10px;
 }
 </style>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -152,24 +147,24 @@ a.close.pull-right {
 <h4>User Details</h4>
 <div class="form-group">
 <label for="user">User</label>
-<input type="text" class="form-control" id="user" name="user" value="<?php echo $resultgetusersettings["user"]; ?>" placeholder="Enter a username..." required>
+<input type="text" class="form-control" id="user" name="user" value="<?php echo $resultgetusersettings["user"]; ?>" placeholder="Enter a username" />
 </div>
 <div class="form-group">
 <label for="email">Email</label>
-<input type="email" class="form-control" id="email" name="email" value="<?php echo $resultgetusersettings["email"]; ?>" placeholder="Type an email..." required>
+<input type="email" class="form-control" id="email" name="email" value="<?php echo $resultgetusersettings["email"]; ?>" placeholder="Type an email" />
 </div>
 <div class="form-group">
 <label for="password">Password</label>
-<input type="password" class="form-control" id="password" name="password" value="<?php echo $resultgetusersettings["password"]; ?>" placeholder="Enter a password..." required>
+<input type="password" class="form-control" id="password" name="password" value="<?php echo $resultgetusersettings["password"]; ?>" placeholder="Enter a password" />
 </div>
 <h4>Site Settings</h4>
 <div class="form-group">
 <label for="website">Website</label>
-<input type="text" class="form-control" id="website" name="website" value="<?php echo $currentwebsite; ?>" placeholder="Enter your websites name..." required>
+<input type="text" class="form-control" id="website" name="website" value="<?php echo $currentwebsite; ?>" placeholder="Enter your websites name" />
 </div>
 <div class="form-group">
 <label for="pathtoscript">Path to Script</label>
-<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
+<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount" pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" />
 </div>
 <h4>Ad Code</h4>
 <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
@@ -177,7 +172,7 @@ a.close.pull-right {
 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 <b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
 <div class="form-group">
-<textarea class="form-control" id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
+<textarea class="form-control" id="advertcode" name="advertcode" placeholder="Enter a ad code"><?php echo $currentadcode; ?></textarea>
 </div>
 <h4>Count Unique Visitors Only</h4>
 <p>This settings allows you to make sure an individual user's clicks are only counted once.</p>
@@ -194,7 +189,7 @@ if ($currentcountuniqueonlystate == "Enabled" ) {
 </div>
 <div class="form-group">
 <label for="countuniqueonlytime">Time to consider a user unique (hours)</label>
-<input type="number" class="form-control" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." required>
+<input type="number" class="form-control" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time" />
 </div>
 <h4>Ignore Admin</h4>
 <p>This settings prevents downloads being counted when you are logged in to ModernCount.</p>

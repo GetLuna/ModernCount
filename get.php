@@ -51,11 +51,6 @@ body {
     padding-bottom: 30px;
 }
 </style>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -126,7 +121,7 @@ switch ($case) {
         echo "<p>$adcode</p><a class=\"btn btn-default\" href=\"javascript:history.go(-1)\">Go Back</a><a class=\"btn btn-default pull-right\" href=\"" . $getinforesult["url"] . "\">Get Download</a>";
         break;
     case "passwordprotected":
-        echo "<form role=\"form\" method=\"post\"><div class=\"form-group\"><label for=\"password\">Password</label><input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"Password...\"><div class=\"help-block\">This download is password protected, please enter the password you were given.</div></div><a class=\"btn btn-default\" href=\"javascript:history.go(-1)\">Go Back</a><button type=\"submit\" class=\"btn btn-default pull-right\">Get Download</button></form>";
+        echo "<form role=\"form\" method=\"post\"><div class=\"form-group\"><label for=\"password\">Password</label><input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"Password\"><div class=\"help-block\">This download is password protected, please enter the password you were given.</div></div><a class=\"btn btn-default\" href=\"javascript:history.go(-1)\">Go Back</a><button type=\"submit\" class=\"btn btn-default pull-right\">Get Download</button></form>";
         break;
     case "normal":
         header("Location: " . $getinforesult["url"] . "");
@@ -134,7 +129,7 @@ switch ($case) {
         break;
     case "passwordprotectedandshowads":
         $adcode = htmlspecialchars_decode(AD_CODE);
-        echo "<p>$adcode</p><form role=\"form\" method=\"post\"><div class=\"form-group\"><label for=\"password\">Password</label><input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"Password...\"><div class=\"help-block\">This download is password protected, please enter the password you were given.</div></div><a class=\"btn btn-default\" href=\"javascript:history.go(-1)\">Go Back</a><button type=\"submit\" class=\"btn btn-default pull-right\">Get Download</button></form>";
+        echo "<p>$adcode</p><form role=\"form\" method=\"post\"><div class=\"form-group\"><label for=\"password\">Password</label><input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"Password\"><div class=\"help-block\">This download is password protected, please enter the password you were given.</div></div><a class=\"btn btn-default\" href=\"javascript:history.go(-1)\">Go Back</a><button type=\"submit\" class=\"btn btn-default pull-right\">Get Download</button></form>";
         break;
     case "passwordcorrect":
         header("Location: " . $getinforesult["url"] . "");

@@ -47,11 +47,6 @@ body {
     padding-bottom: 30px;
 }
 </style>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -130,10 +125,10 @@ if (isset($_GET["error"])) {
 $getidinfo = mysql_query("SELECT * FROM `Data` WHERE `id` = \"$idtoedit\"");
 $getidinforesult = mysql_fetch_assoc($getidinfo);
 
-echo "<div class=\"form-group\"><label for=\"name\">Name</label><input type=\"text\" class=\"form-control\" id=\"name\" name=\"name\" value=\"" . $getidinforesult["name"] . "\" placeholder=\"Type a name...\" required></div>";
-echo "<div class=\"form-group\"><label for=\"id\">ID</label><input type=\"text\" class=\"form-control\" id=\"id\" name=\"id\" value=\"" . $getidinforesult["id"] . "\" placeholder=\"Type a ID...\" required></div>";
-echo "<div class=\"form-group\"><label for=\"url\">URL</label><input type=\"text\" class=\"form-control\" id=\"url\" name=\"url\" value=\"" . $getidinforesult["url"] . "\" placeholder=\"Type a URL...\" required></div>";
-echo "<div class=\"form-group\"><label for=\"count\">Count</label><input type=\"number\" class=\"form-control\" id=\"count\" name=\"count\" value=\"" . $getidinforesult["count"] . "\" placeholder=\"Type an initial count...\"></div>";
+echo "<div class=\"form-group\"><label for=\"name\">Name</label><input type=\"text\" class=\"form-control\" id=\"name\" name=\"name\" value=\"" . $getidinforesult["name"] . "\" placeholder=\"Type a name\" /></div>";
+echo "<div class=\"form-group\"><label for=\"id\">ID</label><input type=\"text\" class=\"form-control\" id=\"id\" name=\"id\" value=\"" . $getidinforesult["id"] . "\" placeholder=\"Type a ID\" /></div>";
+echo "<div class=\"form-group\"><label for=\"url\">URL</label><input type=\"text\" class=\"form-control\" id=\"url\" name=\"url\" value=\"" . $getidinforesult["url"] . "\" placeholder=\"Type a URL\" /></div>";
+echo "<div class=\"form-group\"><label for=\"count\">Count</label><input type=\"number\" class=\"form-control\" id=\"count\" name=\"count\" value=\"" . $getidinforesult["count"] . "\" placeholder=\"Type an initial count\"></div>";
 
 
 echo "<div class=\"checkbox\"><label>";
@@ -166,7 +161,7 @@ mysql_close($con);
 <div id="passwordentry" style="display: none;">
 <div class="form-group">
 <label for="password">Password</label>
-<input type="password" class="form-control" id="password" name="password" placeholder="Type a password..." required>
+<input type="password" class="form-control" id="password" name="password" placeholder="Type a password" />
 </div>
 </div>
 <input type="hidden" id="idtoedit" name="idtoedit" value="<?php echo $idtoedit; ?>" />

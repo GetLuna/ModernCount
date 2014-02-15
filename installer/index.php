@@ -1,6 +1,6 @@
 <?php
 
-//ModernCount, Copyright Josh Fradley (http://github.com/joshf/ModernCount
+// Copyright Modern Group 2013-2014
 
 //Check if ModernCount has been installed
 if (file_exists("../config.php")) {
@@ -33,7 +33,7 @@ if (isset($_POST["install"])) {
     $randsalt2 = md5(uniqid(rand(), true));
     $salt2 = substr($randsalt2, 0, 3);
     
-    $installstring = "<?php\n\n//Database Settings\ndefine('DB_HOST', " . var_export($dbhost, true) . ");\ndefine('DB_USER', " . var_export($dbuser, true) . ");\ndefine('DB_PASSWORD', " . var_export($dbpassword, true) . ");\ndefine('DB_NAME', " . var_export($dbname, true) . ");\n\n//Other Settings\ndefine('SALT', " . var_export($salt2, true) . ");\ndefine('WEBSITE', " . var_export($website, true) . ");\ndefine('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");\ndefine('AD_CODE', 'Ad code here...');\ndefine('COUNT_UNIQUE_ONLY_STATE', 'Enabled');\ndefine('COUNT_UNIQUE_ONLY_TIME', '24');\ndefine('IGNORE_ADMIN_STATE', 'Disabled');\ndefine('VERSION', " . var_export($version, true) . ");\n\n?>";
+    $installstring = "<?php\n\n//Database Settings\ndefine('DB_HOST', " . var_export($dbhost, true) . ");\ndefine('DB_USER', " . var_export($dbuser, true) . ");\ndefine('DB_PASSWORD', " . var_export($dbpassword, true) . ");\ndefine('DB_NAME', " . var_export($dbname, true) . ");\n\n//Other Settings\ndefine('SALT', " . var_export($salt2, true) . ");\ndefine('WEBSITE', " . var_export($website, true) . ");\ndefine('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");\ndefine('AD_CODE', 'Ad code here');\ndefine('COUNT_UNIQUE_ONLY_STATE', 'Enabled');\ndefine('COUNT_UNIQUE_ONLY_TIME', '24');\ndefine('IGNORE_ADMIN_STATE', 'Disabled');\ndefine('VERSION', " . var_export($version, true) . ");\n\n?>";
 
     //Check if we can connect
     $con = mysql_connect($dbhost, $dbuser, $dbpassword);
@@ -106,11 +106,6 @@ body {
     padding-bottom: 30px;
 }
 </style>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -131,46 +126,46 @@ if (!isset($_POST["install"])) {
 <h4>Database Settings</h4>
 <div class="form-group">
 <label for="dbhost">Database Host</label>
-<input type="text" class="form-control" id="dbhost" name="dbhost" value="localhost" placeholder="Type your database host..." required>
+<input type="text" class="form-control" id="dbhost" name="dbhost" value="localhost" placeholder="Type your database host" />
 </div>
 <div class="form-group">
 <label for="dbuser">Database User</label>
-<input type="text" class="form-control" id="dbuser" name="dbuser" placeholder="Type your database user..." required>
+<input type="text" class="form-control" id="dbuser" name="dbuser" placeholder="Type your database user" />
 </div>
 <div class="form-group">
 <label for="dbpassword">Database Password</label>
-<input type="password" class="form-control" id="dbpassword" name="dbpassword" placeholder="Type your database password..." required>
+<input type="password" class="form-control" id="dbpassword" name="dbpassword" placeholder="Type your database password" />
 </div>
 <div class="form-group">
 <label for="dbname">Database Name</label>
-<input type="text" class="form-control" id="dbname" name="dbname" placeholder="Type your database name..." required>
+<input type="text" class="form-control" id="dbname" name="dbname" placeholder="Type your database name" />
 </div>
 <h4>User Details</h4>
 <div class="form-group">
 <label for="user">User</label>
-<input type="text" class="form-control" id="user" name="user" placeholder="Type a username..." required>
+<input type="text" class="form-control" id="user" name="user" placeholder="Type a username" />
 </div>
 <div class="form-group">
 <label for="email">Email</label>
-<input type="email" class="form-control" id="email" name="email" placeholder="Type an email..." required>
+<input type="email" class="form-control" id="email" name="email" placeholder="Type an email" />
 </div>
 <div class="form-group">
 <label for="password">Password</label>
-<input type="password" class="form-control" id="password" name="password" placeholder="Type a password..." required>
+<input type="password" class="form-control" id="password" name="password" placeholder="Type a password" />
 </div>
 <div class="form-group">
 <label for="passwordconfirm">Confirm Password</label>
-<input type="password" class="form-control" id="passwordconfirm" name="passwordconfirm" placeholder="Type your password again..." required>
+<input type="password" class="form-control" id="passwordconfirm" name="passwordconfirm" placeholder="Type your password again" />
 <span class="help-block">It is recommended that your password be at least 6 characters long</span>
 </div>
 <h4>Other Settings</h4>
 <div class="form-group">
 <label for="website">Website Name</label>
-<input type="text" class="form-control" id="website" name="website" placeholder="Type your websites name..." required>
+<input type="text" class="form-control" id="website" name="website" placeholder="Type your websites name" />
 </div>
 <div class="form-group">
 <label for="pathtoscript">Path to Script</label>
-<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount..." required>
+<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount" />
 </div>
 <input type="hidden" name="install">
 <input type="submit" class="btn btn-default" value="Install">
@@ -183,23 +178,5 @@ if (!isset($_POST["install"])) {
 </div>
 <script src="../assets/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/nod.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    var metrics = [
-        ["#dbhost", "presence", "Database host cannot be empty!"],
-        ["#dbuser", "presence", "Database user cannot be empty!"],
-        ["#dbpassword", "presence", "Database password cannot be empty!"],        
-        ["#dbname", "presence", "Database name cannot be empty!"],
-        ["#user", "presence", "User name cannot be empty!"],
-        ["#email", "email", "Enter a valid email address"],
-        ["#password", "presence", "Passwords should be more than 6 characters"],
-        ["#passwordconfirm", "same-as: #password", "Passwords do not match!"],
-        ["#website", "presence", "Website cannot be empty!"],
-        ["#pathtoscript", /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/, "Enter a valid URL!"]
-    ];
-    $("form").nod(metrics);
-});
-</script>
 </body>
 </html>

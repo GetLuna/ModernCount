@@ -46,11 +46,6 @@ body {
     padding-bottom: 30px;
 }
 </style>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -104,19 +99,19 @@ if (isset($_GET["error"])) {
 <form role="form" action="actions/add.php" method="post" autocomplete="off">
 <div class="form-group">
 <label for="name">Name</label>
-<input type="text" class="form-control" id="name" name="name" placeholder="Type a name..." required>
+<input type="text" class="form-control" id="name" name="name" placeholder="Type a name" />
 </div>
 <div class="form-group">
 <label for="id">ID</label>
-<input type="text" class="form-control" id="id" name="id" placeholder="Type a ID..." required>
+<input type="text" class="form-control" id="id" name="id" placeholder="Type a ID" />
 </div>
 <div class="form-group">
 <label for="url">URL</label>
-<input type="text" class="form-control" id="url" name="url" placeholder="Type a URL..." required>
+<input type="text" class="form-control" id="url" name="url" placeholder="Type a URL" />
 </div>
 <div class="form-group">
 <label for="count">Count</label>
-<input type="number" class="form-control" id="count" name="count" placeholder="Type an initial count...">
+<input type="number" class="form-control" id="count" name="count" placeholder="Type an initial count">
 </div>
 <div class="checkbox">
 <label>
@@ -131,7 +126,7 @@ if (isset($_GET["error"])) {
 <div id="passwordentry" style="display: none;">
 <div class="form-group">
 <label for="password">Password</label>
-<input type="password" class="form-control" id="password" name="password" placeholder="Type a password..." required>
+<input type="password" class="form-control" id="password" name="password" placeholder="Type a password" />
 </div>
 </div>
 <button type="submit" class="btn btn-default">Add</button>

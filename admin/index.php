@@ -119,10 +119,10 @@ $getdownloads = mysql_query("SELECT * FROM `Data`");
 echo "<table id=\"downloads\" class=\"table table-bordered table-hover table-condensed\">
 <thead>
 <tr>
-<th>Name</th>
-<th class=\"hidden-xs\">URL</th>
-<th>Count</th>
-<th>Actions</th>
+<th class=\"col-md-4 col-xs-6\">Name</th>
+<th class=\"hidden-xs col-md-6\">URL</th>
+<th class=\"col-md-1 col-xs-3\">Count</th>
+<th class=\"col-md-1 col-xs-3\">Actions</th>
 </tr></thead><tbody>";
 
 while($row = mysql_fetch_assoc($getdownloads)) {
@@ -130,22 +130,18 @@ while($row = mysql_fetch_assoc($getdownloads)) {
     echo "<td>" . $row["name"] . "</td>";
     echo "<td class=\"hidden-xs\">" . $row["url"] . "</td>";
     echo "<td>" . $row["count"] . "</td>";
-    echo "<td><div class=\"btn-toolbar\" role=\"toolbar\"><div class=\"btn-group\"><a href=\"edit.php?id=" . $row["id"] . "\" class=\"btn btn-default btn-xs\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a><button type=\"button\" class=\"trackinglink btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-share-alt\"></span></button><button type=\"button\" class=\"delete btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-trash\"></span></button></div></div></td>";
+    echo "<td><div class=\"btn-group\"><a href=\"edit.php?id=" . $row["id"] . "\" class=\"btn btn-default btn-xs\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a><button type=\"button\" class=\"trackinglink btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-share-alt\"></span></button><button type=\"button\" class=\"delete btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-trash\"></span></button></div></td>";
     echo "</tr>";
 }
 echo "</tbody></table>";
 
 ?>
-<div class="alert alert-info">
-<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>   
-<b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
-</div>
 <div class="well">
 <?php
 
 $getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM `Data`");
 $resultgetnumberofdownloads = mysql_fetch_assoc($getnumberofdownloads);
-echo "<i class=\"glyphicon glyphicon-list-alt\"></i> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items<br>";
+echo "<i class=\"glyphicon glyphicon-list-alt\"></i> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items and ";
 
 $gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM `Data`");
 $resultgettotalnumberofdownloads = mysql_fetch_assoc($gettotalnumberofdownloads);
@@ -161,7 +157,7 @@ mysql_close($con);
 </div>
 <hr>
 <div class="footer">
-ModernCount <?php echo $version; ?> &copy; <a href="http://github.com/joshf" target="_blank">Josh Fradley</a> <?php echo date("Y"); ?>. Themed by <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>.
+ModernCount <?php echo $version; ?> &copy; <a href="http://github.com/ModernBB" target="_blank">ModernBB Group</a> <?php echo date("Y"); ?>
 </div>
 </div>
 <script src="../assets/jquery.min.js"></script>

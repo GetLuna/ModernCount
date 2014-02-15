@@ -72,13 +72,13 @@ $idclean = str_replace(".", "_", $id);
 //Ignore admin counts if setting has been enabled
 session_start();
 
-if (IGNORE_ADMIN_STATE == "Enabled" && isset($_SESSION["indication_user"])) {
+if (IGNORE_ADMIN_STATE == "Enabled" && isset($_SESSION["_user"])) {
     echo "<div class=\"alert alert-info\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><b>Info:</b> Currently logged in, downloads will not be counted.</div>";    
 } else {
     if (COUNT_UNIQUE_ONLY_STATE == "Enabled") {
-        if (!isset($_COOKIE["indicationhasdownloaded_$idclean"])) {
+        if (!isset($_COOKIE["hasdownloaded_$idclean"])) {
             mysql_query("UPDATE `Data` SET `count` = `count`+1 WHERE `id` = \"$id\"");
-            setcookie("indicationhasdownloaded_$idclean", time(), time()+3600*COUNT_UNIQUE_ONLY_TIME);
+            setcookie("hasdownloaded_$idclean", time(), time()+3600*COUNT_UNIQUE_ONLY_TIME);
         }
     } else {
         mysql_query("UPDATE `Data` SET `count` = `count`+1 WHERE `id` = \"$id\"");

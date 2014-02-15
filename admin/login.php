@@ -31,14 +31,14 @@ if (isset($_POST["password"]) && isset($_POST["username"])) {
     $salt = $userinforesult["salt"];
     $hashedpassword = hash("sha256", $salt . hash("sha256", $password));
     if ($hashedpassword == $userinforesult["password"]) {
-        $_SESSION["indication_user"] = $userinforesult["id"];
+        $_SESSION["_user"] = $userinforesult["id"];
     } else {
         header("Location: login.php?login_error=true");
         exit;
     }
 }
 
-if (!isset($_SESSION["indication_user"])) {
+if (!isset($_SESSION["_user"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">

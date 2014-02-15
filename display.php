@@ -1,10 +1,10 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
+// Copyright Modern Group 2013-2014
 
 if (!file_exists("config.php")) {
-	header('Location: installer');
-	exit;
+    header("Location: installer");
+    exit;
 }
 
 require_once("config.php");

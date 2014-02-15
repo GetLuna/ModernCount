@@ -1,12 +1,12 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
+// Copyright Modern Group 2013-2014
 
-$version = "4.0-beta";
+require_once("../assets/version.php");
 
 if (!file_exists("../config.php")) {
-	header('Location: ../installer');
-	exit;
+    header("Location: ../installer");
+    exit;
 }
 
 require_once("../config.php");
@@ -18,7 +18,7 @@ if (!isset($_SESSION["indication_user"])) {
 }
 
 //Set cookie so we dont constantly check for updates
-setcookie("indicationhascheckedforupdates", "checkedsuccessfully", time()+604800);
+setcookie("indicationupdatecheck", time(), time()+604800);
 
 @$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 if (!$con) {
@@ -41,230 +41,202 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>ModernCount</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-        <link href="../resources/bootstrap/css/moderncount.css" type="text/css" rel="stylesheet">
-        <link href="../resources/datatables/jquery.dataTables-bootstrap.min.css" type="text/css" rel="stylesheet">
-        <link href="../resources/bootstrap-notify/css/bootstrap-notify.min.css" type="text/css" rel="stylesheet">
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-        <!-- Nav start -->
-        <div class="navbar navbar-default navbar-fixed-top">
-        	<div class="navbar-inner">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">ModernCount</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li class="active"><a href="index.php">Home</a></li>
-                        <li><a href="add.php">Add</a></li>
-                        <li><a href="edit.php">Edit</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $resultgetusersettings["user"]; ?> <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="settings.php">Settings</a></li>
-                                <li><a href="logout.php">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- Nav end -->
-        <!-- Content start -->
-        <div class="container">
-			<h2>All downloads</h2>
-            <div class="notifications top-right"></div>		
-            <noscript>
-            	<div class="alert alert-info">
-                    <h4 class="alert-heading">Information</h4>
-                    <p>Please enable JavaScript to use ModernCount. For instructions on how to do this, see <a href="http://www.activatejavascript.org" target="_blank">here</a>.</p>
-                </div>
-            </noscript>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ModernCount</title>
+<link rel="apple-touch-icon" href="../assets/icon.png">
+<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="../assets/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="../assets/bootstrap-notify/css/bootstrap-notify.min.css" rel="stylesheet">
+<style type="text/css">
+body {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+/* Fix weird notification appearance */
+a.close.pull-right {
+    padding-left: 10px;
+}
+/* Slim down the actions column */
+tr td:last-child {
+    width: 64px;
+    white-space: nowrap;
+}
+</style>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="#">ModernCount</a>
+</div>
+<div class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="active"><a href="index.php">Home</a></li>
+<li><a href="add.php">Add</a></li>
+<li><a href="edit.php">Edit</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $resultgetusersettings["user"]; ?> <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="settings.php">Settings</a></li>
+<li><a href="logout.php">Logout</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="page-header">
+<h1>Downloads for <?php echo WEBSITE; ?></h1>
+</div>
+<div class="notifications top-right"></div>	
 <?php
+
+echo "<noscript><div class=\"alert alert-info\"><h4 class=\"alert-heading\">Information</h4><p>Please enable JavaScript to use ModernCount. For instructions on how to do this, see <a href=\"http://www.activatejavascript.org\" class=\"alert-link\" target=\"_blank\">here</a>.</p></div></noscript>";
 
 //Update checking
-if (!isset($_COOKIE["indicationhascheckedforupdates"])) {
-    $remoteversion = file_get_contents("https://raw.github.com/joshf/Indication/master/version.txt");
-    if (preg_match("/^[0-9.-]{1,}$/", $remoteversion)) {
-        if ($version < $remoteversion) {
-            echo "<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>ModernCount <a href=\"https://github.com/joshf/Indication/releases/$remoteversion\" target=\"_blank\">$remoteversion</a> is available. <a href=\"https://github.com/joshf/Indication#updating\" target=\"_blank\">Click here to update</a>.</p></div>";
-        }
+if (!isset($_COOKIE["indicationupdatecheck"])) {
+    $remoteversion = file_get_contents("https://raw.github.com/joshf/ModernCount/master/version.txt");
+    if (version_compare($version, $remoteversion) < 0) {            
+        echo "<div class=\"alert alert-warning\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>ModernCount <a href=\"https://github.com/joshf/ModernCount/releases/$remoteversion\" class=\"alert-link\" target=\"_blank\">$remoteversion</a> is available. <a href=\"https://github.com/joshf/ModernCount#updating\" class=\"alert-link\" target=\"_blank\">Click here for instructions on how to update</a>.</p></div>";
     }
-}
+} 
 
-?>
-			<div class="panel panel-default">
-            	<div class="panel-heading">
-                	<h3 class="panel-title">
-                    	Downloads
-                    </h3>
-                </div>
-                <div class="panel-body">
-<?php
 $getdownloads = mysql_query("SELECT * FROM `Data`");
 
-echo "<table id=\"downloads\" class=\"table\">
+echo "<table id=\"downloads\" class=\"table table-bordered table-hover table-condensed\">
 <thead>
 <tr>
-<th></th>
 <th>Name</th>
-<th class=\"hidden-phone\">URL</th>
+<th class=\"hidden-xs\">URL</th>
 <th>Count</th>
+<th>Actions</th>
 </tr></thead><tbody>";
 
 while($row = mysql_fetch_assoc($getdownloads)) {
     echo "<tr>";
-    echo "<td><input name=\"id\" type=\"radio\" value=\"" . $row["id"] . "\"></td>";
     echo "<td>" . $row["name"] . "</td>";
-    echo "<td class=\"hidden-phone\">" . $row["url"] . "</td>";
+    echo "<td class=\"hidden-xs\">" . $row["url"] . "</td>";
     echo "<td>" . $row["count"] . "</td>";
+    echo "<td><div class=\"btn-toolbar\" role=\"toolbar\"><div class=\"btn-group\"><a href=\"edit.php?id=" . $row["id"] . "\" class=\"btn btn-default btn-xs\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a><button type=\"button\" class=\"trackinglink btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-share-alt\"></span></button><button type=\"button\" class=\"delete btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-trash\"></span></button></div></div></td>";
     echo "</tr>";
 }
 echo "</tbody></table>";
 
 ?>
-				</div>
-			</div>
-            <div class="btn-group">
-                <button id="edit" class="btn btn-default">Edit</button>
-                <button id="delete" class="btn btn-default">Delete</button>
-                <button id="trackinglink" class="btn btn-default">Copy Tracking Link</button>
-            </div>
-            <br>
-            <br>
-            <div class="alert alert-info">   
-                <b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
-            </div>
-            <div class="well">
+<div class="alert alert-info">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>   
+<b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
+</div>
+<div class="well">
 <?php
 
 $getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM `Data`");
 $resultgetnumberofdownloads = mysql_fetch_assoc($getnumberofdownloads);
-echo "<span class=\"glyphicon glyphicon-list-alt\"></span> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items<br>";
+echo "<i class=\"glyphicon glyphicon-list-alt\"></i> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items<br>";
 
 $gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM `Data`");
 $resultgettotalnumberofdownloads = mysql_fetch_assoc($gettotalnumberofdownloads);
 if (is_null($resultgettotalnumberofdownloads["SUM(count)"])) {
-    echo "<span class=\"glyphicon glyphicon-download\"></span> <b>0</b> total downloads";
+    echo "<i class=\"glyphicon glyphicon-download\"></i> <b>0</b> total downloads";
 } else {
-    echo "<span class=\"glyphicon glyphicon-download\"></span> <b>" . $resultgettotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
+    echo "<i class=\"glyphicon glyphicon-download\"></i> <b>" . $resultgettotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
 }
 
 mysql_close($con);
 
 ?>
-            </div>
-            <p class="muted pull-right">ModernCount <?php echo $version; ?> &copy; <a href="http://modernbb.be" target="_blank">ModernBB</a> Projects <?php echo date("Y"); ?> - Designed with <a href="http://github.com/twbs/bootstrap/" target="_blank">Bootstrap</a></p>
-        </div>
-        <!-- Content end -->
-        <!-- Javascript start -->
-        <script src="../resources/jquery.min.js"></script>
-        <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../resources/datatables/jquery.dataTables.min.js"></script>
-        <script src="../resources/datatables/jquery.dataTables-bootstrap.min.js"></script>
-        <script src="../resources/bootstrap-notify/js/bootstrap-notify.min.js"></script>
-        <script src="../resources/bootbox/bootbox.min.js"></script>
-		<script type="text/javascript">
-		$(document).ready(function() {
-			/* Set Up Notifications */
-			var show_notification = function(type, icon, text, reload) {
-				$(".top-right").notify({
-					type: type,
-					transition: "fade",
-					icon: icon,
-					message: {
-						text: text
-					},
-					onClosed: function() {
-						if (reload == true) {
-							window.location.reload();
-						}
-					}
-				}).show();
-			};
-			/* End */
-			/* Table selection */
-			id_selected = false;
-			$("#downloads input[name=id]").click(function() {
-				id = $("#downloads input[name=id]:checked").val();
-				id_selected = true;
-			});
-			/* End */
-			/* Datatables */
-			$("#downloads").dataTable({
-				"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-				"sPaginationType": "bootstrap",
-				"aoColumnDefs": [{
-					"bSortable": false,
-					"aTargets": [0]
-				}]
-			});
-			$.extend($.fn.dataTableExt.oStdClasses, {
-				"sSortable": "header",
-				"sWrapper": "dataTables_wrapper form-inline"
-			});
-			/* End */  
-			/* Edit */
-			$("#edit").click(function() {
-				if (id_selected == true) {
-					window.location = "edit.php?id="+ id +"";
-				} else {
-					show_notification("info", "info-sign", "No ID selected!");
-				}
-			});
-			/* End */
-			/* Delete */
-			$("#delete").click(function() {
-				if (id_selected == true) {
-					bootbox.confirm("Are you sure you want to delete the selected download?", "No", "Yes", function(result) {
-						if (result == true) {
-							$.ajax({
-								type: "POST",
-								url: "actions/worker.php",
-								data: "action=delete&id="+ id +"",
-								error: function() {
-									show_notification("error", "warning-sign", "Ajax query failed!");
-								},
-								success: function() {
-									show_notification("success", "ok", "Download deleted!", true);
-								}
-							});
-						}
-					});
-				} else {
-					show_notification("info", "info-sign", "No ID selected!");
-				}
-			});
-			/* End */
-			/* Show tracking Link */
-			$("#trackinglink").click(function() {
-				if (id_selected == true) {
-					bootbox.prompt("Tracking Link", "Cancel", "Ok", null, "<?php echo PATH_TO_SCRIPT; ?>/get.php?id="+ id +"");
-					/* Select form automatically (For Firefox) */
-					$(".input-block-level").select();
-				} else {
-					show_notification("info", "info-sign", "No ID selected!");
-				}
-			});
-			/* End */
-		});
-        </script>
-		<!-- Javascript end -->
-    </body>
+</div>
+<hr>
+<div class="footer">
+ModernCount <?php echo $version; ?> &copy; <a href="http://github.com/joshf" target="_blank">Josh Fradley</a> <?php echo date("Y"); ?>. Themed by <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>.
+</div>
+</div>
+<script src="../assets/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../assets/datatables/js/dataTables.bootstrap.min.js"></script>
+<script src="../assets/bootbox.min.js"></script>
+<script src="../assets/bootstrap-notify/js/bootstrap-notify.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    /* Set Up Notifications */
+    var show_notification = function(type, icon, text, reload) {
+        $(".top-right").notify({
+            type: type,
+            transition: "fade",
+            icon: icon,
+            message: {
+                text: text
+            },
+            onClosed: function() {
+                if (reload == true) {
+                    window.location.reload();
+                }
+            }
+        }).show();
+    };
+    /* End */
+    /* Datatables */
+    $("#downloads").dataTable({
+        "aoColumns": [
+            null,
+            null,
+            null,
+            {"bSortable": false}
+        ]
+    });
+    /* End */
+    /* Delete */
+    $("table").on("click", ".delete", function() {
+        var id = $(this).data("id");
+        bootbox.confirm("Are you sure you want to delete this download?", function(result) {
+            if (result == true) {
+                $.ajax({
+                    type: "POST",
+                    url: "actions/worker.php",
+                    data: "action=delete&id="+ id +"",
+                    error: function() {
+                        show_notification("danger", "warning-sign", "Ajax query failed!");
+                    },
+                    success: function() {
+                        show_notification("success", "ok", "Download deleted!", true);
+                    }
+                });
+            }
+        });
+    });
+    /* End */
+    /* Show tracking Link */
+    $("table").on("click", ".trackinglink", function() {
+        var id = $(this).data("id");
+        bootbox.prompt({
+            title: "Tracking Link",
+            value: "<?php echo PATH_TO_SCRIPT; ?>/get.php?id=" + id + "",
+            callback: function(result) {
+                /* This has to be here for some reason */
+            }
+        });
+    });
+    /* End */
+});
+</script>
+</body>
 </html>

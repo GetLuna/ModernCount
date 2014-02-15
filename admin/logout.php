@@ -1,21 +1,10 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
-
-if (!file_exists("../config.php")) {
-	header('Location: ../installer');
-	exit;
-}
-
-require_once("../config.php");
+// Copyright Modern Group 2013-2014
 
 session_start();
 
-session_unset("indication_user");
-
-if (isset($_COOKIE["indication_user_rememberme"])) {
-	setcookie("indication_user_rememberme", "", time()-86400);
-}
+unset($_SESSION["indication_user"]);
 
 header("Location: login.php?logged_out=true");
 

@@ -2,7 +2,7 @@
 
 // Copyright Modern Group 2013-2014
 
-header("Location: ../../admin");
+header("Location: ../index.php");
 
 exit;
 

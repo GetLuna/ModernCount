@@ -1,11 +1,13 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
+// Copyright Modern Group 2013-2014
 
 if (!file_exists("../config.php")) {
     header("Location: index.php");
-	exit;
+    exit;
 }
+
+require_once("../assets/version.php");
 
 require_once("../config.php");
 
@@ -21,9 +23,6 @@ if (!$does_db_exist) {
     die("Error: Database does not exist (" . mysql_error() . "). Check your database settings are correct.");
 }
 
-//Define Version
-$version = "4.0-beta";
-
 if ($version == VERSION) {
     die("Information: The latest version of ModernCount is already installed and an upgrade is not required.");
 }
@@ -31,39 +30,43 @@ if ($version == VERSION) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>ModernCount &middot; Upgrade</title>
-        <meta name="robots" content="noindex, nofollow">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-        <link href="../resources/bootstrap/css/moderncount.css" type="text/css" rel="stylesheet">
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-        <!-- Nav start -->
-        <div class="navbar navbar-default navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">ModernCount</a>
-                </div>
-            </div>
-        </div>
-        <!-- Nav end -->
-        <!-- Content start -->
-        <div class="container">
-            <h2>Upgrade</h2>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ModernCount &middot; Upgrade</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+body {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+</style>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container">
+<div class="navbar-header">
+<a class="navbar-brand" href="#">ModernCount</a>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="page-header">
+<h1>Upgrade</h1>
+</div>
 <?php
 
 $dbhost = DB_HOST;
 $dbuser = DB_USER;
 $dbpassword = DB_PASSWORD;
 $dbname = DB_NAME;
-$user = ADMIN_USER;
-$password = ADMIN_PASSWORD;
 $salt = SALT;
 $website = WEBSITE;
 $pathtoscript = PATH_TO_SCRIPT;
@@ -81,6 +84,7 @@ define('DB_PASSWORD', " . var_export($dbpassword, true) . ");
 define('DB_NAME', " . var_export($dbname, true) . ");
 
 //Other Settings
+define('SALT', " . var_export($salt2, true) . ");
 define('WEBSITE', " . var_export($website, true) . ");
 define('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");
 define('AD_CODE', " . var_export($adcode, true) . ");
@@ -91,22 +95,6 @@ define('VERSION', " . var_export($version, true) . ");
 
 ?>";
 
-//Create Users table
-$createuserstable = "CREATE TABLE `Users` (
-`id` smallint(10) NOT NULL AUTO_INCREMENT,
-`user` varchar(20) NOT NULL,
-`password` varchar(200) NOT NULL,
-`salt` varchar(3) NOT NULL,
-`email` varchar(100) NOT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM;";
-
-mysql_query($createuserstable);
-
-//Add admin user
-mysql_query("INSERT INTO Users (user, password, salt, email)
-VALUES (\"$user\",\"$password\",\"$salt\",\"$user@" . $_SERVER["SERVER_NAME"] . "\")");
-
 //Write Config
 $configfile = fopen("../config.php", "w");
 fwrite($configfile, $updatestring);
@@ -115,15 +103,12 @@ fclose($configfile);
 mysql_close($con);
 
 ?>
-            <div class="alert alert-success">
-                <h4 class="alert-heading">Upgrade Complete</h4>
-                <p>ModernCount has been successfully upgraded to version <?php echo $version; ?>.<p><a href="../admin/login.php" class="btn btn-success">Go To Login</a></p>
-            </div>
-        </div>
-        <!-- Content end -->
-        <!-- Javascript start -->
-        <script src="../resources/jquery.min.js"></script>
-        <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Javascript end -->
-    </body>
+<div class="alert alert-success">
+<h4 class="alert-heading">Upgrade Complete</h4>
+<p>ModernCount has been successfully upgraded to version <?php echo $version; ?>.<p><a href="../admin/login.php" class="btn btn-success">Go To Login</a></p>
+</div>
+</div>
+<script src="../assets/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>

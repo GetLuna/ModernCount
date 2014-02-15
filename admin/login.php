@@ -53,7 +53,7 @@ if (!isset($_SESSION["indication_user"])) {
 body {
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #eee;
+    background-color: #f8f8f8;
 }
 .form-signin {
     max-width: 300px;
@@ -61,32 +61,21 @@ body {
     margin: 0 auto 20px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
     box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
 .form-signin .form-signin-heading {
     margin-bottom: 10px;
 }
-.form-signin input[type="text"], .form-signin input[type="password"] {
-    font-size: 16px;
-    height: auto;
+.form-signin input[type="text"] {
     margin-bottom: 5px;
-    padding: 5px 10px;
 }
 </style>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
 </head>
 <body>
 <div class="container">
 <form role="form" class="form-signin" method="post">
-<div class="text-center"><img src="../assets/icon.png" width="75" height="75" alt="ModernCount Logo"></div>
+<h1 class="text-center">ModernCount</h1>
 <?php 
 if (isset($_GET["login_error"])) {
     echo "<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>Incorrect login.</div>";
@@ -95,11 +84,7 @@ if (isset($_GET["login_error"])) {
 }
 ?>
 <div class="form-group">
-<label for="username">Username</label>
 <input type="text" class="form-control" id="username" name="username" placeholder="Username" autofocus>
-</div>
-<div class="form-group">
-<label for="password">Password</label>
 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
 </div>
 <button type="submit" class="btn btn-default pull-right">Login</button>

@@ -48,7 +48,6 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <title>ModernCount</title>
 <link rel="apple-touch-icon" href="../assets/icon.png">
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../assets/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="../assets/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="../assets/bootstrap-notify/css/bootstrap-notify.min.css" rel="stylesheet">
 <style type="text/css">

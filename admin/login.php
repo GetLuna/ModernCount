@@ -1,7 +1,5 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
-
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
     exit;
@@ -46,7 +44,7 @@ if (!isset($_SESSION["indication_user"])) {
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Indication &middot; Login</title>
+<title>ModernCount &middot; Login</title>
 <meta name="robots" content="noindex, nofollow">
 <link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 <style type="text/css">
@@ -86,7 +84,7 @@ body {
 <body>
 <div class="container">
 <form role="form" class="form-signin" method="post">
-<div class="text-center"><img src="../assets/icon.png" width="75" height="75" alt="Indication Logo"></div>
+<div class="text-center"><img src="../assets/icon.png" width="75" height="75" alt="ModernCount Logo"></div>
 <?php 
 if (isset($_GET["login_error"])) {
     echo "<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>Incorrect login.</div>";

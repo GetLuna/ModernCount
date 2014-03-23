@@ -1,7 +1,5 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
-
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
     exit;
@@ -94,7 +92,7 @@ mysql_close($con);
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Indication &middot; Settings</title>
+<title>ModernCount &middot; Settings</title>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../assets/bootstrap-notify/css/bootstrap-notify.min.css" rel="stylesheet">
 <style type="text/css">
@@ -123,7 +121,7 @@ a.close.pull-right {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="#">Indication</a>
+<a class="navbar-brand" href="#">ModernCount</a>
 </div>
 <div class="navbar-collapse collapse">
 <ul class="nav navbar-nav">
@@ -169,7 +167,7 @@ a.close.pull-right {
 </div>
 <div class="form-group">
 <label for="pathtoscript">Path to Script</label>
-<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to Indication..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
+<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
 </div>
 <h4>Ad Code</h4>
 <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
@@ -197,7 +195,7 @@ if ($currentcountuniqueonlystate == "Enabled" ) {
 <input type="number" class="form-control" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." required>
 </div>
 <h4>Ignore Admin</h4>
-<p>This settings prevents downloads being counted when you are logged in to Indication.</p>
+<p>This settings prevents downloads being counted when you are logged in to ModernCount.</p>
 <div class="radio">
 <?php
 if ($currentignoreadminstate == "Enabled" ) {

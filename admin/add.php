@@ -1,7 +1,5 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
-
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
     exit;
@@ -38,7 +36,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Indication &middot; Add</title>
+<title>ModernCount &middot; Add</title>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
 body {
@@ -62,7 +60,7 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="#">Indication</a>
+<a class="navbar-brand" href="#">ModernCount</a>
 </div>
 <div class="navbar-collapse collapse">
 <ul class="nav navbar-nav">

@@ -1,10 +1,8 @@
 <?php
 
-//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication
-
-//Check if Indication has been installed
+//Check if ModernCount has been installed
 if (file_exists("../config.php")) {
-    die("Information: Indication has already been installed! To reinstall the app please delete your config file and run this installer again.");
+    die("Information: ModernCount has already been installed! To reinstall the app please delete your config file and run this installer again.");
 }
 
 require_once("../assets/version.php");
@@ -97,7 +95,7 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Indication &middot; Installer</title>
+<title>ModernCount &middot; Installer</title>
 <meta name="robots" content="noindex, nofollow">
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
@@ -116,7 +114,7 @@ body {
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
 <div class="navbar-header">
-<a class="navbar-brand" href="#">Indication</a>
+<a class="navbar-brand" href="#">ModernCount</a>
 </div>
 </div>
 </div>
@@ -170,14 +168,14 @@ if (!isset($_POST["install"])) {
 </div>
 <div class="form-group">
 <label for="pathtoscript">Path to Script</label>
-<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to Indication..." required>
+<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount..." required>
 </div>
 <input type="hidden" name="install">
 <input type="submit" class="btn btn-default" value="Install">
 </form>
 <?php
 } else {
-    echo "<div class=\"alert alert-success\"><h4 class=\"alert-heading\">Install Complete</h4><p>Indication has been successfully installed. Please delete the \"installer\" folder from your server, as it poses a potential security risk!</p><p>Your login details are shown below, please make a note of them.</p><ul><li>User: $user</li><li>Password: <i>Password you set during install</i></li></ul><p><a href=\"../admin/login.php\" class=\"btn btn-success\">Go To Login</a></p></div>";
+    echo "<div class=\"alert alert-success\"><h4 class=\"alert-heading\">Install Complete</h4><p>ModernCount has been successfully installed. Please delete the \"installer\" folder from your server, as it poses a potential security risk!</p><p>Your login details are shown below, please make a note of them.</p><ul><li>User: $user</li><li>Password: <i>Password you set during install</i></li></ul><p><a href=\"../admin/login.php\" class=\"btn btn-success\">Go To Login</a></p></div>";
 }
 ?>
 </div>

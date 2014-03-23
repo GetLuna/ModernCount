@@ -1,6 +1,6 @@
 <?php
 
-// Copyright Modern Group 2013-2014
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -31,14 +31,14 @@ if (isset($_POST["password"]) && isset($_POST["username"])) {
     $salt = $userinforesult["salt"];
     $hashedpassword = hash("sha256", $salt . hash("sha256", $password));
     if ($hashedpassword == $userinforesult["password"]) {
-        $_SESSION["_user"] = $userinforesult["id"];
+        $_SESSION["indication_user"] = $userinforesult["id"];
     } else {
         header("Location: login.php?login_error=true");
         exit;
     }
 }
 
-if (!isset($_SESSION["_user"])) {
+if (!isset($_SESSION["indication_user"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,14 +46,14 @@ if (!isset($_SESSION["_user"])) {
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ModernCount &middot; Login</title>
+<title>Indication &middot; Login</title>
 <meta name="robots" content="noindex, nofollow">
 <link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 <style type="text/css">
 body {
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #f8f8f8;
+    background-color: #eee;
 }
 .form-signin {
     max-width: 300px;
@@ -61,21 +61,32 @@ body {
     margin: 0 auto 20px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
     box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
 .form-signin .form-signin-heading {
     margin-bottom: 10px;
 }
-.form-signin input[type="text"] {
+.form-signin input[type="text"], .form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
     margin-bottom: 5px;
+    padding: 5px 10px;
 }
 </style>
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
 <div class="container">
 <form role="form" class="form-signin" method="post">
-<h1 class="text-center">ModernCount</h1>
+<div class="text-center"><img src="../assets/icon.png" width="75" height="75" alt="Indication Logo"></div>
 <?php 
 if (isset($_GET["login_error"])) {
     echo "<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>Incorrect login.</div>";
@@ -84,8 +95,12 @@ if (isset($_GET["login_error"])) {
 }
 ?>
 <div class="form-group">
-<input type="text" class="form-control" id="username" name="username" placeholder="Username" autofocus>
-<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+<label for="username">Username</label>
+<input type="text" class="form-control" id="username" name="username" placeholder="Username..." autofocus>
+</div>
+<div class="form-group">
+<label for="password">Password</label>
+<input type="password" class="form-control" id="password" name="password" placeholder="Password...">
 </div>
 <button type="submit" class="btn btn-default pull-right">Login</button>
 </form>

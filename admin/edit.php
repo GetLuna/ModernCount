@@ -1,6 +1,6 @@
 <?php
 
-// Copyright Modern Group 2013-2014
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
@@ -10,7 +10,7 @@ if (!file_exists("../config.php")) {
 require_once("../config.php");
 
 session_start();
-if (!isset($_SESSION["_user"])) {
+if (!isset($_SESSION["indication_user"])) {
     header("Location: login.php");
     exit; 
 }
@@ -23,7 +23,7 @@ if (!$con) {
 
 mysql_select_db(DB_NAME, $con);
 
-$getusersettings = mysql_query("SELECT `user` FROM `Users` WHERE `id` = \"" . $_SESSION["_user"] . "\"");
+$getusersettings = mysql_query("SELECT `user` FROM `Users` WHERE `id` = \"" . $_SESSION["indication_user"] . "\"");
 if (mysql_num_rows($getusersettings) == 0) {
     session_destroy();
     header("Location: login.php");
@@ -38,7 +38,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ModernCount &middot; Edit</title>
+<title>Indication &middot; Edit</title>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../assets/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
 <style type="text/css">
@@ -47,6 +47,11 @@ body {
     padding-bottom: 30px;
 }
 </style>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -58,7 +63,7 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="#">ModernCount</a>
+<a class="navbar-brand" href="#">Indication</a>
 </div>
 <div class="navbar-collapse collapse">
 <ul class="nav navbar-nav">
@@ -125,10 +130,10 @@ if (isset($_GET["error"])) {
 $getidinfo = mysql_query("SELECT * FROM `Data` WHERE `id` = \"$idtoedit\"");
 $getidinforesult = mysql_fetch_assoc($getidinfo);
 
-echo "<div class=\"form-group\"><label for=\"name\">Name</label><input type=\"text\" class=\"form-control\" id=\"name\" name=\"name\" value=\"" . $getidinforesult["name"] . "\" placeholder=\"Type a name\" /></div>";
-echo "<div class=\"form-group\"><label for=\"id\">ID</label><input type=\"text\" class=\"form-control\" id=\"id\" name=\"id\" value=\"" . $getidinforesult["id"] . "\" placeholder=\"Type a ID\" /></div>";
-echo "<div class=\"form-group\"><label for=\"url\">URL</label><input type=\"text\" class=\"form-control\" id=\"url\" name=\"url\" value=\"" . $getidinforesult["url"] . "\" placeholder=\"Type a URL\" /></div>";
-echo "<div class=\"form-group\"><label for=\"count\">Count</label><input type=\"number\" class=\"form-control\" id=\"count\" name=\"count\" value=\"" . $getidinforesult["count"] . "\" placeholder=\"Type an initial count\"></div>";
+echo "<div class=\"form-group\"><label for=\"name\">Name</label><input type=\"text\" class=\"form-control\" id=\"name\" name=\"name\" value=\"" . $getidinforesult["name"] . "\" placeholder=\"Type a name...\" required></div>";
+echo "<div class=\"form-group\"><label for=\"id\">ID</label><input type=\"text\" class=\"form-control\" id=\"id\" name=\"id\" value=\"" . $getidinforesult["id"] . "\" placeholder=\"Type a ID...\" required></div>";
+echo "<div class=\"form-group\"><label for=\"url\">URL</label><input type=\"text\" class=\"form-control\" id=\"url\" name=\"url\" value=\"" . $getidinforesult["url"] . "\" placeholder=\"Type a URL...\" required></div>";
+echo "<div class=\"form-group\"><label for=\"count\">Count</label><input type=\"number\" class=\"form-control\" id=\"count\" name=\"count\" value=\"" . $getidinforesult["count"] . "\" placeholder=\"Type an initial count...\"></div>";
 
 
 echo "<div class=\"checkbox\"><label>";
@@ -161,7 +166,7 @@ mysql_close($con);
 <div id="passwordentry" style="display: none;">
 <div class="form-group">
 <label for="password">Password</label>
-<input type="password" class="form-control" id="password" name="password" placeholder="Type a password" />
+<input type="password" class="form-control" id="password" name="password" placeholder="Type a password..." required>
 </div>
 </div>
 <input type="hidden" id="idtoedit" name="idtoedit" value="<?php echo $idtoedit; ?>" />

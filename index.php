@@ -1,6 +1,6 @@
 <?php
 
-// Copyright Modern Group 2013-2014
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
 header("Location: admin");
 

@@ -1,6 +1,6 @@
 <?php
 
-// Copyright Modern Group 2013-2014
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
 if (!file_exists("../config.php")) {
     header("Location: index.php");
@@ -24,7 +24,7 @@ if (!$does_db_exist) {
 }
 
 if ($version == VERSION) {
-    die("Information: The latest version of ModernCount is already installed and an upgrade is not required.");
+    die("Information: The latest version of Indication is already installed and an upgrade is not required.");
 }
 
 ?>
@@ -34,7 +34,7 @@ if ($version == VERSION) {
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ModernCount &middot; Upgrade</title>
+<title>Indication &middot; Upgrade</title>
 <meta name="robots" content="noindex, nofollow">
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
@@ -43,12 +43,17 @@ body {
     padding-bottom: 30px;
 }
 </style>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
 <div class="navbar-header">
-<a class="navbar-brand" href="#">ModernCount</a>
+<a class="navbar-brand" href="#">Indication</a>
 </div>
 </div>
 </div>
@@ -100,7 +105,7 @@ mysql_close($con);
 ?>
 <div class="alert alert-success">
 <h4 class="alert-heading">Upgrade Complete</h4>
-<p>ModernCount has been successfully upgraded to version <?php echo $version; ?>.<p><a href="../admin/login.php" class="btn btn-success">Go To Login</a></p>
+<p>Indication has been successfully upgraded to version <?php echo $version; ?>.<p><a href="../admin/login.php" class="btn btn-success">Go To Login</a></p>
 </div>
 </div>
 <script src="../assets/jquery.min.js"></script>

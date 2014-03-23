@@ -1,10 +1,10 @@
 <?php
 
-// Copyright Modern Group 2013-2014
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
 session_start();
 
-unset($_SESSION["_user"]);
+unset($_SESSION["indication_user"]);
 
 header("Location: login.php?logged_out=true");
 

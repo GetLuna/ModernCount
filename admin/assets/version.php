@@ -2,8 +2,7 @@
 
 //Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
-header("Location: ../../admin");
-
-exit;
+//Define version across the script
+$version = "5.0-dev"
 
 ?>

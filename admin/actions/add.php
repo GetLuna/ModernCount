@@ -1,6 +1,6 @@
 <?php
 
-// Copyright Modern Group 2013-2014
+//Indication, Copyright Josh Fradley (http://github.com/joshf/Indication)
 
 if (!file_exists("../../config.php")) {
     header("Location: ../../installer");
@@ -10,7 +10,7 @@ if (!file_exists("../../config.php")) {
 require_once("../../config.php");
 
 session_start();
-if (!isset($_SESSION["_user"])) {
+if (!isset($_SESSION["indication_user"])) {
     header("Location: login.php");
     exit; 
 }

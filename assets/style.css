@@ -178,80 +178,6 @@ footer {
 	border-color: #007dce;
 }
 
-/* Styles page */
-@media all and (min-width:1200px) {
-	.modal-lg {
-		width: 1200px;
-	}
-}
-
-.style-entry {
-	margin-bottom: -15px;
-}
-
-.thumbnail {
-	margin-bottom: 0;
-}
-
-.panel-style .thumbnail {
-	border: none;
-	padding: 0;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
-}
-
-.panel-style .thumbnail img {
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
-}
-
-.panel-style .panel-footer {
-	border: none;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
-}
-
-.panel-style {
-	border: 1px #c4c4c4 solid;
-	border-radius: 8px;
-}
-
-/* Pills */
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-	background-color: #0072dc;
-}
-
-/* Label */
-.label {
-    letter-spacing: 0.6px;
-    padding: .4em .6em .3em;
-}
-
-.label-default {
-	background-color: #ddd;
-	color: #6e6e6e;
-}
-
-.label-primary {
-	background-color: #0072dc;
-}
-
-.label-success {
-	background-color: #76b900;
-}
-
-.label-warning {
-	background-color: #ffc000;
-}
-
-.label-danger {
-	background-color: #ff5400;
-}
-
-.label-info {
-	background-color: #c281d5;
-}
-
 /* Alerts */
 .alert-success {
 	background: #e5ffb8;
@@ -291,30 +217,4 @@ footer {
 
 .alert-danger .alert-link {
 	color: #a93800;
-}
-
-/* Progress bar */
-.progress {
-	box-shadow: none;
-}
-
-.progress-bar {
-	background-color: #0072dc;
-	box-shadow: none;
-}
-
-.progress-bar-success {
-	background-color: #76b900;
-}
-
-.progress-bar-warning {
-	background-color: #ffc000;
-}
-
-.progress-bar-danger {
-	background-color: #ff5400;
-}
-
-.progress-bar-info {
-	background-color: #c281d5;
 }

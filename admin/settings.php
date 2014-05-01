@@ -136,56 +136,60 @@ mysql_close($con);
 </div>
 <div class="notifications top-right"></div>
 <form role="form" method="post" autocomplete="off">
-<!-- Nav tabs -->
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#user" data-toggle="tab">User Details</a></li>
-  <li><a href="#site" data-toggle="tab">Site settings</a></li>
-  <li><a href="#ad" data-toggle="tab">Ad code</a></li>
-  <li><a href="#unique" data-toggle="tab">Unique visitors</a></li>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content">
-  <div class="tab-pane active" id="user">
-<div class="form-group">
-<label for="user">User</label>
-<input type="text" class="form-control" id="user" name="user" value="<?php echo $resultgetusersettings["user"]; ?>" placeholder="Enter a username..." required>
+<div class="panel panel-default">
+	<div class="panel-heading">
+    	<h3 class="panel-title">User details<span class="pull-right"><button type="submit" class="btn btn-primary">Save</button></span></h3>
+    </div>
+	<div class="panel-body">
+        <div class="form-group">
+            <label for="user">User</label>
+            <input type="text" class="form-control" id="user" name="user" value="<?php echo $resultgetusersettings["user"]; ?>" placeholder="Enter a username" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="<?php echo $resultgetusersettings["email"]; ?>" placeholder="Type an email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" value="<?php echo $resultgetusersettings["password"]; ?>" placeholder="Enter a password" required>
+        </div>
+	</div>
 </div>
-<div class="form-group">
-<label for="email">Email</label>
-<input type="email" class="form-control" id="email" name="email" value="<?php echo $resultgetusersettings["email"]; ?>" placeholder="Type an email..." required>
+<div class="panel panel-default">
+	<div class="panel-heading">
+    	<h3 class="panel-title">Site settings<span class="pull-right"><button type="submit" class="btn btn-primary">Save</button></span></h3>
+    </div>
+	<div class="panel-body">
+        <div class="form-group">
+            <label for="website">Website</label>
+            <input type="text" class="form-control" id="website" name="website" value="<?php echo $currentwebsite; ?>" placeholder="Enter your websites name" required>
+        </div>
+        <div class="form-group">
+            <label for="pathtoscript">Path to Script</label>
+            <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount" pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
+        </div>
+	</div>
 </div>
-<div class="form-group">
-<label for="password">Password</label>
-<input type="password" class="form-control" id="password" name="password" value="<?php echo $resultgetusersettings["password"]; ?>" placeholder="Enter a password..." required>
+<div class="panel panel-default">
+	<div class="panel-heading">
+    	<h3 class="panel-title">Ad settings<span class="pull-right"><button type="submit" class="btn btn-primary">Save</button></span></h3>
+    </div>
+	<div class="panel-body">
+        <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
+            <div class="alert alert-warning">
+                <b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
+            <div class="form-group">
+            <textarea class="form-control" id="advertcode" name="advertcode" rows="3" placeholder="Enter a ad code"><?php echo $currentadcode; ?></textarea>
+        </div>
+	</div>
 </div>
-  
-  </div>
-  <div class="tab-pane" id="site">
-<div class="form-group">
-<label for="website">Website</label>
-<input type="text" class="form-control" id="website" name="website" value="<?php echo $currentwebsite; ?>" placeholder="Enter your websites name..." required>
-</div>
-<div class="form-group">
-<label for="pathtoscript">Path to Script</label>
-<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
-</div>
-  
-  </div>
-  <div class="tab-pane" id="ad">
-<p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
-<div class="alert alert-warning">
-<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-<b>Warning:</b> On some server configurations using HTML code here may produce errors.</div>
-<div class="form-group">
-<textarea class="form-control" id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
-</div>
-  
-  </div>
-  <div class="tab-pane" id="unique">
-<h4>Unique visitors</h4>
-<p>This settings allows you to make sure an individual user's clicks are only counted once.</p>
-<div class="radio">
+<div class="panel panel-default">
+	<div class="panel-heading">
+    	<h3 class="panel-title">Unique visitors<span class="pull-right"><button type="submit" class="btn btn-primary">Save</button></span></h3>
+    </div>
+	<div class="panel-body">
+        <p>This settings allows you to make sure an individual user's clicks are only counted once.</p>
+        <div class="radio">
 <?php
 if ($currentcountuniqueonlystate == "Enabled" ) {
     echo "<label><input type=\"radio\" id=\"countuniqueonlystateenable\" name=\"countuniqueonlystate\" value=\"Enabled\" checked=\"checked\"> Enabled</label></div>
@@ -195,14 +199,20 @@ if ($currentcountuniqueonlystate == "Enabled" ) {
      <div class=\"radio\"><label><input type=\"radio\" id=\"countuniqueonlystatedisable\" name=\"countuniqueonlystate\" value=\"Disabled\" checked=\"checked\"> Disabled</label>";   
 }   
 ?> 
+        </div>
+        <div class="form-group">
+            <label for="countuniqueonlytime">Time to consider a user unique (hours)</label>
+            <input type="number" class="form-control" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time" required>
+        </div>
+	</div>
 </div>
-<div class="form-group">
-<label for="countuniqueonlytime">Time to consider a user unique (hours)</label>
-<input type="number" class="form-control" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." required>
-</div>
-<h4>Ignore admin</h4>
-<p>This settings prevents downloads being counted when you are logged in to ModernCount.</p>
-<div class="radio">
+<div class="panel panel-default">
+	<div class="panel-heading">
+    	<h3 class="panel-title">Ignore admin<span class="pull-right"><button type="submit" class="btn btn-primary">Save</button></span></h3>
+    </div>
+	<div class="panel-body">
+        <p>This settings prevents downloads being counted when you are logged in to ModernCount.</p>
+        <div class="radio">
 <?php
 if ($currentignoreadminstate == "Enabled" ) {
     echo "<label><input type=\"radio\" id=\"ignoreadminstateenable\" name=\"ignoreadminstate\" value=\"Enabled\" checked=\"checked\"> Enabled</label></div>
@@ -212,11 +222,9 @@ if ($currentignoreadminstate == "Enabled" ) {
     <div class=\"radio\"><label><input type=\"radio\" id=\"ignoreadminstatedisable\" name=\"ignoreadminstate\" value=\"Disabled\" checked=\"checked\"> Disabled</label>";   
 }   
 ?> 
+        </div>
+	</div>
 </div>
-  
-  </div>
-</div>
-<button type="submit" class="btn btn-default">Save</button>
 </form>
 <footer>
 	Copyright <a href="http://studio384.be">Studio 384</a> &middot ModernCount <?php echo $version ?>

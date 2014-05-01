@@ -2,6 +2,8 @@
 
 // ModernCount Copyright Studio 384 2013-2014
 
+require_once("../assets/version.php");
+
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
     exit;
@@ -96,22 +98,8 @@ mysql_close($con);
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ModernCount &middot; Settings</title>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
 <link href="../assets/bootstrap-notify/css/bootstrap-notify.min.css" rel="stylesheet">
-<style type="text/css">
-body {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-/* Fix weird notification appearance */
-a.close.pull-right {
-    padding-left: 10px;
-}
-</style>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -148,7 +136,17 @@ a.close.pull-right {
 </div>
 <div class="notifications top-right"></div>
 <form role="form" method="post" autocomplete="off">
-<h4>User Details</h4>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#user" data-toggle="tab">User Details</a></li>
+  <li><a href="#site" data-toggle="tab">Site settings</a></li>
+  <li><a href="#ad" data-toggle="tab">Ad code</a></li>
+  <li><a href="#unique" data-toggle="tab">Unique visitors</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="user">
 <div class="form-group">
 <label for="user">User</label>
 <input type="text" class="form-control" id="user" name="user" value="<?php echo $resultgetusersettings["user"]; ?>" placeholder="Enter a username..." required>
@@ -161,7 +159,9 @@ a.close.pull-right {
 <label for="password">Password</label>
 <input type="password" class="form-control" id="password" name="password" value="<?php echo $resultgetusersettings["password"]; ?>" placeholder="Enter a password..." required>
 </div>
-<h4>Site Settings</h4>
+  
+  </div>
+  <div class="tab-pane" id="site">
 <div class="form-group">
 <label for="website">Website</label>
 <input type="text" class="form-control" id="website" name="website" value="<?php echo $currentwebsite; ?>" placeholder="Enter your websites name..." required>
@@ -170,7 +170,9 @@ a.close.pull-right {
 <label for="pathtoscript">Path to Script</label>
 <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $currentpathtoscript; ?>" placeholder="Type the path to ModernCount..." pattern="(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-?]*)*\/?" data-validation-pattern-message="Please enter a valid URL" required>
 </div>
-<h4>Ad Code</h4>
+  
+  </div>
+  <div class="tab-pane" id="ad">
 <p>Show an advert before user can continue to their download. This can be changed on a per download basis.</p>
 <div class="alert alert-warning">
 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -178,7 +180,10 @@ a.close.pull-right {
 <div class="form-group">
 <textarea class="form-control" id="advertcode" name="advertcode" placeholder="Enter a ad code..."><?php echo $currentadcode; ?></textarea>
 </div>
-<h4>Count Unique Visitors Only</h4>
+  
+  </div>
+  <div class="tab-pane" id="unique">
+<h4>Unique visitors</h4>
 <p>This settings allows you to make sure an individual user's clicks are only counted once.</p>
 <div class="radio">
 <?php
@@ -195,7 +200,7 @@ if ($currentcountuniqueonlystate == "Enabled" ) {
 <label for="countuniqueonlytime">Time to consider a user unique (hours)</label>
 <input type="number" class="form-control" id="countuniqueonlytime" name="countuniqueonlytime" value="<?php echo $currentcountuniqueonlytime; ?>" placeholder="Enter a time..." required>
 </div>
-<h4>Ignore Admin</h4>
+<h4>Ignore admin</h4>
 <p>This settings prevents downloads being counted when you are logged in to ModernCount.</p>
 <div class="radio">
 <?php
@@ -208,8 +213,14 @@ if ($currentignoreadminstate == "Enabled" ) {
 }   
 ?> 
 </div>
+  
+  </div>
+</div>
 <button type="submit" class="btn btn-default">Save</button>
 </form>
+<footer>
+	Copyright <a href="http://studio384.be">Studio 384</a> &middot ModernCount <?php echo $version ?>
+</footer>
 </div>
 <script src="../assets/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

@@ -54,7 +54,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <link href="../assets/bootstrap-notify/css/bootstrap-notify.min.css" rel="stylesheet">
 <style type="text/css">
 tr td:last-child {
-    width: 74px;
+    width: 70px;
     white-space: nowrap;
 }
 </style>
@@ -107,15 +107,19 @@ if (!isset($_COOKIE["lunaupdatecheck"])) {
 
 $getdownloads = mysql_query("SELECT * FROM `Data`");
 
-echo "<table id=\"downloads\" class=\"table table-bordered table-hover table-condensed\">
-<thead>
-<tr>
-<th>Name</th>
-<th class=\"hidden-xs\">URL</th>
-<th>Count</th>
-<th>Actions</th>
-</tr></thead><tbody>";
+?>
+<table id="downloads" class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th class="hidden-xs">URL</th>
+            <th>Count</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
 
+<?php
 while($row = mysql_fetch_assoc($getdownloads)) {
     echo "<tr>";
     echo "<td>" . $row["name"] . "</td>";
@@ -124,9 +128,9 @@ while($row = mysql_fetch_assoc($getdownloads)) {
     echo "<td><div class=\"btn-toolbar\" role=\"toolbar\"><div class=\"btn-group\"><a href=\"edit.php?id=" . $row["id"] . "\" class=\"btn btn-default btn-xs\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a><button type=\"button\" class=\"trackinglink btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-share-alt\"></span></button><button type=\"button\" class=\"delete btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-trash\"></span></button></div></div></td>";
     echo "</tr>";
 }
-echo "</tbody></table>";
-
 ?>
+    </tbody>
+</table>
 <div class="well">
 <?php
 

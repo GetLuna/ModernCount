@@ -1,5 +1,7 @@
 <?php
 
+// ModernCount Copyright Studio 384 2013-2014
+
 //Check if ModernCount has been installed
 if (file_exists("../config.php")) {
     die("Information: ModernCount has already been installed! To reinstall the app please delete your config file and run this installer again.");
@@ -31,7 +33,7 @@ if (isset($_POST["install"])) {
     $randsalt2 = md5(uniqid(rand(), true));
     $salt2 = substr($randsalt2, 0, 3);
     
-    $installstring = "<?php\n\n//Database Settings\ndefine('DB_HOST', " . var_export($dbhost, true) . ");\ndefine('DB_USER', " . var_export($dbuser, true) . ");\ndefine('DB_PASSWORD', " . var_export($dbpassword, true) . ");\ndefine('DB_NAME', " . var_export($dbname, true) . ");\n\n//Other Settings\ndefine('SALT', " . var_export($salt2, true) . ");\ndefine('WEBSITE', " . var_export($website, true) . ");\ndefine('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");\ndefine('AD_CODE', 'Ad code here');\ndefine('COUNT_UNIQUE_ONLY_STATE', 'Enabled');\ndefine('COUNT_UNIQUE_ONLY_TIME', '24');\ndefine('IGNORE_ADMIN_STATE', 'Disabled');\ndefine('VERSION', " . var_export($version, true) . ");\n\n?>";
+    $installstring = "<?php\n\n//Database Settings\ndefine('DB_HOST', " . var_export($dbhost, true) . ");\ndefine('DB_USER', " . var_export($dbuser, true) . ");\ndefine('DB_PASSWORD', " . var_export($dbpassword, true) . ");\ndefine('DB_NAME', " . var_export($dbname, true) . ");\n\n//Other Settings\ndefine('SALT', " . var_export($salt2, true) . ");\ndefine('WEBSITE', " . var_export($website, true) . ");\ndefine('PATH_TO_SCRIPT', " . var_export($pathtoscript, true) . ");\ndefine('AD_CODE', 'Ad code here...');\ndefine('COUNT_UNIQUE_ONLY_STATE', 'Enabled');\ndefine('COUNT_UNIQUE_ONLY_TIME', '24');\ndefine('IGNORE_ADMIN_STATE', 'Disabled');\ndefine('VERSION', " . var_export($version, true) . ");\n\n?>";
 
     //Check if we can connect
     $con = mysql_connect($dbhost, $dbuser, $dbpassword);
@@ -98,7 +100,17 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
 <title>ModernCount &middot; Installer</title>
 <meta name="robots" content="noindex, nofollow">
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../assets/style.css" rel="stylesheet">
+<style type="text/css">
+body {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+</style>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -116,73 +128,58 @@ $pathtoscript = rtrim($pathtoscriptwithslash, "/");
 if (!isset($_POST["install"])) {
 ?>	
 <form role="form" method="post" autocomplete="off">
-<div class="row">
-    <div class="col-sm-4">
-        <h4>Database Settings</h4>
-        <div class="form-group">
-        <label for="dbhost">Database Host</label>
-        <input type="text" class="form-control" id="dbhost" name="dbhost" value="localhost" placeholder="Type your database host" required>
-        </div>
-        <div class="form-group">
-        <label for="dbuser">Database User</label>
-        <input type="text" class="form-control" id="dbuser" name="dbuser" placeholder="Type your database user" required>
-        </div>
-        <div class="form-group">
-        <label for="dbpassword">Database Password</label>
-        <input type="password" class="form-control" id="dbpassword" name="dbpassword" placeholder="Type your database password" required>
-        </div>
-        <div class="form-group">
-        <label for="dbname">Database Name</label>
-        <input type="text" class="form-control" id="dbname" name="dbname" placeholder="Type your database name" required>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <h4>User Details</h4>
-        <div class="form-group">
-        <label for="user">User</label>
-        <input type="text" class="form-control" id="user" name="user" placeholder="Type a username" required>
-        </div>
-        <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Type an email" required>
-        </div>
-        <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Type a password" required>
-        </div>
-        <div class="form-group">
-        <label for="passwordconfirm">Confirm Password</label>
-        <input type="password" class="form-control" id="passwordconfirm" name="passwordconfirm" placeholder="Type your password again" required>
-        <span class="help-block">It is recommended that your password be at least 6 characters long</span>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <h4>Other Settings</h4>
-        <div class="form-group">
-        <label for="website">Website Name</label>
-        <input type="text" class="form-control" id="website" name="website" placeholder="Type your websites name" required>
-        </div>
-        <div class="form-group">
-        <label for="pathtoscript">Path to Script</label>
-        <input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount" required>
-        </div>
-        <input type="hidden" name="install">
-        <input type="submit" class="btn btn-default" value="Install">
-    </div>
+<h4>Database Settings</h4>
+<div class="form-group">
+<label for="dbhost">Database Host</label>
+<input type="text" class="form-control" id="dbhost" name="dbhost" value="localhost" placeholder="Type your database host..." required>
 </div>
+<div class="form-group">
+<label for="dbuser">Database User</label>
+<input type="text" class="form-control" id="dbuser" name="dbuser" placeholder="Type your database user..." required>
+</div>
+<div class="form-group">
+<label for="dbpassword">Database Password</label>
+<input type="password" class="form-control" id="dbpassword" name="dbpassword" placeholder="Type your database password..." required>
+</div>
+<div class="form-group">
+<label for="dbname">Database Name</label>
+<input type="text" class="form-control" id="dbname" name="dbname" placeholder="Type your database name..." required>
+</div>
+<h4>User Details</h4>
+<div class="form-group">
+<label for="user">User</label>
+<input type="text" class="form-control" id="user" name="user" placeholder="Type a username..." required>
+</div>
+<div class="form-group">
+<label for="email">Email</label>
+<input type="email" class="form-control" id="email" name="email" placeholder="Type an email..." required>
+</div>
+<div class="form-group">
+<label for="password">Password</label>
+<input type="password" class="form-control" id="password" name="password" placeholder="Type a password..." required>
+</div>
+<div class="form-group">
+<label for="passwordconfirm">Confirm Password</label>
+<input type="password" class="form-control" id="passwordconfirm" name="passwordconfirm" placeholder="Type your password again..." required>
+<span class="help-block">It is recommended that your password be at least 6 characters long</span>
+</div>
+<h4>Other Settings</h4>
+<div class="form-group">
+<label for="website">Website Name</label>
+<input type="text" class="form-control" id="website" name="website" placeholder="Type your websites name..." required>
+</div>
+<div class="form-group">
+<label for="pathtoscript">Path to Script</label>
+<input type="text" class="form-control" id="pathtoscript" name="pathtoscript" value="<?php echo $pathtoscript; ?>" placeholder="Type the path to ModernCount..." required>
+</div>
+<input type="hidden" name="install">
+<input type="submit" class="btn btn-default" value="Install">
 </form>
 <?php
-	} else {
+} else {
+    echo "<div class=\"alert alert-success\"><h4 class=\"alert-heading\">Install Complete</h4><p>ModernCount has been successfully installed. Please delete the \"installer\" folder from your server, as it poses a potential security risk!</p><p>Your login details are shown below, please make a note of them.</p><ul><li>User: $user</li><li>Password: <i>Password you set during install</i></li></ul><p><a href=\"../admin/login.php\" class=\"btn btn-success\">Go To Login</a></p></div>";
+}
 ?>
-	<h2>Installation complete</h2>
-    <p>ModernCount has been installed successfully. It's recommended to remove the "installer" folder from your server, as it is a potential security risk. You can now login with the account you just maid.</p>
-    <a href="../admin/login.php" class="btn btn-success">Login</a>";
-<?php
-	}
-?>
-<footer>
-	Copyright <a href="http://studio384.be">Studio 384</a> &middot ModernCount <?php echo $version ?>
-</footer>
 </div>
 <script src="../assets/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
@@ -191,7 +188,7 @@ if (!isset($_POST["install"])) {
 $(document).ready(function() {
     var metrics = [
         ["#dbhost", "presence", "Database host cannot be empty!"],
-        ["#dbuser", "presence", "Database user cannot be empty!"],       
+        ["#dbuser", "presence", "Database user cannot be empty!"],
         ["#dbname", "presence", "Database name cannot be empty!"],
         ["#user", "presence", "User name cannot be empty!"],
         ["#email", "email", "Enter a valid email address"],

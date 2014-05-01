@@ -1,6 +1,6 @@
 <?php
 
-// Copyright Modern Group 2013-2014
+// ModernCount Copyright Studio 384 2013-2014
 
 require_once("../assets/version.php");
 
@@ -12,13 +12,13 @@ if (!file_exists("../config.php")) {
 require_once("../config.php");
 
 session_start();
-if (!isset($_SESSION["_user"])) {
+if (!isset($_SESSION["indication_user"])) {
     header("Location: login.php");
     exit; 
 }
 
 //Set cookie so we dont constantly check for updates
-setcookie("updatecheck", time(), time()+604800);
+setcookie("indicationupdatecheck", time(), time()+604800);
 
 @$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 if (!$con) {
@@ -30,7 +30,7 @@ if (!$con) {
     }
 }
 
-$getusersettings = mysql_query("SELECT `user` FROM `Users` WHERE `id` = \"" . $_SESSION["_user"] . "\"");
+$getusersettings = mysql_query("SELECT `user` FROM `Users` WHERE `id` = \"" . $_SESSION["indication_user"] . "\"");
 if (mysql_num_rows($getusersettings) == 0) {
     session_destroy();
     header("Location: login.php");
@@ -48,6 +48,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <title>ModernCount</title>
 <link rel="apple-touch-icon" href="../assets/icon.png">
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="../assets/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="../assets/bootstrap-notify/css/bootstrap-notify.min.css" rel="stylesheet">
 <style type="text/css">
@@ -61,10 +62,15 @@ a.close.pull-right {
 }
 /* Slim down the actions column */
 tr td:last-child {
-    width: 64px;
+    width: 74px;
     white-space: nowrap;
 }
 </style>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -106,8 +112,8 @@ tr td:last-child {
 echo "<noscript><div class=\"alert alert-info\"><h4 class=\"alert-heading\">Information</h4><p>Please enable JavaScript to use ModernCount. For instructions on how to do this, see <a href=\"http://www.activatejavascript.org\" class=\"alert-link\" target=\"_blank\">here</a>.</p></div></noscript>";
 
 //Update checking
-if (!isset($_COOKIE["updatecheck"])) {
-    $remoteversion = file_get_contents("https://raw.github.com/ModernBB/ModernCount/master/version.txt");
+if (!isset($_COOKIE["indicationupdatecheck"])) {
+    $remoteversion = file_get_contents("https://raw.github.com/joshf/ModernCount/master/version.txt");
     if (version_compare($version, $remoteversion) < 0) {            
         echo "<div class=\"alert alert-warning\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>ModernCount <a href=\"https://github.com/joshf/ModernCount/releases/$remoteversion\" class=\"alert-link\" target=\"_blank\">$remoteversion</a> is available. <a href=\"https://github.com/joshf/ModernCount#updating\" class=\"alert-link\" target=\"_blank\">Click here for instructions on how to update</a>.</p></div>";
     }
@@ -118,10 +124,10 @@ $getdownloads = mysql_query("SELECT * FROM `Data`");
 echo "<table id=\"downloads\" class=\"table table-bordered table-hover table-condensed\">
 <thead>
 <tr>
-<th class=\"col-md-4 col-xs-6\">Name</th>
-<th class=\"hidden-xs col-md-6\">URL</th>
-<th class=\"col-md-1 col-xs-3\">Count</th>
-<th class=\"col-md-1 col-xs-3\">Actions</th>
+<th>Name</th>
+<th class=\"hidden-xs\">URL</th>
+<th>Count</th>
+<th>Actions</th>
 </tr></thead><tbody>";
 
 while($row = mysql_fetch_assoc($getdownloads)) {
@@ -129,18 +135,22 @@ while($row = mysql_fetch_assoc($getdownloads)) {
     echo "<td>" . $row["name"] . "</td>";
     echo "<td class=\"hidden-xs\">" . $row["url"] . "</td>";
     echo "<td>" . $row["count"] . "</td>";
-    echo "<td><div class=\"btn-group\"><a href=\"edit.php?id=" . $row["id"] . "\" class=\"btn btn-default btn-xs\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a><button type=\"button\" class=\"trackinglink btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-share-alt\"></span></button><button type=\"button\" class=\"delete btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-trash\"></span></button></div></td>";
+    echo "<td><div class=\"btn-toolbar\" role=\"toolbar\"><div class=\"btn-group\"><a href=\"edit.php?id=" . $row["id"] . "\" class=\"btn btn-default btn-xs\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a><button type=\"button\" class=\"trackinglink btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-share-alt\"></span></button><button type=\"button\" class=\"delete btn btn-default btn-xs\" data-id=\"" . $row["id"] . "\"><span class=\"glyphicon glyphicon-trash\"></span></button></div></div></td>";
     echo "</tr>";
 }
 echo "</tbody></table>";
 
 ?>
+<div class="alert alert-info">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>   
+<b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
+</div>
 <div class="well">
 <?php
 
 $getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM `Data`");
 $resultgetnumberofdownloads = mysql_fetch_assoc($getnumberofdownloads);
-echo "<i class=\"glyphicon glyphicon-list-alt\"></i> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items and ";
+echo "<i class=\"glyphicon glyphicon-list-alt\"></i> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items<br>";
 
 $gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM `Data`");
 $resultgettotalnumberofdownloads = mysql_fetch_assoc($gettotalnumberofdownloads);
@@ -156,7 +166,7 @@ mysql_close($con);
 </div>
 <hr>
 <div class="footer">
-ModernCount <?php echo $version; ?> &copy; <a href="http://github.com/ModernBB" target="_blank">ModernBB Group</a> <?php echo date("Y"); ?>
+ModernCount <?php echo $version; ?> &copy; <a href="http://github.com/joshf" target="_blank">Josh Fradley</a> <?php echo date("Y"); ?>. Themed by <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>.
 </div>
 </div>
 <script src="../assets/jquery.min.js"></script>

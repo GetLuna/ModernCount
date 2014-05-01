@@ -1,5 +1,7 @@
 <?php
 
+// ModernCount Copyright Studio 384 2013-2014
+
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
     exit;

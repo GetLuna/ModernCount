@@ -8,7 +8,7 @@
 
 /* General fixes */
 body {
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 td, th {
@@ -121,6 +121,11 @@ footer {
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 	border: none;
+	background: #dc9fee;
+}
+
+.panel-title .btn:hover {
+	background: #b46bc9;
 }
 
 .btn-primary {

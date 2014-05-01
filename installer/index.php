@@ -176,7 +176,7 @@ if (!isset($_POST["install"])) {
 ?>
 	<h2>Installation complete</h2>
     <p>ModernCount has been installed successfully. It's recommended to remove the "installer" folder from your server, as it is a potential security risk. You can now login with the account you just maid.</p>
-    <a href="../admin/login.php" class="btn btn-success">Go To Login</a>";
+    <a href="../admin/login.php" class="btn btn-success">Login</a>";
 <?php
 	}
 ?>

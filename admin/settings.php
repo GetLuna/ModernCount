@@ -244,12 +244,6 @@ $(document).ready(function() {
         $.cookie("settings_updated", "true");
     });
     var metrics = [
-        ["#user", "presence", "User name cannot be empty!"],
-        ["#email", "email", "Enter a valid email address"],
-        ["#password", "presence", "Passwords should be more than 6 characters"],
-        ["#website", "presence", "Website cannot be empty!"],
-        ["#pathtoscript", "presence", "Path to script cannot be empty!"],
-        ["#countuniqueonlytime", "min-num:1", "Time must be higer than 1"]
     ];
     $("form").nod(metrics);
 });

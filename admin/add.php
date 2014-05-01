@@ -2,6 +2,8 @@
 
 // ModernCount Copyright Studio 384 2013-2014
 
+require_once("../assets/version.php");
+
 if (!file_exists("../config.php")) {
     header("Location: ../installer");
     exit;
@@ -40,17 +42,7 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ModernCount &middot; Add</title>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-body {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-</style>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
+<link href="../assets/style.css" rel="stylesheet">
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -62,7 +54,6 @@ body {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="#">ModernCount</a>
 </div>
 <div class="navbar-collapse collapse">
 <ul class="nav navbar-nav">
@@ -136,6 +127,9 @@ if (isset($_GET["error"])) {
 </div>
 <button type="submit" class="btn btn-default">Add</button>
 </form>
+<footer>
+	Copyright <a href="http://studio384.be">Studio 384</a> &middot ModernCount <?php echo $version ?>
+</footer>
 </div>
 <script src="../assets/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

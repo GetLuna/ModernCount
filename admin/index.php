@@ -113,7 +113,7 @@ echo "<noscript><div class=\"alert alert-info\"><h4 class=\"alert-heading\">Info
 
 //Update checking
 if (!isset($_COOKIE["lunaupdatecheck"])) {
-    $remoteversion = file_get_contents("https://raw.github.com/joshf/ModernCount/master/version.txt");
+    $remoteversion = file_get_contents("https://raw.github.com/ModernBB/ModernCount/master/version.txt");
     if (version_compare($version, $remoteversion) < 0) {            
         echo "<div class=\"alert alert-warning\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>ModernCount <a href=\"https://github.com/joshf/ModernCount/releases/$remoteversion\" class=\"alert-link\" target=\"_blank\">$remoteversion</a> is available. <a href=\"https://github.com/joshf/ModernCount#updating\" class=\"alert-link\" target=\"_blank\">Click here for instructions on how to update</a>.</p></div>";
     }

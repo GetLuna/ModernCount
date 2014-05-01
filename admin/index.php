@@ -48,29 +48,16 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <title>ModernCount</title>
 <link rel="apple-touch-icon" href="../assets/icon.png">
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
 <link href="../assets/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="../assets/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="../assets/bootstrap-notify/css/bootstrap-notify.min.css" rel="stylesheet">
 <style type="text/css">
-body {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-/* Fix weird notification appearance */
-a.close.pull-right {
-    padding-left: 10px;
-}
-/* Slim down the actions column */
 tr td:last-child {
     width: 74px;
     white-space: nowrap;
 }
 </style>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -82,7 +69,6 @@ tr td:last-child {
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="#">ModernCount</a>
 </div>
 <div class="navbar-collapse collapse">
 <ul class="nav navbar-nav">
@@ -141,33 +127,28 @@ while($row = mysql_fetch_assoc($getdownloads)) {
 echo "</tbody></table>";
 
 ?>
-<div class="alert alert-info">
-<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>   
-<b>Info:</b> To edit, delete or show the tracking link for a download please select the radio button next to it.  
-</div>
 <div class="well">
 <?php
 
 $getnumberofdownloads = mysql_query("SELECT COUNT(id) FROM `Data`");
 $resultgetnumberofdownloads = mysql_fetch_assoc($getnumberofdownloads);
-echo "<i class=\"glyphicon glyphicon-list-alt\"></i> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items<br>";
+echo "<i class=\"glyphicon glyphicon-download\"></i> <b>" . $resultgetnumberofdownloads["COUNT(id)"] . "</b> items and ";
 
 $gettotalnumberofdownloads = mysql_query("SELECT SUM(count) FROM `Data`");
 $resultgettotalnumberofdownloads = mysql_fetch_assoc($gettotalnumberofdownloads);
 if (is_null($resultgettotalnumberofdownloads["SUM(count)"])) {
-    echo "<i class=\"glyphicon glyphicon-download\"></i> <b>0</b> total downloads";
+    echo "<b>0</b> total downloads";
 } else {
-    echo "<i class=\"glyphicon glyphicon-download\"></i> <b>" . $resultgettotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
+    echo "<b>" . $resultgettotalnumberofdownloads["SUM(count)"] . "</b> total downloads";
 }
 
 mysql_close($con);
 
 ?>
 </div>
-<hr>
-<div class="footer">
-ModernCount <?php echo $version; ?> &copy; <a href="http://github.com/joshf" target="_blank">Josh Fradley</a> <?php echo date("Y"); ?>. Themed by <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>.
-</div>
+<footer>
+	Copyright <a href="http://studio384.be">Studio 384</a> &middot ModernCount <?php echo $version ?>
+</footer>
 </div>
 <script src="../assets/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

@@ -10,7 +10,7 @@ if (!file_exists("../config.php")) {
 require_once("../config.php");
 
 session_start();
-if (!isset($_SESSION["indication_user"])) {
+if (!isset($_SESSION["luna_user"])) {
     header("Location: login.php");
     exit; 
 }
@@ -23,7 +23,7 @@ if (!$con) {
 
 mysql_select_db(DB_NAME, $con);
 
-$getusersettings = mysql_query("SELECT `user` FROM `Users` WHERE `id` = \"" . $_SESSION["indication_user"] . "\"");
+$getusersettings = mysql_query("SELECT `user` FROM `Users` WHERE `id` = \"" . $_SESSION["luna_user"] . "\"");
 if (mysql_num_rows($getusersettings) == 0) {
     session_destroy();
     header("Location: login.php");

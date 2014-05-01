@@ -4,7 +4,7 @@
 
 session_start();
 
-unset($_SESSION["indication_user"]);
+unset($_SESSION["luna_user"]);
 
 header("Location: login.php?logged_out=true");
 

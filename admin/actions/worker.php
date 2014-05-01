@@ -10,7 +10,7 @@ if (!file_exists("../../config.php")) {
 require_once("../../config.php");
 
 session_start();
-if (!isset($_SESSION["indication_user"])) {
+if (!isset($_SESSION["luna_user"])) {
     header("Location: ../login.php");
     exit; 
 }

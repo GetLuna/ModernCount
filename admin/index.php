@@ -12,13 +12,13 @@ if (!file_exists("../config.php")) {
 require_once("../config.php");
 
 session_start();
-if (!isset($_SESSION["indication_user"])) {
+if (!isset($_SESSION["luna_user"])) {
     header("Location: login.php");
     exit; 
 }
 
 //Set cookie so we dont constantly check for updates
-setcookie("indicationupdatecheck", time(), time()+604800);
+setcookie("lunaupdatecheck", time(), time()+604800);
 
 @$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 if (!$con) {
@@ -30,7 +30,7 @@ if (!$con) {
     }
 }
 
-$getusersettings = mysql_query("SELECT `user` FROM `Users` WHERE `id` = \"" . $_SESSION["indication_user"] . "\"");
+$getusersettings = mysql_query("SELECT `user` FROM `Users` WHERE `id` = \"" . $_SESSION["luna_user"] . "\"");
 if (mysql_num_rows($getusersettings) == 0) {
     session_destroy();
     header("Location: login.php");
@@ -112,7 +112,7 @@ tr td:last-child {
 echo "<noscript><div class=\"alert alert-info\"><h4 class=\"alert-heading\">Information</h4><p>Please enable JavaScript to use ModernCount. For instructions on how to do this, see <a href=\"http://www.activatejavascript.org\" class=\"alert-link\" target=\"_blank\">here</a>.</p></div></noscript>";
 
 //Update checking
-if (!isset($_COOKIE["indicationupdatecheck"])) {
+if (!isset($_COOKIE["lunaupdatecheck"])) {
     $remoteversion = file_get_contents("https://raw.github.com/joshf/ModernCount/master/version.txt");
     if (version_compare($version, $remoteversion) < 0) {            
         echo "<div class=\"alert alert-warning\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><h4 class=\"alert-heading\">Update</h4><p>ModernCount <a href=\"https://github.com/joshf/ModernCount/releases/$remoteversion\" class=\"alert-link\" target=\"_blank\">$remoteversion</a> is available. <a href=\"https://github.com/joshf/ModernCount#updating\" class=\"alert-link\" target=\"_blank\">Click here for instructions on how to update</a>.</p></div>";

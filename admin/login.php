@@ -17,6 +17,18 @@ if (!$con) {
 
 mysql_select_db(DB_NAME, $con);
 
+//If cookie is set, skip login
+if (isset($_COOKIE["luna_user_rememberme"])) {
+    $id = $_COOKIE["luna_user_rememberme"];
+    $getid = mysql_query("SELECT `id` FROM `Users` WHERE `id` = \"$id\"");
+    if (mysql_num_rows($getid) == 0) {
+        header("Location: logout.php");
+        exit;
+    }
+    $userinforesult = mysql_fetch_assoc($getid); 
+    $_SESSION["luna_user"] = $userinforesult["id"];
+}
+
 if (isset($_POST["password"]) && isset($_POST["username"])) {
     $username = mysql_real_escape_string($_POST["username"]);
     $password = $_POST["password"];
@@ -30,6 +42,9 @@ if (isset($_POST["password"]) && isset($_POST["username"])) {
     $hashedpassword = hash("sha256", $salt . hash("sha256", $password));
     if ($hashedpassword == $userinforesult["password"]) {
         $_SESSION["luna_user"] = $userinforesult["id"];
+		if (isset($_POST["rememberme"])) {
+            setcookie("luna_user_rememberme", $userinforesult["id"], time()+1209600);
+        }
     } else {
         header("Location: login.php?login_error=true");
         exit;
@@ -84,6 +99,13 @@ if (isset($_GET["login_error"])) {
 </div>
 <div class="form-group">
 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+</div>
+<div class="control-group">
+<div class="controls">
+<label class="checkbox">
+<input type="checkbox" id="rememberme" name="rememberme"> Remember Me
+</label>
+</div>
 </div>
 <button type="submit" class="btn btn-default pull-right">Login</button>
 </form>

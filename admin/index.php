@@ -63,6 +63,7 @@ tr td:last-child {
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
 <div class="navbar-header">
+<div class="navbar-brand visible-xs">ModernCount</div>
 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 <span class="sr-only">Toggle navigation</span>
 <span class="icon-bar"></span>
@@ -114,7 +115,7 @@ $getdownloads = mysql_query("SELECT * FROM `Data`");
             <th>Name</th>
             <th class="hidden-xs">URL</th>
             <th>Count</th>
-            <th>Actions</th>
+            <th width="63px">Actions</th>
         </tr>
     </thead>
     <tbody>

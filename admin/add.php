@@ -48,13 +48,13 @@ $resultgetusersettings = mysql_fetch_assoc($getusersettings);
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
 <div class="navbar-header">
-<div class="navbar-brand visible-xs">ModernCount</div>
 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 <span class="sr-only">Toggle navigation</span>
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
+<a class="navbar-brand visible-xs" href="index.php">ModernCount</a>
 </div>
 <div class="navbar-collapse collapse">
 <ul class="nav navbar-nav">
